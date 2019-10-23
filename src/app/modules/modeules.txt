@@ -1,0 +1,2 @@
+A pasta na qual se encontra esse arquivo destina-se para modules - 
+utilizado para centralizar módulos ou componentes do mesmo lugar.

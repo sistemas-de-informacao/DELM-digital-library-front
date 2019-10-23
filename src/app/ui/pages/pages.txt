@@ -1,0 +1,2 @@
+A pasta na qual se encontra esse arquivo destina-se para páginas nas quais 
+não serão reutilizáveis e comportam componentes.
