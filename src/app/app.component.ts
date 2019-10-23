@@ -5,13 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-
 export class AppComponent {
-
-  dataAgora = new Date();
-
-  constructor() {
-    console.log(this.dataAgora);
-  }
-
+  title = 'DELM-digital-library';
 }
