@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="card-bg d-flex flex-column justify-content-center align-items-center">
+        <h1>DELM <i class="fas fa-gamepad"></i></h1>
+        <div class="card">
+            <div class="card-body">
+                <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmitToLogin()">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">E-mail/usuário</label>
+                        <input formControlName='user' type="email" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Senha</label>
+                        <input formControlName='password' type="password" class="form-control"
+                            id="exampleInputPassword1">
+                    </div>
+                    <button type="submit" [disabled]='!loginFormGroup.valid'
+                        class="btn btn-primary float-right">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

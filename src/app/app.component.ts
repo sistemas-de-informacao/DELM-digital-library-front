@@ -9,9 +9,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   dataAgora = new Date();
+  developersTeam: string[] = ['Daniel Vieira', ' Edson Camargo', ' Lucas Pelinzon', ' Matheus Fracaroli'];
 
-  constructor() {
-    console.log(this.dataAgora);
-  }
+  constructor() { }
 
 }
