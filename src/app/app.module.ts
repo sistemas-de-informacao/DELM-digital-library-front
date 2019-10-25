@@ -15,6 +15,7 @@ import { AuthenticationService } from './services/authentication.service';
 // Locale
 import localept from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { NavbarComponent } from './ui/components/navbar/navbar.component';
 registerLocaleData(localept, (settingsService) => settingsService.getLocale());
 
 @NgModule({
@@ -22,7 +23,8 @@ registerLocaleData(localept, (settingsService) => settingsService.getLocale());
     AppComponent,
     LoginComponent,
     WebDashboardComponent,
-    WebComponent
+    WebComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

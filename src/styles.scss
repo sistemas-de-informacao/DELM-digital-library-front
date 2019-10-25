@@ -1,5 +1,8 @@
 @import "./app/scss/my-theme.scss";
 
-body, html {
+body,
+html,
+a {
     margin: 0;
+    text-decoration: none !important;
 }

@@ -1,0 +1,40 @@
+nav {
+    $nav-size: 75px;
+    $button-width: 125px;
+    $padding: 0 20px;
+
+    padding: 0;
+    height: $nav-size;
+
+    img {
+        padding: $padding;
+        height: 50px;
+    }
+
+    @media (max-width: 991px) {
+        .nav-left-button {
+            align-content: center;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .nav-default-button {
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        div .nav-button {
+            height: $nav-size;
+            width: $button-width;
+            padding: $padding;
+        }
+    }
+}
+
+.navbar-dark .navbar-toggler {
+    margin: 20px;
+}

@@ -8,9 +8,9 @@ import { WebComponent } from './ui/pages/web/web.component';
 
 
 const routes: Routes = [{ path: 'login', component: LoginComponent },
-{ path: '', redirectTo: 'login', pathMatch: 'full' },
+{ path: '', redirectTo: 'loja', pathMatch: 'full' },
 { path: 'dashboard', component: WebDashboardComponent, children: [] },
-{ path: 'home', component: WebComponent, children: [] }];
+{ path: 'loja', component: WebComponent, children: [] }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

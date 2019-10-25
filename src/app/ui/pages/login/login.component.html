@@ -1,18 +1,17 @@
 <div class="container">
     <div class="card-bg d-flex flex-column justify-content-center align-items-center">
-        <h1>DELM <i class="fas fa-gamepad"></i></h1>
-        <div class="card">
-            <div class="card-body">
+        <div class="card bg-dark">
+            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                <img class="logo" src="../../../../assets/images/logo.png" alt="">
                 <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmitToLogin()">
+                    <label for="exampleInputEmail1">Cadastrar-se</label>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">E-mail/usuário</label>
                         <input formControlName='user' type="email" class="form-control" id="exampleInputEmail1"
-                            aria-describedby="emailHelp">
+                            aria-describedby="emailHelp" placeholder="Endereço de e-mail">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Senha</label>
                         <input formControlName='password' type="password" class="form-control"
-                            id="exampleInputPassword1">
+                            id="exampleInputPassword1" placeholder="Senha">
                     </div>
                     <button type="submit" [disabled]='!loginFormGroup.valid'
                         class="btn btn-primary float-right">Login</button>

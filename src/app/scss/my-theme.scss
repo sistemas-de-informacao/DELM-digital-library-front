@@ -19,20 +19,18 @@
 @import "../node_modules/bootstrap/scss/grid";
 
 // Your variable overrides
-// $body-bg: #000;
-// $body-color: #111;
+$body-bg: #252525;
+$body-color: #fff;
 
 // Theme overrides
-$theme-colors: (
-  "primary": #007BFF,
+$theme-colors: ("primary": #007BFF,
   "secondary": #6C757D,
   "success": #28A745,
   "danger": #ff4136,
   "warning": #FFC107,
   "info": #17A2B8,
   "light": #FFFFFF,
-  "dark": #FFFFFF
-);
+  "dark": #505050, "darkness": #252525);
 
 // Bootstrap and its default variables
 @import "../node_modules/bootstrap/scss/bootstrap";
