@@ -3,8 +3,17 @@
         <div class="card bg-dark">
             <div class="card-body d-flex flex-column justify-content-center align-items-center">
                 <img class="logo" src="../../../../assets/images/logo.png" alt="">
-                <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmitToLogin()">
-                    <label for="exampleInputEmail1">Entrar</label>
+                <form [formGroup]="userCadastreFormGroup" (ngSubmit)="onSubmitToLogin()">
+                    <label for="exampleInputEmail1">Cadastrar-se</label>
+                    <div class="form-group">
+                        <input formControlName='displayName' type="text" class="form-control"
+                            id="exampleInputdisplayName" aria-describedby="displayNameHelp"
+                            placeholder="Nome para exibição">
+                    </div>
+                    <div class="form-group">
+                        <input formControlName='name' type="text" class="form-control" id="exampleInputName1"
+                            aria-describedby="nameHelp" placeholder="Nome real">
+                    </div>
                     <div class="form-group">
                         <input formControlName='user' type="email" class="form-control" id="exampleInputEmail1"
                             aria-describedby="emailHelp" placeholder="Endereço de e-mail">
@@ -13,8 +22,8 @@
                         <input formControlName='password' type="password" class="form-control"
                             id="exampleInputPassword1" placeholder="Senha">
                     </div>
-                    <button type="submit" [disabled]='!loginFormGroup.valid'
-                        class="btn btn-primary float-right">Login</button>
+                    <button type="submit" [disabled]='!userCadastreFormGroup.valid'
+                        class="btn btn-primary float-right">Cadastrar</button>
                 </form>
             </div>
         </div>

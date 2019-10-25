@@ -7,8 +7,8 @@
     <div class="collapse navbar-collapse" id="textoNavbar">
         <ul class="navbar-nav mr-auto bg-dark">
             <li class="nav-item active">
-                <a [routerLink]="['/loja']" class="nav-link nav-default-button" href="#"><span
-                        class="nav-left-button">LOJA</span></a>
+                <a [routerLink]="['/loja']" routerLinkActive="router-link-active" class="nav-link nav-default-button"
+                    href="#"><span class="nav-left-button">LOJA</span></a>
             </li>
         </ul>
         <div
@@ -17,7 +17,7 @@
         </div>
         <div
             class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-primary text-light">
-            <a>CADASTRO</a>
+            <a [routerLink]="['/cadastro']" routerLinkActive="router-link-active">CADASTRO</a>
         </div>
     </div>
 </nav>

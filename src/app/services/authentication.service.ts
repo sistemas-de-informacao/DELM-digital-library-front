@@ -14,7 +14,7 @@ export class AuthenticationService {
 
   constructor(private router: Router) { }
 
-  onLogin(credentials: LoginForm) {
+  onLogin(credentials: any) {
     if (credentials) {
       if (userType === 1) {
         this.router.navigateByUrl('dashboard');
