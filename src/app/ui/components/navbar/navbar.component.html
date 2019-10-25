@@ -6,18 +6,20 @@
     </button>
     <div class="collapse navbar-collapse" id="textoNavbar">
         <ul class="navbar-nav mr-auto bg-dark">
-            <li class="nav-item active">
-                <a [routerLink]="['/loja']" routerLinkActive="router-link-active" class="nav-link nav-default-button"
-                    href="#"><span class="nav-left-button">LOJA</span></a>
+            <li class="nav-item">
+                <div class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-dark text-light"
+                    routerLinkActive="active">
+                    <a [routerLink]="['/loja']">LOJA</a>
+                </div>
             </li>
         </ul>
-        <div
-            class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-dark text-light">
-            <a [routerLink]="['/login']" routerLinkActive="router-link-active">LOGIN</a>
+        <div class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-dark text-light"
+            routerLinkActive="active">
+            <a [routerLink]="['/login']">LOGIN</a>
         </div>
-        <div
-            class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-primary text-light">
-            <a [routerLink]="['/cadastro']" routerLinkActive="router-link-active">CADASTRO</a>
+        <div class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-primary text-light"
+            routerLinkActive="active-dark">
+            <a [routerLink]="['/cadastro']">CADASTRO</a>
         </div>
     </div>
 </nav>

@@ -10,6 +10,25 @@ nav {
         height: 50px;
     }
 
+    .active::after {
+        content: '';
+        background: #007BFF;
+        width: 125px;
+        height: 4px;
+        display: block;
+        position: absolute;
+        bottom: 0px;
+    }
+
+    .active-dark::after {
+        content: '';
+        background: #505050;
+        width: 125px;
+        height: 4px;
+        position: absolute;
+        bottom: 0px;
+    }
+
     @media (max-width: 991px) {
         .nav-left-button {
             align-content: center;
@@ -29,7 +48,6 @@ nav {
         div .nav-button {
             height: $nav-size;
             width: $button-width;
-            padding: $padding;
         }
     }
 }
