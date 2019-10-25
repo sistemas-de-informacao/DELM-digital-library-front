@@ -1,9 +1,9 @@
 .card-bg {
     height: calc(100vh - 8.0042689434365vh);
-
+    margin: 20px;
+    
     .card {
         width: 65%;
-        height: 65%;
         min-width: 320px;
         padding: 50px;
 
@@ -14,18 +14,6 @@
 
         form {
             width: 100%;
-
-            .form-control {
-                background: #707070;
-                border-radius: 0;
-                border: none;
-                height: 45px;
-                color: #fff;
-            }
-
-            ::placeholder {
-                color: rgba($color: #fff, $alpha: 0.45);
-            }
 
             .btn-primary {
                 width: 100%;

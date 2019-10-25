@@ -1,0 +1,13 @@
+.search-input {
+    margin-left: -5px;
+}
+
+.background-column {
+    margin: 5px;
+    width: calc(33.33% - 31.25%);
+    min-width: 250px;
+
+    .card {
+        width: 100%;
+    }
+}

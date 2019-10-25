@@ -17,6 +17,8 @@ import localept from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { NavbarComponent } from './ui/components/navbar/navbar.component';
 import { UserCadasterComponent } from './ui/pages/user-cadaster/user-cadaster.component';
+import { GameListComponent } from './ui/pages/web/game-list/game-list.component';
+import { HasImagePipe } from './pipes/has-image.pipe';
 registerLocaleData(localept, (settingsService) => settingsService.getLocale());
 
 @NgModule({
@@ -27,6 +29,8 @@ registerLocaleData(localept, (settingsService) => settingsService.getLocale());
     WebDashboardComponent,
     WebComponent,
     NavbarComponent,
+    GameListComponent,
+    HasImagePipe,
   ],
   imports: [
     BrowserModule,

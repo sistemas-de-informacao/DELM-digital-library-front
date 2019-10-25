@@ -6,3 +6,19 @@ a {
     margin: 0;
     text-decoration: none !important;
 }
+
+.margin-top {
+    margin-top: 20px;
+}
+
+.form-control {
+    background: #707070;
+    border-radius: 0;
+    border: none;
+    height: 45px;
+    color: #fff;
+}
+    
+.form-control::placeholder {
+    color: rgba($color: #fff, $alpha: 0.45);
+}
