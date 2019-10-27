@@ -2,8 +2,8 @@ import { FormGroup } from '@angular/forms';
 
 export class LoginForm {
 
-    private user: string;
-    private password: string;
+    user: string;
+    password: string;
 
     constructor(loginFormGroup: FormGroup) {
         this.user = loginFormGroup.get('user').value;

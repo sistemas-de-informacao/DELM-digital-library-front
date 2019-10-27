@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserCadasterComponent } from './user-cadaster.component';
+import { UserCadasterComponent } from './user-cadastre.component';
 
 describe('UserCadasterComponent', () => {
   let component: UserCadasterComponent;
@@ -8,9 +8,9 @@ describe('UserCadasterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserCadasterComponent ]
+      declarations: [UserCadasterComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

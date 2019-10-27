@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 // Models
-import { LoginForm } from '../models/login-form';
 import { Router } from '@angular/router';
 
 const userType = 1;

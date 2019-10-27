@@ -1,6 +1,6 @@
 import { FormGroup } from '@angular/forms';
 
-export class CadastreForm {
+export class UserCadastreForm {
 
     displayName: string;
     name: string;

@@ -1,17 +1,21 @@
-import { FormBuilder, Validators } from '@angular/forms';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { CadastreForm } from './../../../models/cadastre-form';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+
+// Models
+import { UserCadastreForm } from '../../../models/forms/user-cadastre-form';
+
+// Services
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
-  selector: 'app-user-cadaster',
-  templateUrl: './user-cadaster.component.html',
-  styleUrls: ['./user-cadaster.component.scss']
+  selector: 'app-user-cadastre',
+  templateUrl: './user-cadastre.component.html',
+  styleUrls: ['./user-cadastre.component.scss']
 })
 
-export class UserCadasterComponent implements OnInit {
+export class UserCadastreComponent implements OnInit {
 
-  userCadastreForm: CadastreForm;
+  userCadastreForm: UserCadastreForm;
 
   userCadastreFormGroup = this.fb.group({
     displayName: [null, [Validators.required, Validators.minLength(5)]],
@@ -28,7 +32,7 @@ export class UserCadasterComponent implements OnInit {
     this.authentication.onLogin(this.createLoginForm());
   }
 
-  createLoginForm(): CadastreForm {
-    return this.userCadastreForm = new CadastreForm(this.userCadastreFormGroup);
+  createLoginForm(): UserCadastreForm {
+    return this.userCadastreForm = new UserCadastreForm(this.userCadastreFormGroup);
   }
 }

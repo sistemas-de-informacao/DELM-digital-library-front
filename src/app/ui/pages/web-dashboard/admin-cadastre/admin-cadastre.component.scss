@@ -1,16 +1,11 @@
 .card-bg {
-    height: calc(100vh - 8.0042689434365vh);
+    height: calc(100vh - 15vh);
     margin: 20px;
-    
+
     .card {
         width: 65%;
         min-width: 320px;
         padding: 10px;
-
-        img {
-            height: 125px;
-            padding: 20px;
-        }
 
         form {
             width: 100%;

@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="card-bg d-flex flex-column justify-content-center align-items-center">
+        <div class="card bg-dark">
+            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmitToCreateGame()">
+                    <label for="exampleFormGroup">Cadastrar jogo</label>
+                    <div class="form-group">
+                        <input formControlName='nome' type="text" class="form-control" id="exampleNome"
+                            aria-describedby="displayNameHelp" placeholder="Nome">
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">R$</span>
+                        </div>
+                        <input formControlName='preco' type="number" class="form-control" placeholder="Preço">
+                        <div class="input-group-append">
+                            <span class="input-group-text">,00</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName='dataLancamento' type="date" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Data de lançamento">
+                    </div>
+                    <div class="form-group">
+                        <input formControlName='desenvolvedor' type="text" class="form-control"
+                            id="exampleInputDesenvolvedor" placeholder="Desenvolvedor">
+                    </div>
+                    <div class="form-group">
+                        <textarea formControlName='descricao' type="text" class="form-control"
+                            id="exampleInputDescricao" placeholder="Descrição"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <select formControlName='categoria' class="custom-select" id="inputGroupSelectCategoria">
+                            <option value="1">FPS</option>
+                            <option value="2">RPG</option>
+                            <option value="3">Aventura</option>
+                        </select>
+                        <div class="input-group-append">
+                            <label class="input-group-text" for="inputGroupSelectCategoria">Categoria</label>
+                        </div>
+                    </div>
+                    <button type="submit" [disabled]='!loginFormGroup.valid'
+                        class="btn btn-primary float-right">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

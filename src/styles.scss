@@ -1,5 +1,10 @@
 @import "./app/scss/my-theme.scss";
 
+:root {
+    --primary: #007BFF;
+    --dark: #505050;
+}
+
 body,
 html,
 a {
@@ -15,14 +20,27 @@ a {
     border-radius: 0;
 }
 
-.form-control {
-    background: #707070;
-    border-radius: 0;
-    border: none;
-    height: 45px;
-    color: #fff;
-}
-    
-.form-control::placeholder {
-    color: rgba($color: #fff, $alpha: 0.45);
+form {
+    .form-control {
+        background: #707070;
+        border-radius: 0;
+        border: none;
+        color: #fff;
+    }
+
+    .input-group>.form-control:not(:last-child),
+    .input-group>.custom-select:not(:last-child) {
+        background: #707070;
+        border-radius: 0;
+        border: none;
+        color: #fff;
+    }
+
+    .input-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control::placeholder {
+        color: rgba($color: #fff, $alpha: 0.80);
+    }
 }

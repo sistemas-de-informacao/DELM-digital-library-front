@@ -12,7 +12,7 @@ nav {
 
     .active::after {
         content: '';
-        background: #007BFF;
+        background: var(--primary);
         width: 125px;
         height: 4px;
         display: block;
@@ -22,11 +22,28 @@ nav {
 
     .active-dark::after {
         content: '';
-        background: #505050;
+        background: var(--dark);
         width: 125px;
         height: 4px;
         position: absolute;
         bottom: 0px;
+    }
+
+    .nav-item {
+        .nav-link {
+            color: #fff;
+        }
+
+        .dropdown-menu {
+            .dropdown-item:hover {
+                background: var(--primary);
+            }
+
+            .active-dropdown {
+                background: var(--primary);
+            }
+        }
+
     }
 
     @media (max-width: 991px) {
@@ -36,6 +53,16 @@ nav {
             display: flex;
             flex-direction: row;
             justify-content: center;
+        }
+
+        .active::after {
+            content: '';
+            background: transparent !important;
+        }
+
+        .active-dark::after {
+            content: '';
+            background: transparent !important;
         }
     }
 

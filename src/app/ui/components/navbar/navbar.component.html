@@ -12,6 +12,25 @@
                     <a [routerLink]="['/loja']">LOJA</a>
                 </div>
             </li>
+            <li class="nav-item dropdown" routerLinkActive="active">
+                <div
+                    class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-dark text-light">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        DASHBOARD
+                    </a>
+                    <div class="dropdown-menu bg-dark text-light" aria-labelledby="navbarDropdown">
+                        <a [routerLink]="['/dashboard/cadastro-admin']" routerLinkActive="active-dropdown"
+                            class="dropdown-item">Cadastrar
+                            usuário</a>
+                        <a [routerLink]="['/dashboard/cadastro-jogo']" routerLinkActive="active-dropdown"
+                            class="dropdown-item">Cadastrar
+                            jogo</a>
+                        <!-- <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a> -->
+                    </div>
+                </div>
+            </li>
         </ul>
         <div class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-dark text-light"
             routerLinkActive="active">

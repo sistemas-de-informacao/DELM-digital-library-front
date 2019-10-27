@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validator, FormBuilder, Validators } from '@angular/forms';
 
 // Models
-import { LoginForm } from 'src/app/models/login-form';
+import { LoginForm } from 'src/app/models/forms/login-form';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
