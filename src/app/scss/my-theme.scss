@@ -30,7 +30,8 @@ $theme-colors: ("primary": #007BFF,
   "warning": #FFC107,
   "info": #17A2B8,
   "light": #FFFFFF,
-  "dark": #505050, "darkness": #252525);
+  "dark": #505050,
+  "darkness": #252525);
 
 // Bootstrap and its default variables
 @import "../node_modules/bootstrap/scss/bootstrap";

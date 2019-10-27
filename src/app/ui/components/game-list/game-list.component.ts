@@ -1,6 +1,13 @@
-import { Game } from './../../../models/game';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+
+// Models
+import { Game } from './../../../models/game';
+import { GAMES } from '../../../mocks/games-mock';
+
+// Services
+import { GameService } from './../../../services/game.service';
 
 @Component({
   selector: 'app-game-list',
@@ -10,19 +17,19 @@ import { FormBuilder } from '@angular/forms';
 
 export class GameListComponent implements OnInit {
 
-  MOCK_GAME: Game[] = [];
+  MOCK_GAME = GAMES;
 
   searchFormGroup = this.fb.group({
     name: [null]
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router, private gameService: GameService) { }
 
   ngOnInit() {
-    for (let index = 0; index < 3; index++) {
-      this.MOCK_GAME.push(new Game('GTA', 32, new Date(), 'Ubisoft', 'Grand Theft Auto é uma série de jogos de computador e videogames criada por David Jones e Mike Dailly, sendo posteriormente gerenciada pelos irmãos Dan e Sam Houser, Leslie Benzies e Aaron Garbut. A maioria dos jogos foi desenvolvida pela Rockstar North e publicada pela Rockstar Games.', 1));
-      console.log(this.MOCK_GAME)
-    }
+  }
+
+  getJogo(id: number, nome: string) {
+    this.router.navigate([`/loja/jogo/${this.gameService.converterNomeParaUrl(nome)}`], { queryParams: { id } });
   }
 
 }

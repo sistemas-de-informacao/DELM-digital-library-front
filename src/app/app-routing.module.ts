@@ -1,3 +1,5 @@
+import { GameListComponent } from './ui/components/game-list/game-list.component';
+import { GameDetailsComponent } from './ui/components/game-details/game-details.component';
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -22,7 +24,13 @@ const routes: Routes = [{ path: 'login', component: LoginComponent },
     { path: 'cadastro-admin', component: AdminCadastreComponent }
   ]
 },
-{ path: 'loja', component: WebComponent, children: [] }];
+{
+  path: 'loja', component: WebComponent, children: [
+    { path: '', redirectTo: 'biblioteca', pathMatch: 'full' },
+    { path: 'biblioteca', component: GameListComponent },
+    { path: 'jogo/:id', component: GameDetailsComponent }
+  ]
+}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

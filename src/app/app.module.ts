@@ -13,6 +13,7 @@ import { AdminCadastreComponent } from './ui/pages/web-dashboard/admin-cadastre/
 import { GameCadastreComponent } from './ui/pages/web-dashboard/game-cadastre/game-cadastre.component';
 import { WebComponent } from './ui/pages/web/web.component';
 import { GameListComponent } from './ui/components/game-list/game-list.component';
+import { GameDetailsComponent } from './ui/components/game-details/game-details.component';
 
 // Pipes
 import { HasImagePipe } from './pipes/has-image.pipe';
@@ -20,6 +21,7 @@ import { HasImagePipe } from './pipes/has-image.pipe';
 // Services
 import { SettingsService } from './services/settings.service';
 import { AuthenticationService } from './services/authentication.service';
+import { GameService } from './services/game.service';
 
 // Locale
 import localept from '@angular/common/locales/pt';
@@ -38,6 +40,7 @@ registerLocaleData(localept, (settingsService) => settingsService.getLocale());
     HasImagePipe,
     AdminCadastreComponent,
     GameCadastreComponent,
+    GameDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ registerLocaleData(localept, (settingsService) => settingsService.getLocale());
       deps: [SettingsService],
       useFactory: (settingsService) => settingsService.getLocale()
     },
-    AuthenticationService
+    AuthenticationService,
+    GameService
   ],
   bootstrap: [AppComponent]
 })

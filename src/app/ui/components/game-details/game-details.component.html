@@ -1,0 +1,36 @@
+<div class="container margin-top">
+    <div class="my-display-flex">
+        <div class="my-flex-item">
+            <img src="{{ jogo.img | hasImage }}" alt="">
+            <button class="btn bg-primary">OBTER POR <b>{{ jogo.preco | currency:'BRL':true }}</b></button>
+        </div>
+        <div class="my-flex-item descricao-item">
+            <div class="descricao">
+                <h1>{{ jogo.nome }}</h1>
+                <p>{{ jogo.descricao }}</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="line"> </div>
+    <br>
+    <div class="my-display-flex">
+        <div class="my-flex-item">
+            <h3>Sobre o jogo</h3>
+        </div>
+        <div class="my-display-flex my-flex-item about-item">
+            <div class="about">
+                <h6>Desenvolvedor</h6>
+                <h6>{{ jogo.desenvolvedor }}</h6>
+            </div>
+            <div class="about">
+                <h6>Categoria</h6>
+                <h6>{{ jogo.categoria }}</h6>
+            </div>
+            <div class="about">
+                <h6>Data de lançamento</h6>
+                <h6>{{ jogo.dataLancamento | date }}</h6>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+.my-display-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    text-align: justify;
+
+    .my-flex-item {
+        max-width: 100%;
+        flex: 1 1 454px;
+
+
+        img {
+            width: 100%;
+            border: 1px solid var(--dark);
+        }
+
+        button {
+            width: 100%;
+            height: 60px;
+            border-radius: 0;
+        }
+
+        .descricao {
+            @media (min-width: 992px) {
+                margin-left: 11px;
+            }
+        }
+
+    }
+
+    .about-item {
+        justify-content: space-between;
+
+        h6 {
+            line-height: 2;
+        }
+
+        .about {
+            @media (max-width: 991px) {
+                margin-right: 20px;
+                margin-bottom: 20px;
+            }
+        }
+
+    }
+}
+
+.descricao-item {
+    @media (max-width: 991px) {
+        margin-top: 20px;
+    }
+}
+
+.line {
+    height: 2px;
+    width: 100%;
+    background: var(--dark);
+}

@@ -3,6 +3,7 @@
 :root {
     --primary: #007BFF;
     --dark: #505050;
+    --darkness: #252525
 }
 
 body,
@@ -14,6 +15,10 @@ a {
 
 .margin-top {
     margin-top: 20px;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 .card {
@@ -43,4 +48,26 @@ form {
     .form-control::placeholder {
         color: rgba($color: #fff, $alpha: 0.80);
     }
+}
+
+textarea:focus,
+textarea.form-control:focus,
+input.form-control:focus,
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=number]:focus,
+[type=text].form-control:focus,
+[type=password].form-control:focus,
+[type=email].form-control:focus,
+[type=tel].form-control:focus,
+[contenteditable].form-control:focus {
+    box-shadow: inset 0 -1px 0 #ddd;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus {
+    outline: none;
+    box-shadow: none;
 }
