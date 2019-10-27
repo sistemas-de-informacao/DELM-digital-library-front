@@ -14,7 +14,7 @@ export class AdminCadastreForm {
         this.nome = adminFormGroup.get('nome').value;
         this.email = adminFormGroup.get('email').value;
         this.saldo = adminFormGroup.get('saldo').value;
-        this.dataCriacao = adminFormGroup.get('dataCriacao').value;
+        this.dataCriacao = new Date();
         this.id = id;
     }
 

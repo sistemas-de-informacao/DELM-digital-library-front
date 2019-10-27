@@ -18,8 +18,7 @@ export class AdminCadastreComponent implements OnInit {
     nickname: [null, [Validators.required, Validators.minLength(5)]],
     nome: [null, [Validators.required, Validators.minLength(5)]],
     email: [null, [Validators.required, Validators.email]],
-    saldo: [null, [Validators.required]],
-    dataCriacao: [null, [Validators.required]]
+    saldo: [null, [Validators.required]]
   });
 
   constructor(private fb: FormBuilder) { }
@@ -29,7 +28,6 @@ export class AdminCadastreComponent implements OnInit {
 
   onSubmitToCreateAdmin() {
     this.adminForm = new AdminCadastreForm(this.adminFormGroup);
-    console.log(this.adminForm);
   }
 
 }

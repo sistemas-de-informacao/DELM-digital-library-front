@@ -1,3 +1,4 @@
+import { ProfileComponent } from './ui/pages/web/profile/profile.component';
 import { GameListComponent } from './ui/components/game-list/game-list.component';
 import { GameDetailsComponent } from './ui/components/game-details/game-details.component';
 
@@ -30,7 +31,7 @@ const routes: Routes = [{ path: 'login', component: LoginComponent },
     { path: 'biblioteca', component: GameListComponent },
     { path: 'jogo/:id', component: GameDetailsComponent }
   ]
-}];
+}, { path: 'perfil/id/:id', component: ProfileComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

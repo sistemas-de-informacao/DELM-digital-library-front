@@ -1,1 +1,0 @@
-A pasta na qual se encontra esse arquivo destina-se para modelos de negócio.

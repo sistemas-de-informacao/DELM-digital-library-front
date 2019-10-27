@@ -1,0 +1,50 @@
+<div class="container margin-top">
+    <div class="d-flex flex-column">
+        <h1>CONFIGURAÇÕES GERAIS</h1>
+        <span>Gerencie os detalhes da conta que você compartilhou com a Epic Games, incluindo seu nome, informações
+            de
+            contato e mais</span>
+    </div>
+    <br><br>
+
+    <!-- Informações da conta -->
+    <form class="d-flex flex-column" [formGroup]="userFormGroup" (ngSubmit)="onSubmitToEdit()">
+        <h3>INFORMAÇÕES DA CONTA</h3>
+        <div class="d-flex justify-content-end">
+            <span>Data de criação: {{ user.dataCriacao | date }}</span>
+        </div>
+        <div class="form-group">
+            <input formControlName='nickname' type="text" class="form-control" id="exampleInputNickname"
+                aria-describedby="nickNameHelp" placeholder="Nome para exibição">
+        </div>
+        <div class="form-group">
+            <input formControlName='nome' type="text" class="form-control" id="exampleInputName1"
+                aria-describedby="nameHelp" placeholder="Nome real">
+        </div>
+        <div class="form-group">
+            <input formControlName='email' type="email" class="form-control" id="exampleInputEmail"
+                aria-describedby="emailHelp" placeholder="Endereço de e-mail">
+        </div>
+        <button type="submit" [disabled]='!userFormGroup.valid' class="btn btn-primary float-right">EDITAR</button>
+    </form>
+    <br><br>
+
+    <!-- Senhas -->
+    <form class="d-flex flex-column" [formGroup]="changePasswordFormGroup" (ngSubmit)="onSubmitToChangePassword()">
+        <h3>TROCAR SENHA</h3>
+        <div class="form-group">
+            <input formControlName='senhaAntiga' type="password" class="form-control" id="exampleInputPassword1"
+                placeholder="Senha antiga">
+        </div>
+        <div class="form-group">
+            <input formControlName='senhaNova' type="password" class="form-control" id="exampleInputPassword2"
+                placeholder="Senha nova">
+        </div>
+        <div class="form-group">
+            <input formControlName='senhaNovaConfirmar' type="password" class="form-control"
+                id="exampleInputPasswordConfirm" placeholder="Confirmar senha nova">
+        </div>
+        <button type="submit" [disabled]='!changePasswordFormGroup.valid'
+            class="btn btn-primary float-right">TROCAR</button>
+    </form>
+</div>
