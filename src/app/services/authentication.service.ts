@@ -16,9 +16,9 @@ export class AuthenticationService {
   onLogin(credentials: any) {
     if (credentials) {
       if (userType === 1) {
-        this.router.navigateByUrl('dashboard');
+        this.router.navigateByUrl('/loja/biblioteca');
       } else {
-        this.router.navigateByUrl('home');
+        this.router.navigateByUrl('/loja/biblioteca');
       }
     }
   }

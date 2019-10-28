@@ -31,6 +31,7 @@ import { GameService } from './services/game.service';
 // Locale
 import localept from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { UserListComponent } from './ui/components/user-list/user-list.component';
 registerLocaleData(localept, (settingsService) => settingsService.getLocale());
 
 @NgModule({
@@ -49,6 +50,7 @@ registerLocaleData(localept, (settingsService) => settingsService.getLocale());
     UserEditComponent,
     ProfileComponent,
     FooterComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,

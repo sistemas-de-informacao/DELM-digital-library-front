@@ -2,16 +2,16 @@ import { FormGroup } from '@angular/forms';
 
 export class UserCadastreForm {
 
-    displayName: string;
-    name: string;
+    nickname: string;
+    nome: string;
     user: string;
-    password: string;
+    senha: string;
 
     constructor(loginFormGroup: FormGroup) {
-        this.displayName = loginFormGroup.get('displayName').value;
-        this.name = loginFormGroup.get('name').value;
+        this.nickname = loginFormGroup.get('nickname').value;
+        this.nome = loginFormGroup.get('nome').value;
         this.user = loginFormGroup.get('user').value;
-        this.password = loginFormGroup.get('password').value;
+        this.senha = loginFormGroup.get('senha').value;
     }
 
 }

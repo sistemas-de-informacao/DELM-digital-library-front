@@ -9,8 +9,9 @@ export class User {
     senha: string;
     saldo: number;
     dataCriacao: Date;
+    ativo: boolean;
 
-    constructor(id: number, nickname: string, nome: string, email: string, senha: string, saldo: number, dataCriacao: Date) {
+    constructor(id: number, nickname: string, nome: string, email: string, senha: string, saldo: number, dataCriacao: Date, ativo: boolean) {
         this.id = id;
         this.nickname = nickname;
         this.nome = nome;
@@ -18,6 +19,7 @@ export class User {
         this.senha = senha;
         this.saldo = saldo;
         this.dataCriacao = dataCriacao;
+        this.ativo = ativo;
     }
 
     deserialize(userFormGroup: FormGroup) {

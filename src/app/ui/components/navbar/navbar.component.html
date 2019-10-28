@@ -14,6 +14,19 @@
             </li>
             <li class="nav-item dropdown" routerLinkActive="active">
                 <div
+                    class="community d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-dark text-light">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        COMUNIDADE
+                    </a>
+                    <div class="dropdown-menu bg-dark text-light" aria-labelledby="navbarDropdown">
+                        <a [routerLink]="['/comunidade/usuarios']" routerLinkActive="active-dropdown"
+                            class="dropdown-item"><i class="fas fa-users i-left"></i> USUÁRIOS</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item dropdown" routerLinkActive="active">
+                <div
                     class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-dark text-light">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -24,8 +37,6 @@
                             class="dropdown-item"><i class="fas fa-user-plus i-left"></i> CADASTRAR USUÁRIO</a>
                         <a [routerLink]="['/dashboard/cadastro-jogo']" routerLinkActive="active-dropdown"
                             class="dropdown-item"><i class="fas fa-plus i-left"></i> CADASTRAR JOGO</a>
-                        <!-- <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a> -->
                     </div>
                 </div>
             </li>

@@ -12,7 +12,7 @@ import { User } from '../../../models/user';
 })
 export class UserEditComponent implements OnInit {
 
-  user: User = new User(1, 'HNT3dev', 'Edson Camargo', 'dinhocmenezes@hotmail.com', 'jbdasjdbasjdasda', 10000, new Date());
+  user: User = new User(1, 'HNT3dev', 'Edson Camargo', 'dinhocmenezes@hotmail.com', 'jbdasjdbasjdasda', 10000, new Date(), true);
 
   userFormGroup: FormGroup;
   changePasswordFormGroup: FormGroup;

@@ -18,8 +18,8 @@ export class UserCadastreComponent implements OnInit {
   userCadastreForm: UserCadastreForm;
 
   userCadastreFormGroup = this.fb.group({
-    displayName: [null, [Validators.required, Validators.minLength(5)]],
-    name: [null, [Validators.required, Validators.minLength(5)]],
+    nickname: [null, [Validators.required, Validators.minLength(5)]],
+    nome: [null, [Validators.required, Validators.minLength(5)]],
     user: [null, [Validators.required, Validators.minLength(5), Validators.email]],
     password: [null, [Validators.required, Validators.minLength(6)]]
   });

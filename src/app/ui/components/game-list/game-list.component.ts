@@ -20,7 +20,7 @@ export class GameListComponent implements OnInit {
   MOCK_GAME = GAMES;
 
   searchFormGroup = this.fb.group({
-    name: [null]
+    nome: [null]
   });
 
   constructor(private fb: FormBuilder, private router: Router, private gameService: GameService) { }

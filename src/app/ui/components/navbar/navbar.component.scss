@@ -67,8 +67,13 @@ nav {
     }
 
     @media (min-width: 992px) {
+        .community {
+            margin-right: 20px;
+        }
+    }
+
+    @media (min-width: 991px) {
         .nav-default-button {
-            font-weight: bold;
             cursor: pointer;
         }
 
@@ -81,4 +86,8 @@ nav {
 
 .navbar-dark .navbar-toggler {
     margin: 20px;
+}
+
+.navbar-dark .navbar-text a {
+    font-weight: bold;
 }
