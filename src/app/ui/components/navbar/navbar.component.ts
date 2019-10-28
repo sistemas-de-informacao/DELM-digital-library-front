@@ -9,14 +9,10 @@ import { Router } from '@angular/router';
 
 export class NavbarComponent implements OnInit {
 
+  id = 'HNT3';
+
   constructor(private router: Router) { }
 
-  ngOnInit() {
-  }
-
-  irParaConfiguracoes() {
-    const id = 'HNT3';
-    this.router.navigate([`/perfil/id/${id}`]);
-  }
+  ngOnInit() { }
 
 }
