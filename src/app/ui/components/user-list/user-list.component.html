@@ -8,7 +8,7 @@
         </form>
     </div>
     <div class="table-responsive">
-        <table class="table table-striped table-dark bg-dark">
+        <table class="table table-dark bg-dark">
             <caption>Lista de usuários - veja a biblioteca de jogos deles.</caption>
             <thead>
                 <tr>
@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of users">
+                <tr *ngFor="let user of users" appTableHover>
                     <td>{{ user.nickname }}</td>
                     <td>{{ user.nome }}</td>
                     <td>{{ user.email }}</td>
