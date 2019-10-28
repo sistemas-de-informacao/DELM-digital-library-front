@@ -1,17 +1,22 @@
 <div class="container margin-top">
     <div class="d-flex flex-column">
         <h1>CONFIGURAÇÕES GERAIS</h1>
-        <span>Gerencie os detalhes da conta que você compartilhou com a Epic Games, incluindo seu nome, informações
+        <span>Gerencie os detalhes da conta que você compartilhou com a DELM ®, incluindo seu nome, informações
             de
-            contato e mais</span>
+            contato e mais...</span>
     </div>
     <br><br>
 
     <!-- Informações da conta -->
     <form class="d-flex flex-column" [formGroup]="userFormGroup" (ngSubmit)="onSubmitToEdit()">
         <h3>INFORMAÇÕES DA CONTA</h3>
-        <div class="d-flex justify-content-end">
-            <span>Data de criação: {{ user.dataCriacao | date }}</span>
+        <div class="d-flex flex-column mb-3">
+            <div>
+                <span><i class="fas fa-wallet i-left"></i> Saldo: {{ user.saldo }}</span>
+            </div>
+            <div>
+                <span><i class="fas fa-calendar-alt i-left"></i> Data de criação: {{ user.dataCriacao | date }}</span>
+            </div>
         </div>
         <div class="form-group">
             <input formControlName='nickname' type="text" class="form-control" id="exampleInputNickname"

@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   }
 
   irParaConfiguracoes() {
-    let id = 'HNT3';
+    const id = 'HNT3';
     this.router.navigate([`/perfil/id/${id}`]);
   }
 

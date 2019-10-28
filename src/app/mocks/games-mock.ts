@@ -28,5 +28,68 @@ export const GAMES: Game[] = [
         descricao: 'O melhor jogo de mundo aberto.',
         categoria: 1,
         img: undefined
+    }, {
+        id: 3,
+        nome: 'GTA 3',
+        preco: 32,
+        dataLancamento: new Date(),
+        desenvolvedor: 'Ubisoft',
+        descricao: 'O melhor jogo de mundo aberto.',
+        categoria: 1,
+        img: undefined
+    }, {
+        id: 3,
+        nome: 'GTA 3',
+        preco: 32,
+        dataLancamento: new Date(),
+        desenvolvedor: 'Ubisoft',
+        descricao: 'O melhor jogo de mundo aberto.',
+        categoria: 1,
+        img: undefined
+    }, {
+        id: 3,
+        nome: 'GTA 3',
+        preco: 32,
+        dataLancamento: new Date(),
+        desenvolvedor: 'Ubisoft',
+        descricao: 'O melhor jogo de mundo aberto.',
+        categoria: 1,
+        img: undefined
+    }, {
+        id: 3,
+        nome: 'GTA 3',
+        preco: 32,
+        dataLancamento: new Date(),
+        desenvolvedor: 'Ubisoft',
+        descricao: 'O melhor jogo de mundo aberto.',
+        categoria: 1,
+        img: undefined
+    }, {
+        id: 3,
+        nome: 'GTA 3',
+        preco: 32,
+        dataLancamento: new Date(),
+        desenvolvedor: 'Ubisoft',
+        descricao: 'O melhor jogo de mundo aberto.',
+        categoria: 1,
+        img: undefined
+    }, {
+        id: 3,
+        nome: 'GTA 3',
+        preco: 32,
+        dataLancamento: new Date(),
+        desenvolvedor: 'Ubisoft',
+        descricao: 'O melhor jogo de mundo aberto.',
+        categoria: 1,
+        img: undefined
+    }, {
+        id: 3,
+        nome: 'GTA 3',
+        preco: 32,
+        dataLancamento: new Date(),
+        desenvolvedor: 'Ubisoft',
+        descricao: 'O melhor jogo de mundo aberto.',
+        categoria: 1,
+        img: undefined
     }
 ];
