@@ -1,1 +1,29 @@
-<p>user-list works!</p>
+<div class="container margin-top">
+    <div class="d-flex justify-content-end">
+        <form [formGroup]="pesquisarFormGroup">
+            <div class="form-group">
+                <input formControlName='pesquisar' type="text" class="form-control search-input" id="exampleInputName"
+                    aria-describedby="nomeHelp" placeholder="Pesquisar">
+            </div>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-dark bg-dark">
+            <caption>Lista de usuários - veja a biblioteca de jogos deles.</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Nickname</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{ user.nickname }}</td>
+                    <td>{{ user.nome }}</td>
+                    <td>{{ user.email }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+.container {
+    height: 100vh;
+    
+    table {
+        th {
+            border-top: 2px solid var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+
+        td {
+            border-top: 1px solid var(--darkness);
+            border-bottom: 1px solid var(--darkness);
+        }
+    }
+}

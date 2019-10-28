@@ -14,6 +14,7 @@ import { WebComponent } from './ui/pages/web/web.component';
 import { WebDashboardComponent } from './ui/pages/web-dashboard/web-dashboard.component';
 import { AdminCadastreComponent } from './ui/pages/web-dashboard/admin-cadastre/admin-cadastre.component';
 import { GameCadastreComponent } from './ui/pages/web-dashboard/game-cadastre/game-cadastre.component';
+import { UserListComponent } from './ui/components/user-list/user-list.component';
 
 
 const routes: Routes = [{ path: 'login', component: LoginComponent },
@@ -31,7 +32,13 @@ const routes: Routes = [{ path: 'login', component: LoginComponent },
     { path: 'biblioteca', component: GameListComponent },
     { path: 'jogo/:id', component: GameDetailsComponent }
   ]
-}, { path: 'perfil/id/:id', component: ProfileComponent }];
+}, {
+  path: 'comunidade', component: WebComponent, children: [
+    { path: '', redirectTo: 'usuarios', pathMatch: 'full' },
+    { path: 'usuarios', component: UserListComponent }
+  ]
+},
+{ path: 'perfil/id/:id', component: ProfileComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
