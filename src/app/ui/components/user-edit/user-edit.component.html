@@ -30,6 +30,13 @@
             <input formControlName='email' type="email" class="form-control" id="exampleInputEmail"
                 aria-describedby="emailHelp" placeholder="Endereço de e-mail">
         </div>
+        <div class="form-check">
+            <input formControlName='ativo' class="form-check-input" type="checkbox" [value]="user.ativo"
+                id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+                Desativar contar
+            </label>
+        </div>
         <button type="submit" [disabled]='!userFormGroup.valid' class="btn btn-primary float-right">EDITAR</button>
     </form>
     <br><br>

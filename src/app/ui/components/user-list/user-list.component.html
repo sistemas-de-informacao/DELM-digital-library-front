@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of users" appTableHover>
+                <tr *ngFor="let user of users" (click)="redirecionarParaUsuario(user.id)" appTableHover>
                     <td>{{ user.nickname }}</td>
                     <td>{{ user.nome }}</td>
                     <td>{{ user.email }}</td>

@@ -1,0 +1,22 @@
+<div class="container margin-top">
+    <div class="d-flex flex-column">
+        <span>
+            {{ user.nickname }}
+        </span>
+        <span>
+            {{ user.nome }}
+        </span>
+        <span>
+            {{ user.email }}
+        </span>
+        <span>
+            Usuário desde {{ user.dataCriacao | date }}
+        </span>
+    </div>
+</div>
+<div>
+    <div class="container margin-top">
+        <h3>BIBLIOTECA DO {{ user.nickname }}</h3>
+    </div>
+    <app-game-list></app-game-list>
+</div>

@@ -15,6 +15,7 @@ import { WebDashboardComponent } from './ui/pages/web-dashboard/web-dashboard.co
 import { AdminCadastreComponent } from './ui/pages/web-dashboard/admin-cadastre/admin-cadastre.component';
 import { GameCadastreComponent } from './ui/pages/web-dashboard/game-cadastre/game-cadastre.component';
 import { UserListComponent } from './ui/components/user-list/user-list.component';
+import { UserDetailsComponent } from './ui/components/user-details/user-details.component';
 
 
 const routes: Routes = [{ path: 'login', component: LoginComponent },
@@ -35,7 +36,8 @@ const routes: Routes = [{ path: 'login', component: LoginComponent },
 }, {
   path: 'comunidade', component: WebComponent, children: [
     { path: '', redirectTo: 'usuarios', pathMatch: 'full' },
-    { path: 'usuarios', component: UserListComponent }
+    { path: 'usuarios', component: UserListComponent },
+    { path: 'perfil/display-name/:id', component: UserDetailsComponent }
   ]
 },
 { path: 'perfil/id/:id', component: ProfileComponent }];

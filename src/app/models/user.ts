@@ -26,6 +26,7 @@ export class User {
         this.nickname = userFormGroup.get('nickname').value;
         this.nome = userFormGroup.get('nome').value;
         this.email = userFormGroup.get('email').value;
+        this.ativo = userFormGroup.get('ativo').value;
     }
 
 }

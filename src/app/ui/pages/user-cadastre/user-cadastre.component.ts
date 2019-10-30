@@ -21,7 +21,7 @@ export class UserCadastreComponent implements OnInit {
     nickname: [null, [Validators.required, Validators.minLength(5)]],
     nome: [null, [Validators.required, Validators.minLength(5)]],
     user: [null, [Validators.required, Validators.minLength(5), Validators.email]],
-    password: [null, [Validators.required, Validators.minLength(6)]]
+    senha: [null, [Validators.required, Validators.minLength(6)]]
   });
 
   constructor(private fb: FormBuilder, private authentication: AuthenticationService) { }

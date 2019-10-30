@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 // Models
 import { User } from 'src/app/models/user';
 import { USERS_MOCK } from 'src/app/mocks/users-mock';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -15,7 +16,7 @@ export class UserListComponent implements OnInit {
   pesquisarFormGroup: FormGroup;
   users: User[] = [];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.users = USERS_MOCK;
@@ -26,6 +27,10 @@ export class UserListComponent implements OnInit {
     this.pesquisarFormGroup = this.fb.group({
       pesquisar: [null, [Validators.required]],
     })
+  }
+
+  redirecionarParaUsuario(id: any) {
+    this.router.navigate(['comunidade/perfil/display-name/' + 'id'], { queryParams: { id } });
   }
 
 }
