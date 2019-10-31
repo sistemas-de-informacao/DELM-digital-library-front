@@ -25,7 +25,6 @@ export class UserDetailsComponent implements OnInit {
       for (const user of USERS_MOCK) {
         if (user.id == this.id) {
           this.user = user;
-          console.log(this.user);
         }
       }
     });

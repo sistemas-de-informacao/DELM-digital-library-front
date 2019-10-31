@@ -29,7 +29,6 @@ export class GameCadastreComponent implements OnInit {
 
   onSubmitToCreateGame() {
     this.gameForm = new GameCadastreForm(this.loginFormGroup);
-    console.log(this.gameForm);
   }
 
 }
