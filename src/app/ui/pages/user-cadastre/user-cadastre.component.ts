@@ -8,6 +8,7 @@ import { UserCadastreForm } from '../../../models/forms/user-cadastre-form';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
+import { DateService } from 'src/app/services/date.service';
 
 @Component({
   selector: 'app-user-cadastre',
@@ -39,9 +40,9 @@ export class UserCadastreComponent implements OnInit {
   }
 
   onSubmitToLogin() {
-    let date = new Date().toLocaleDateString('pt-br');
+
     this.criarUsuario(this.user = new User(0, this.userCadastreFormGroup.get('nickname').value, this.userCadastreFormGroup.get('nome').value, this.userCadastreFormGroup.get('email').value, this.userCadastreFormGroup.get('senha').value, 0,
-      date.toString(), true));
+      DateService.getDataAgora(), true));
     console.log(this.user);
   }
 

@@ -13,7 +13,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  criar(user: UserCadastreForm): Observable<User> {
+  criar(user: User): Observable<User> {
     return this.http.post<User>('http://localhost:8080/base-back-end/servicos/user/', user);
   }
 
