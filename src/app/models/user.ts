@@ -8,10 +8,10 @@ export class User {
     email: string;
     senha: string;
     saldo: number;
-    dataCriacao: Date;
+    dataCriacao: string;
     ativo: boolean;
 
-    constructor(id: number, nickname: string, nome: string, email: string, senha: string, saldo: number, dataCriacao: Date, ativo: boolean) {
+    constructor(id: number = 0, nickname: string = null, nome: string = null, email: string = null, senha: string = null, saldo: number = null, dataCriacao: string = null, ativo: boolean = null) {
         this.id = id;
         this.nickname = nickname;
         this.nome = nome;

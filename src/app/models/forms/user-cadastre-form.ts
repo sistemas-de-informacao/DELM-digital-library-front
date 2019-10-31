@@ -4,13 +4,13 @@ export class UserCadastreForm {
 
     nickname: string;
     nome: string;
-    user: string;
+    email: string;
     senha: string;
 
     constructor(loginFormGroup: FormGroup) {
         this.nickname = loginFormGroup.get('nickname').value;
         this.nome = loginFormGroup.get('nome').value;
-        this.user = loginFormGroup.get('user').value;
+        this.email = loginFormGroup.get('email').value;
         this.senha = loginFormGroup.get('senha').value;
     }
 

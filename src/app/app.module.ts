@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 // Components
 import { AppComponent } from './app.component';
@@ -59,7 +60,8 @@ registerLocaleData(localept, (settingsService) => settingsService.getLocale());
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     SettingsService,
