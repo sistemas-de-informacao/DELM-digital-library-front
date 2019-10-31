@@ -43,13 +43,12 @@ export class UserCadastreComponent implements OnInit {
 
     this.criarUsuario(this.user = new User(undefined, this.userCadastreFormGroup.get('nickname').value, this.userCadastreFormGroup.get('nome').value, this.userCadastreFormGroup.get('email').value, this.userCadastreFormGroup.get('senha').value, undefined,
       DateService.getDataAgora(), true));
-    console.log(this.user);
   }
 
 
   criarUsuario(usuario: User) {
     this.userService.criar(usuario).subscribe(() => {
-      console.log('Entrei.');
+      console.log('Usuário criado com sucesso.');
     });
   }
 
