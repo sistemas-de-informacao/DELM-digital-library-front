@@ -41,7 +41,7 @@ export class UserCadastreComponent implements OnInit {
 
   onSubmitToLogin() {
 
-    this.criarUsuario(this.user = new User(0, this.userCadastreFormGroup.get('nickname').value, this.userCadastreFormGroup.get('nome').value, this.userCadastreFormGroup.get('email').value, this.userCadastreFormGroup.get('senha').value, 0,
+    this.criarUsuario(this.user = new User(undefined, this.userCadastreFormGroup.get('nickname').value, this.userCadastreFormGroup.get('nome').value, this.userCadastreFormGroup.get('email').value, this.userCadastreFormGroup.get('senha').value, undefined,
       DateService.getDataAgora(), true));
     console.log(this.user);
   }

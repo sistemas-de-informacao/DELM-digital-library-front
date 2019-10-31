@@ -11,7 +11,7 @@ export class User {
     dataCriacao: string;
     ativo: boolean;
 
-    constructor(id: number = 0, nickname: string = null, nome: string = null, email: string = null, senha: string = null, saldo: number = null, dataCriacao: string = null, ativo: boolean = null) {
+    constructor(id: number = null, nickname: string = null, nome: string = null, email: string = null, senha: string = null, saldo: number = 1000.0, dataCriacao: string = null, ativo: boolean = null) {
         this.id = id;
         this.nickname = nickname;
         this.nome = nome;
