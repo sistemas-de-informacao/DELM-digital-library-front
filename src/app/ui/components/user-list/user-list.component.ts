@@ -3,8 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 // Models
 import { User } from 'src/app/models/user';
-import { USERS_MOCK } from 'src/app/mocks/users-mock';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -16,10 +16,10 @@ export class UserListComponent implements OnInit {
   pesquisarFormGroup: FormGroup;
   users: User[] = [];
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
 
   ngOnInit() {
-    this.users = USERS_MOCK;
+    this.listar();
     this.criarForms();
   }
 
@@ -31,6 +31,12 @@ export class UserListComponent implements OnInit {
 
   redirecionarParaUsuario(id: any) {
     this.router.navigate(['comunidade/perfil/display-name/' + 'id'], { queryParams: { id } });
+  }
+
+  listar() {
+    this.userService.listar().subscribe((users) => {
+      this.users = users;
+    });
   }
 
 }

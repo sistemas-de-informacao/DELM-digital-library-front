@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // Models
-import { UserCadastreForm } from '../models/forms/user-cadastre-form';
 import { User } from '../models/user';
 
 @Injectable({
@@ -15,6 +14,10 @@ export class UserService {
 
   criar(user: User): Observable<any> {
     return this.http.post<any>('http://localhost:8080/base-back-end/servicos/user/', user, { responseType: 'text' as 'json' });
+  }
+
+  listar(): Observable<User[]> {
+    return this.http.get<User[]>('http://localhost:8080/base-back-end/servicos/user/');
   }
 
 }
