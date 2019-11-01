@@ -14,7 +14,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   criar(user: User): Observable<any> {
-    return this.http.post<any>('http://localhost:8080/base-back-end/servicos/user/', user);
+    return this.http.post<any>('http://localhost:8080/base-back-end/servicos/user/', user, { responseType: 'text' as 'json' });
   }
 
 }
