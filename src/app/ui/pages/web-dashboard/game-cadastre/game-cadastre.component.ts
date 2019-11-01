@@ -3,6 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 // Models
 import { GameCadastreForm } from '../../../../models/forms/game-form';
+import { Game } from 'src/app/models/game';
+import { GameService } from 'src/app/services/game.service';
+import { DateService } from 'src/app/services/date.service';
 
 @Component({
   selector: 'app-game-cadastre',
@@ -12,6 +15,7 @@ import { GameCadastreForm } from '../../../../models/forms/game-form';
 export class GameCadastreComponent implements OnInit {
 
   gameForm: GameCadastreForm;
+  game: Game;
 
   loginFormGroup = this.fb.group({
     nome: [null, [Validators.required, Validators.minLength(5)]],
@@ -22,13 +26,21 @@ export class GameCadastreComponent implements OnInit {
     categoria: [null, [Validators.required]]
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private gameService: GameService) { }
 
   ngOnInit() {
   }
 
-  onSubmitToCreateGame() {
+  onSubmitCriarJogo() {
     this.gameForm = new GameCadastreForm(this.loginFormGroup);
+    this.criarJogo();
+  }
+
+  criarJogo() {
+    this.game = new Game(this.gameForm.nome, this.gameForm.preco, DateService.converterData(this.gameForm.dataLancamento), this.gameForm.desenvolvedor, this.gameForm.descricao, this.gameForm.categoria);
+    this.gameService.criar(this.game).subscribe((res: any) => {
+      console.log(res);
+    })
   }
 
 }

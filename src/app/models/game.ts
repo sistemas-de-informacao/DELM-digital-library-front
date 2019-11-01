@@ -3,13 +3,13 @@ export class Game {
     id: number;
     nome: string;
     preco: number;
-    dataLancamento: Date;
+    dataLancamento: string;
     desenvolvedor: string;
     descricao: string;
     categoria: any;
     img: string;
 
-    constructor(nome: string, preco: number, dataLacamento: Date, desenvolvedor: string, descricao: string,
+    constructor(nome: string, preco: number, dataLacamento: string, desenvolvedor: string, descricao: string,
         categoria: any, img?: string, id?: number) {
         this.nome = nome;
         this.preco = preco;

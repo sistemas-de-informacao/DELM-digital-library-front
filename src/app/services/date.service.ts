@@ -12,4 +12,9 @@ export class DateService {
     return date.toString();
   }
 
+  static converterData(data: Date): string {
+    const dataConvertida = new Date(data).toLocaleDateString('pt-br');
+    return dataConvertida.toString();
+  }
+
 }

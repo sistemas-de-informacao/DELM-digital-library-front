@@ -46,8 +46,8 @@ export class UserCadastreComponent implements OnInit {
 
 
   criarUsuario(usuario: User) {
-    this.userService.criar(usuario).subscribe(() => {
-      console.log('Usuário criado com sucesso.');
+    this.userService.criar(usuario).subscribe((res: string) => {
+      console.log(res);
     });
   }
 
