@@ -7,7 +7,7 @@ export const USERS_MOCK: any[] = [
         senha: null,
         saldo: 10000,
         dataCriacao: new Date(),
-        ativo: true
+        enable: true
     }, {
         id: 1,
         nickname: 'HNT3',
@@ -16,7 +16,7 @@ export const USERS_MOCK: any[] = [
         senha: null,
         saldo: 10000,
         dataCriacao: new Date(),
-        ativo: true
+        enable: true
     }, {
         id: 1,
         nickname: 'HNT3',
@@ -25,7 +25,7 @@ export const USERS_MOCK: any[] = [
         senha: null,
         saldo: 10000,
         dataCriacao: new Date(),
-        ativo: true
+        enable: true
     }, {
         id: 1,
         nickname: 'HNT3',
@@ -34,7 +34,7 @@ export const USERS_MOCK: any[] = [
         senha: null,
         saldo: 10000,
         dataCriacao: new Date(),
-        ativo: true
+        enable: true
     }, {
         id: 1,
         nickname: 'HNT3',
@@ -43,7 +43,7 @@ export const USERS_MOCK: any[] = [
         senha: null,
         saldo: 10000,
         dataCriacao: new Date(),
-        ativo: true
+        enable: true
     }, {
         id: 1,
         nickname: 'HNT3',
@@ -52,7 +52,7 @@ export const USERS_MOCK: any[] = [
         senha: null,
         saldo: 10000,
         dataCriacao: new Date(),
-        ativo: true
+        enable: true
     }, {
         id: 1,
         nickname: 'HNT3',
@@ -61,7 +61,7 @@ export const USERS_MOCK: any[] = [
         senha: null,
         saldo: 10000,
         dataCriacao: new Date(),
-        ativo: true
+        enable: true
     }, {
         id: 1,
         nickname: 'HNT3',
@@ -70,7 +70,7 @@ export const USERS_MOCK: any[] = [
         senha: null,
         saldo: 10000,
         dataCriacao: new Date(),
-        ativo: true
+        enable: true
     }, {
         id: 1,
         nickname: 'HNT3',
@@ -79,7 +79,7 @@ export const USERS_MOCK: any[] = [
         senha: null,
         saldo: 10000,
         dataCriacao: new Date(),
-        ativo: true
+        enable: true
     }, {
         id: 1,
         nickname: 'HNT3',
@@ -88,6 +88,6 @@ export const USERS_MOCK: any[] = [
         senha: null,
         saldo: 10000,
         dataCriacao: new Date(),
-        ativo: true
+        enable: true
     }
 ];

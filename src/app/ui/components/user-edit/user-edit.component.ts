@@ -29,7 +29,7 @@ export class UserEditComponent implements OnInit {
       nickname: [this.user.nickname, [Validators.required, Validators.minLength(5)]],
       nome: [this.user.nome, [Validators.required, Validators.minLength(5)]],
       email: [this.user.email, [Validators.required, Validators.minLength(5), Validators.email]],
-      ativo: [this.user.ativo, []]
+      enable: [this.user.enable, []]
     });
 
     this.changePasswordFormGroup = this.fb.group({

@@ -9,9 +9,9 @@ export class User {
     senha: string;
     saldo: number;
     dataCriacao: string;
-    ativo: boolean;
+    enable: boolean;
 
-    constructor(id: number = null, nickname: string = null, nome: string = null, email: string = null, senha: string = null, saldo: number = 1000.0, dataCriacao: string = null, ativo: boolean = null) {
+    constructor(id: number = null, nickname: string = null, nome: string = null, email: string = null, senha: string = null, saldo: number = 1000.0, dataCriacao: string = null, enable: boolean = null) {
         this.id = id;
         this.nickname = nickname;
         this.nome = nome;
@@ -19,14 +19,14 @@ export class User {
         this.senha = senha;
         this.saldo = saldo;
         this.dataCriacao = dataCriacao;
-        this.ativo = ativo;
+        this.enable = enable;
     }
 
     deserialize(userFormGroup: FormGroup) {
         this.nickname = userFormGroup.get('nickname').value;
         this.nome = userFormGroup.get('nome').value;
         this.email = userFormGroup.get('email').value;
-        this.ativo = userFormGroup.get('ativo').value;
+        this.enable = userFormGroup.get('enable').value;
     }
 
 }
