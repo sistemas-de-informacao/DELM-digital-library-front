@@ -13,6 +13,10 @@
                             [mensagem]="'O campo e-mail/nickname é obrigatório'"></app-error-card>
                         <app-error-card
                             *ngIf="loginFormGroup.get('user').hasError('maxlength') && loginFormGroup.get('user').touched"
+                            [mensagem]="'O campo e-mail/nickname precisar ter no mínimo 3 caracteres'">
+                        </app-error-card>
+                        <app-error-card
+                            *ngIf="loginFormGroup.get('user').hasError('maxlength') && loginFormGroup.get('user').touched"
                             [mensagem]="'O campo e-mail/nickname só pode ter no máximo 150 caracteres'">
                         </app-error-card>
                     </div>
@@ -22,6 +26,14 @@
                         <app-error-card
                             *ngIf="loginFormGroup.get('senha').hasError('required') && loginFormGroup.get('senha').touched"
                             [mensagem]="'O campo senha é obrigatório'"></app-error-card>
+                        <app-error-card
+                            *ngIf="loginFormGroup.get('senha').hasError('minlength') && loginFormGroup.get('senha').touched"
+                            [mensagem]="'O campo senha precisar ter no mínimo 6 caracteres'">
+                        </app-error-card>
+                        <app-error-card
+                            *ngIf="loginFormGroup.get('senha').hasError('maxlength') && loginFormGroup.get('senha').touched"
+                            [mensagem]="'O campo senha só pode ter no máximo 70 caracteres'">
+                        </app-error-card>
                     </div>
                     <button type="submit" [disabled]='!loginFormGroup.valid'
                         class="btn btn-primary float-right">Login</button>
