@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { USERS_MOCK } from 'src/app/mocks/users-mock';
 import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-details',
@@ -13,7 +14,7 @@ export class UserDetailsComponent implements OnInit {
   id: string;
   user: User;
 
-  constructor(private router: ActivatedRoute) { }
+  constructor(private router: ActivatedRoute, private userServices: UserService) { }
 
   ngOnInit() {
     this.getUsuario();
@@ -22,11 +23,9 @@ export class UserDetailsComponent implements OnInit {
   getUsuario() {
     this.router.queryParams.subscribe((queryParams: any) => {
       this.id = queryParams.id;
-      for (const user of USERS_MOCK) {
-        if (user.id == this.id) {
-          this.user = user;
-        }
-      }
+      this.userServices.getPorId(this.id).subscribe((user: User) => {
+        this.user = user;
+      });
     });
   }
 

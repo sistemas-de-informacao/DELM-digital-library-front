@@ -20,4 +20,17 @@ export class UserService {
     return this.http.get<User[]>('http://localhost:8080/base-back-end/servicos/user/');
   }
 
+  editar(user: User): Observable<any> {
+    return this.http.put<any>('http://localhost:8080/base-back-end/servicos/user/', user, { responseType: 'text' as 'json' });
+  }
+
+  get(): Observable<any> {
+    const id = localStorage.getItem('id-user');
+    return this.http.get<any>('http://localhost:8080/base-back-end/servicos/user/' + id);
+  }
+
+  getPorId(id: string): Observable<any> {
+    return this.http.get<any>('http://localhost:8080/base-back-end/servicos/user/' + id);
+  }
+
 }

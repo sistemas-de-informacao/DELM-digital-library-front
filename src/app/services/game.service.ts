@@ -15,7 +15,15 @@ export class GameService {
   }
 
   criar(jogo: Game): Observable<any> {
-    return this.http.post('http://localhost:8080/base-back-end/servicos/games/', jogo, { responseType: 'text' as 'json' })
+    return this.http.post('http://localhost:8080/base-back-end/servicos/games/', jogo, { responseType: 'text' as 'json' });
+  }
+
+  listar(): Observable<Game[]> {
+    return this.http.get<Game[]>('http://localhost:8080/base-back-end/servicos/games/');
+  }
+
+  getPorId(id: number): Observable<Game> {
+    return this.http.get<Game>('http://localhost:8080/base-back-end/servicos/games/' + id);
   }
 
 }

@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 
 // Models
 import { User } from '../../../models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-edit',
@@ -12,16 +13,22 @@ import { User } from '../../../models/user';
 })
 export class UserEditComponent implements OnInit {
 
-  date: string = new Date().toDateString as unknown as string;
-  user: User = new User(1, 'HNT3dev', 'Edson Camargo', 'dinhocmenezes@hotmail.com', 'jbdasjdbasjdasda', 10000, this.date, true);
+  user: User;
 
   userFormGroup: FormGroup;
   changePasswordFormGroup: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
-    this.criarForms();
+    this.getUsuario();
+  }
+
+  getUsuario() {
+    this.userService.get().subscribe((user: User) => {
+      this.user = user;
+      this.criarForms();
+    });
   }
 
   criarForms() {
@@ -40,11 +47,18 @@ export class UserEditComponent implements OnInit {
   }
 
   onSubmitToEdit() {
-    this.user.deserialize(this.userFormGroup);
+    this.editar();
   }
 
   onSubmitToChangePassword() {
     console.log(this.changePasswordFormGroup.value);
+  }
+
+  editar() {
+    this.userService.editar(new User(this.user.id, this.userFormGroup.get('nickname').value, this.userFormGroup.get('nome').value, this.userFormGroup.get('email').value, this.user.senha,
+      this.user.saldo, this.user.dataCriacao, this.userFormGroup.get('enable').value)).subscribe((res: any) => {
+        console.log(res);
+      });
   }
 
 }

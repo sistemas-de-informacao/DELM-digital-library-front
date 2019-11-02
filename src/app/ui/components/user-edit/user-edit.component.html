@@ -1,4 +1,4 @@
-<div class="container margin-top">
+<div class="container margin-top" *ngIf="user">
     <div class="d-flex flex-column">
         <h1 class="config">CONFIGURAÇÕES GERAIS</h1>
         <span>Gerencie os detalhes da conta que você compartilhou com a DELM ®, incluindo seu nome, informações
@@ -15,7 +15,7 @@
                 <span><i class="fas fa-wallet i-left"></i> Saldo: {{ user.saldo }}</span>
             </div>
             <div>
-                <span><i class="fas fa-calendar-alt i-left"></i> Data de criação: {{ user.dataCriacao | date }}</span>
+                <span><i class="fas fa-calendar-alt i-left"></i> Data de criação: {{ user.dataCriacao }}</span>
             </div>
         </div>
         <div class="form-group">

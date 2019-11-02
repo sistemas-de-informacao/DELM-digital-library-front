@@ -8,7 +8,7 @@
         </form>
     </div>
     <div class="background-row d-flex flex-row flex-wrap">
-        <div *ngFor="let jogo of MOCK_GAME" class="background-column d-flex flex-column flex-fill pointer"
+        <div *ngFor="let jogo of games" class="background-column d-flex flex-column flex-fill pointer"
             (click)="getJogo(jogo.id, jogo.nome)">
             <div class="card bg-dark text-white">
                 <img class="card-img-top" src="{{ jogo.img | hasImage }}" alt="Imagem de capa do card">

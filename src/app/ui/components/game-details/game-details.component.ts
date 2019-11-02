@@ -4,7 +4,8 @@ import { Subscription } from 'rxjs';
 
 // Models
 import { Game } from './../../../models/game';
-import { GAMES } from './../../../mocks/games-mock';
+import { GameService } from 'src/app/services/game.service';
+// import { GAMES } from './../../../mocks/games-mock';
 
 @Component({
   selector: 'app-game-details',
@@ -19,16 +20,14 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
   id: number;
   jogo: Game;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private gameServices: GameService) { }
 
   ngOnInit() {
     this.inscricao = this.route.queryParams.subscribe((queryParams: any) => {
-      this.id = queryParams.id as number;
-      for (const jogo of GAMES) {
-        if (jogo.id == this.id) {
-          this.jogo = jogo;
-        }
-      }
+      this.id = queryParams.id;
+      this.gameServices.getPorId(this.id).subscribe((game: Game) => {
+        this.jogo = game;
+      })
     });
   }
 

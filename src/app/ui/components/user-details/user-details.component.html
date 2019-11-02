@@ -1,4 +1,4 @@
-<div class="container margin-top">
+<div class="container margin-top" *ngIf="user">
     <div class="d-flex flex-column">
         <span>
             {{ user.nickname }}
@@ -10,11 +10,11 @@
             {{ user.email }}
         </span>
         <span>
-            Usuário desde {{ user.dataCriacao | date }}
+            Usuário desde {{ user.dataCriacao }}
         </span>
     </div>
 </div>
-<div>
+<div *ngIf="user">
     <div class="container margin-top">
         <h3>BIBLIOTECA DO {{ user.nickname }}</h3>
     </div>

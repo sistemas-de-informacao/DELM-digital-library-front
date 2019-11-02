@@ -4,6 +4,8 @@ import { FormGroup, FormControl, Validator, FormBuilder, Validators } from '@ang
 // Models
 import { LoginForm } from 'src/app/models/forms/login-form';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { User } from 'src/app/models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,12 +21,16 @@ export class LoginComponent implements OnInit {
     senha: [null, [Validators.required, Validators.minLength(6)]]
   });
 
-  constructor(private fb: FormBuilder, private authentication: AuthenticationService) { }
+  constructor(private fb: FormBuilder, private authentication: AuthenticationService, private route: Router) { }
 
   ngOnInit() { }
 
   onSubmitToLogin() {
-    this.authentication.onLogin(this.createLoginForm());
+    this.authentication.onLogin(this.createLoginForm()).subscribe((user: User) => {
+      localStorage.setItem('id-user', user.id.toString());
+      const id = localStorage.setItem('id-user', user.id.toString());
+      this.route.navigate(['/loja/biblioteca'], { queryParams: { id } });
+    });
   }
 
   createLoginForm(): LoginForm {

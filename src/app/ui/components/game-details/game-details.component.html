@@ -1,4 +1,4 @@
-<div class="container margin-top">
+<div class="container margin-top" *ngIf="jogo">
     <div class="my-display-flex">
         <div class="my-flex-item">
             <img src="{{ jogo.img | hasImage }}" alt="">
@@ -29,7 +29,7 @@
             </div>
             <div class="about">
                 <h6>Data de lançamento</h6>
-                <h6>{{ jogo.dataLancamento | date }}</h6>
+                <h6>{{ jogo.dataLancamento }}</h6>
             </div>
         </div>
     </div>

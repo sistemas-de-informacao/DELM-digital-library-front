@@ -37,7 +37,7 @@ export class GameCadastreComponent implements OnInit {
   }
 
   criarJogo() {
-    this.game = new Game(this.gameForm.nome, this.gameForm.preco, DateService.converterData(this.gameForm.dataLancamento), this.gameForm.desenvolvedor, this.gameForm.descricao, this.gameForm.categoria);
+    this.game = new Game(this.gameForm.nome, this.gameForm.preco, DateService.converterData(this.gameForm.dataLancamento), this.gameForm.desenvolvedor, this.gameForm.descricao, 1);
     this.gameService.criar(this.game).subscribe((res: any) => {
       console.log(res);
     })

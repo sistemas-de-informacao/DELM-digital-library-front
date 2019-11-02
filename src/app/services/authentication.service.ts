@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 
 // Models
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 const userType = 1;
 
@@ -11,16 +13,10 @@ const userType = 1;
 
 export class AuthenticationService {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
-  onLogin(credentials: any) {
-    if (credentials) {
-      if (userType === 1) {
-        this.router.navigateByUrl('/loja/biblioteca');
-      } else {
-        this.router.navigateByUrl('/loja/biblioteca');
-      }
-    }
+  onLogin(credentials: any): Observable<any> {
+    return this.http.post<any>('http://localhost:8080/base-back-end/servicos/user/login', credentials);
   }
 
 }
