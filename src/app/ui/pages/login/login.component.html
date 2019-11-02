@@ -7,11 +7,21 @@
                     <label for="exampleInputEmail1">Entrar</label>
                     <div class="form-group">
                         <input formControlName='user' type="email" class="form-control" id="exampleInputEmail1"
-                            aria-describedby="emailHelp" placeholder="Endereço de e-mail">
+                            aria-describedby="emailHelp" placeholder="Endereço de e-mail/nickname">
+                        <app-error-card
+                            *ngIf="loginFormGroup.get('user').hasError('required') && loginFormGroup.get('user').touched"
+                            [mensagem]="'O campo e-mail/nickname é obrigatório'"></app-error-card>
+                        <app-error-card
+                            *ngIf="loginFormGroup.get('user').hasError('maxlength') && loginFormGroup.get('user').touched"
+                            [mensagem]="'O campo e-mail/nickname só pode ter no máximo 150 caracteres'">
+                        </app-error-card>
                     </div>
                     <div class="form-group">
                         <input formControlName='senha' type="password" class="form-control" id="exampleInputPassword1"
                             placeholder="Senha">
+                        <app-error-card
+                            *ngIf="loginFormGroup.get('senha').hasError('required') && loginFormGroup.get('senha').touched"
+                            [mensagem]="'O campo senha é obrigatório'"></app-error-card>
                     </div>
                     <button type="submit" [disabled]='!loginFormGroup.valid'
                         class="btn btn-primary float-right">Login</button>

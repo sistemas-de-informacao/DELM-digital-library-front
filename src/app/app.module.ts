@@ -35,6 +35,7 @@ import { registerLocaleData } from '@angular/common';
 import { UserListComponent } from './ui/components/user-list/user-list.component';
 import { TableHoverDirective } from './directives/table-hover.directive';
 import { UserDetailsComponent } from './ui/components/user-details/user-details.component';
+import { ErrorCardComponent } from './ui/components/error-card/error-card.component';
 registerLocaleData(localept, (settingsService) => settingsService.getLocale());
 
 @NgModule({
@@ -55,7 +56,8 @@ registerLocaleData(localept, (settingsService) => settingsService.getLocale());
     FooterComponent,
     UserListComponent,
     TableHoverDirective,
-    UserDetailsComponent
+    UserDetailsComponent,
+    ErrorCardComponent
   ],
   imports: [
     BrowserModule,

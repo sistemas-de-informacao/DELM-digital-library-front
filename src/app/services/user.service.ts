@@ -1,3 +1,6 @@
+import { LocalStorageService } from './local-storage.service';
+import { Paths } from './../../assets/paths/Paths';
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -8,29 +11,30 @@ import { User } from '../models/user';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private localStorageService: LocalStorageService) { }
 
   criar(user: User): Observable<any> {
-    return this.http.post<any>('http://localhost:8080/base-back-end/servicos/user/', user, { responseType: 'text' as 'json' });
+    return this.http.post<any>(`${environment.base_path}${Paths.USERS}`, user, { responseType: 'text' as 'json' });
   }
 
   listar(): Observable<User[]> {
-    return this.http.get<User[]>('http://localhost:8080/base-back-end/servicos/user/');
+    return this.http.get<User[]>(`${environment.base_path}${Paths.USERS}`);
   }
 
   editar(user: User): Observable<any> {
-    return this.http.put<any>('http://localhost:8080/base-back-end/servicos/user/', user, { responseType: 'text' as 'json' });
+    return this.http.put<any>(`${environment.base_path}${Paths.USERS}`, user, { responseType: 'text' as 'json' });
   }
 
   get(): Observable<any> {
-    const id = localStorage.getItem('id-user');
-    return this.http.get<any>('http://localhost:8080/base-back-end/servicos/user/' + id);
+    const id = this.localStorageService.getId();
+    return this.http.get<any>(`${environment.base_path}${Paths.USERS}${id}`);
   }
 
   getPorId(id: string): Observable<any> {
-    return this.http.get<any>('http://localhost:8080/base-back-end/servicos/user/' + id);
+    return this.http.get<any>(`${environment.base_path}${Paths.USERS}${id}`);
   }
 
 }

@@ -21,14 +21,35 @@
         <div class="form-group">
             <input formControlName='nickname' type="text" class="form-control" id="exampleInputNickname"
                 aria-describedby="nickNameHelp" placeholder="Nome para exibição">
+            <app-error-card
+                *ngIf="userFormGroup.get('nickname').hasError('required') && userFormGroup.get('nickname').touched"
+                [mensagem]="'O campo nickname é obrigatório'"></app-error-card>
+            <app-error-card
+                *ngIf="userFormGroup.get('nickname').hasError('minlength') && userFormGroup.get('nickname').touched"
+                [mensagem]="'O campo nickname precisar ter no mínimo 5 caracteres'"></app-error-card>
+            <app-error-card
+                *ngIf="userFormGroup.get('nickname').hasError('maxlength') && userFormGroup.get('nickname').touched"
+                [mensagem]="'O campo nickname só pode ter no máximo 50 caracteres'"></app-error-card>
         </div>
         <div class="form-group">
             <input formControlName='nome' type="text" class="form-control" id="exampleInputName1"
                 aria-describedby="nameHelp" placeholder="Nome real">
+            <app-error-card *ngIf="userFormGroup.get('nome').hasError('required') && userFormGroup.get('nome').touched"
+                [mensagem]="'O campo nome é obrigatório'"></app-error-card>
+            <app-error-card *ngIf="userFormGroup.get('nome').hasError('maxlength') && userFormGroup.get('nome').touched"
+                [mensagem]="'O campo nome só pode ter no máximo 120 caracteres'"></app-error-card>
         </div>
         <div class="form-group">
             <input formControlName='email' type="email" class="form-control" id="exampleInputEmail"
                 aria-describedby="emailHelp" placeholder="Endereço de e-mail">
+            <app-error-card
+                *ngIf="userFormGroup.get('email').hasError('required') && userFormGroup.get('email').touched"
+                [mensagem]="'O campo e-mail é obrigatório'"></app-error-card>
+            <app-error-card *ngIf="userFormGroup.get('email').hasError('email') && userFormGroup.get('email').touched"
+                [mensagem]="'O formato e-mail está incorreto'"></app-error-card>
+            <app-error-card
+                *ngIf="userFormGroup.get('email').hasError('maxlength') && userFormGroup.get('email').touched"
+                [mensagem]="'O campo e-mail só pode ter no máximo 150 caracteres'"></app-error-card>
         </div>
         <div class="form-check">
             <input formControlName='enable' class="form-check-input" type="checkbox" [value]="user.enable"
@@ -47,14 +68,41 @@
         <div class="form-group">
             <input formControlName='senhaAntiga' type="password" class="form-control" id="exampleInputPassword1"
                 placeholder="Senha antiga">
+            <app-error-card
+                *ngIf="userFormGroup.get('senhaAntiga').hasError('required') && userFormGroup.get('senhaAntiga').touched"
+                [mensagem]="'O campo senha é obrigatório'"></app-error-card>
+            <app-error-card
+                *ngIf="userFormGroup.get('senhaAntiga').hasError('minlength') && userFormGroup.get('senhaAntiga').touched"
+                [mensagem]="'O campo senha precisar ter no mínimo 6 caracteres'"></app-error-card>
+            <app-error-card
+                *ngIf="userFormGroup.get('senhaAntiga').hasError('maxlength') && userFormGroup.get('senhaAntiga').touched"
+                [mensagem]="'O campo senha só pode ter no máximo 70 caracteres'"></app-error-card>
         </div>
         <div class="form-group">
             <input formControlName='senhaNova' type="password" class="form-control" id="exampleInputPassword2"
                 placeholder="Senha nova">
+            <app-error-card
+                *ngIf="userFormGroup.get('senhaNova').hasError('required') && userFormGroup.get('senhaNova').touched"
+                [mensagem]="'O campo senha é obrigatório'"></app-error-card>
+            <app-error-card
+                *ngIf="userFormGroup.get('senhaNova').hasError('minlength') && userFormGroup.get('senhaNova').touched"
+                [mensagem]="'O campo senha precisar ter no mínimo 6 caracteres'"></app-error-card>
+            <app-error-card
+                *ngIf="userFormGroup.get('senhaNova').hasError('maxlength') && userFormGroup.get('senhaNova').touched"
+                [mensagem]="'O campo senha só pode ter no máximo 70 caracteres'"></app-error-card>
         </div>
         <div class="form-group">
             <input formControlName='senhaNovaConfirmar' type="password" class="form-control"
                 id="exampleInputPasswordConfirm" placeholder="Confirmar senha nova">
+            <app-error-card
+                *ngIf="userFormGroup.get('senhaNovaConfirmar').hasError('required') && userFormGroup.get('senhaNovaConfirmar').touched"
+                [mensagem]="'O campo senha é obrigatório'"></app-error-card>
+            <app-error-card
+                *ngIf="userFormGroup.get('senhaNovaConfirmar').hasError('minlength') && userFormGroup.get('senhaNovaConfirmar').touched"
+                [mensagem]="'O campo senha precisar ter no mínimo 6 caracteres'"></app-error-card>
+            <app-error-card
+                *ngIf="userFormGroup.get('senhaNovaConfirmar').hasError('maxlength') && userFormGroup.get('senhaNovaConfirmar').touched"
+                [mensagem]="'O campo senha só pode ter no máximo 70 caracteres'"></app-error-card>
         </div>
         <button type="submit" [disabled]='!changePasswordFormGroup.valid'
             class="btn btn-primary float-right">TROCAR</button>

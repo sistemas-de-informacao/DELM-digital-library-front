@@ -8,18 +8,51 @@
                     <div class="form-group">
                         <input formControlName='nickname' type="text" class="form-control" id="exampleInputnickName"
                             aria-describedby="nickNameHelp" placeholder="Nome para exibição">
+                        <app-error-card
+                            *ngIf="userCadastreFormGroup.get('nickname').hasError('required') && userCadastreFormGroup.get('nickname').touched"
+                            [mensagem]="'O campo nickname é obrigatório'"></app-error-card>
+                        <app-error-card
+                            *ngIf="userCadastreFormGroup.get('nickname').hasError('minlength') && userCadastreFormGroup.get('nickname').touched"
+                            [mensagem]="'O campo nickname precisar ter no mínimo 5 caracteres'"></app-error-card>
+                        <app-error-card
+                            *ngIf="userCadastreFormGroup.get('nickname').hasError('maxlength') && userCadastreFormGroup.get('nickname').touched"
+                            [mensagem]="'O campo nickname só pode ter no máximo 50 caracteres'"></app-error-card>
                     </div>
                     <div class="form-group">
                         <input formControlName='nome' type="text" class="form-control" id="exampleInputName1"
                             aria-describedby="nameHelp" placeholder="Nome real">
+                        <app-error-card
+                            *ngIf="userCadastreFormGroup.get('nome').hasError('required') && userCadastreFormGroup.get('nome').touched"
+                            [mensagem]="'O campo nome é obrigatório'"></app-error-card>
+                        <app-error-card
+                            *ngIf="userCadastreFormGroup.get('nome').hasError('maxlength') && userCadastreFormGroup.get('nome').touched"
+                            [mensagem]="'O campo nome só pode ter no máximo 120 caracteres'"></app-error-card>
                     </div>
                     <div class="form-group">
                         <input formControlName='email' type="email" class="form-control" id="exampleInputEmail1"
                             aria-describedby="emailHelp" placeholder="Endereço de e-mail">
+                        <app-error-card
+                            *ngIf="userCadastreFormGroup.get('email').hasError('required') && userCadastreFormGroup.get('email').touched"
+                            [mensagem]="'O campo e-mail é obrigatório'"></app-error-card>
+                        <app-error-card
+                            *ngIf="userCadastreFormGroup.get('email').hasError('email') && userCadastreFormGroup.get('email').touched"
+                            [mensagem]="'O formato e-mail está incorreto'"></app-error-card>
+                        <app-error-card
+                            *ngIf="userCadastreFormGroup.get('email').hasError('maxlength') && userCadastreFormGroup.get('email').touched"
+                            [mensagem]="'O campo e-mail só pode ter no máximo 150 caracteres'"></app-error-card>
                     </div>
                     <div class="form-group">
                         <input formControlName='senha' type="password" class="form-control" id="exampleInputSenha1"
                             placeholder="Senha">
+                        <app-error-card
+                            *ngIf="userCadastreFormGroup.get('senha').hasError('required') && userCadastreFormGroup.get('senha').touched"
+                            [mensagem]="'O campo senha é obrigatório'"></app-error-card>
+                        <app-error-card
+                            *ngIf="userCadastreFormGroup.get('senha').hasError('minlength') && userCadastreFormGroup.get('senha').touched"
+                            [mensagem]="'O campo senha precisar ter no mínimo 6 caracteres'"></app-error-card>
+                        <app-error-card
+                            *ngIf="userCadastreFormGroup.get('senha').hasError('maxlength') && userCadastreFormGroup.get('senha').touched"
+                            [mensagem]="'O campo senha só pode ter no máximo 70 caracteres'"></app-error-card>
                     </div>
                     <button type="submit" [disabled]='!userCadastreFormGroup.valid'
                         class="btn btn-primary float-right">Cadastrar</button>

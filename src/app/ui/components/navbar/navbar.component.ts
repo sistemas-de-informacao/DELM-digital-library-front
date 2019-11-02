@@ -1,7 +1,12 @@
+import { LocalStorageService } from './../../../services/local-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/models/user';
+
+// Models
+import { User } from './../../../models/user';
+
+// Services
+import { UserService } from './../../../services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,17 +18,19 @@ export class NavbarComponent implements OnInit {
 
   id: string;
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private userService: UserService, private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
     this.getUsuario();
   }
 
   getUsuario() {
-    this.userService.get().subscribe((user: User) => {
-      this.id = user.nickname;
-      this.id = this.id.substring(0, 5);
-    });
+    if (this.localStorageService.getId()) {
+      this.userService.get().subscribe((user: User) => {
+        this.id = user.nickname;
+        this.id = this.id.substring(0, 5);
+      });
+    }
   }
 
 }

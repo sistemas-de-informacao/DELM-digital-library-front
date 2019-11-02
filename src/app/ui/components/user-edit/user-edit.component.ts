@@ -1,10 +1,10 @@
-import { Validacoes } from './../../../validations/validations';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 // Models
 import { User } from '../../../models/user';
 import { UserService } from 'src/app/services/user.service';
+import { Validacoes } from './../../../validations/validations';
 
 @Component({
   selector: 'app-user-edit',
@@ -33,16 +33,16 @@ export class UserEditComponent implements OnInit {
 
   criarForms() {
     this.userFormGroup = this.fb.group({
-      nickname: [this.user.nickname, [Validators.required, Validators.minLength(5)]],
-      nome: [this.user.nome, [Validators.required, Validators.minLength(5)]],
-      email: [this.user.email, [Validators.required, Validators.minLength(5), Validators.email]],
+      nickname: [this.user.nickname, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+      nome: [this.user.nome, [Validators.required, Validators.maxLength(120)]],
+      email: [this.user.email, [Validators.required, Validators.email, Validators.maxLength(150)]],
       enable: [this.user.enable, []]
     });
 
     this.changePasswordFormGroup = this.fb.group({
-      senhaAntiga: [null, [Validators.required, Validators.minLength(5)]],
-      senhaNova: [null, [Validators.required, Validators.minLength(5), Validacoes.senhasCombinam]],
-      senhaNovaConfirmar: [null, [Validators.required, Validators.minLength(5), Validacoes.senhasCombinam]]
+      senhaAntiga: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(70)]],
+      senhaNova: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(70), Validacoes.senhasCombinam]],
+      senhaNovaConfirmar: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(70), Validacoes.senhasCombinam]]
     });
   }
 

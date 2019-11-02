@@ -17,12 +17,12 @@ export class GameCadastreComponent implements OnInit {
   gameForm: GameCadastreForm;
   game: Game;
 
-  loginFormGroup = this.fb.group({
-    nome: [null, [Validators.required, Validators.minLength(5)]],
-    preco: [null, [Validators.required]],
+  gameFormGroup = this.fb.group({
+    nome: [null, [Validators.required, Validators.maxLength(120)]],
+    preco: [null, [Validators.required, Validators.pattern('[0-9]+$')]],
     dataLancamento: [null, [Validators.required]],
-    desenvolvedor: [null, [Validators.required, Validators.minLength(6)]],
-    descricao: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(300)]],
+    desenvolvedor: [null, [Validators.required, Validators.minLength(45)]],
+    descricao: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(500)]],
     categoria: [null, [Validators.required]]
   });
 
@@ -32,7 +32,7 @@ export class GameCadastreComponent implements OnInit {
   }
 
   onSubmitCriarJogo() {
-    this.gameForm = new GameCadastreForm(this.loginFormGroup);
+    this.gameForm = new GameCadastreForm(this.gameFormGroup);
     this.criarJogo();
   }
 

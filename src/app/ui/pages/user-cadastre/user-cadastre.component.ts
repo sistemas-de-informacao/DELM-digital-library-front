@@ -3,12 +3,13 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 // Models
 import { UserCadastreForm } from '../../../models/forms/user-cadastre-form';
+import { LoginForm } from 'src/app/models/forms/login-form';
+import { User } from './../../../models/user';
 
 // Services
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/models/user';
-import { DateService } from 'src/app/services/date.service';
+import { AuthenticationService } from './../../../services/authentication.service';
+import { UserService } from './../../../services/user.service';
+import { DateService } from './../../../services/date.service';
 
 @Component({
   selector: 'app-user-cadastre',
@@ -32,22 +33,25 @@ export class UserCadastreComponent implements OnInit {
 
   criarForms() {
     this.userCadastreFormGroup = this.fb.group({
-      nickname: [null, [Validators.required, Validators.minLength(5)]],
-      nome: [null, [Validators.required, Validators.minLength(5)]],
-      email: [null, [Validators.required, Validators.minLength(5), Validators.email]],
-      senha: [null, [Validators.required, Validators.minLength(6)]]
+      nickname: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+      nome: [null, [Validators.required, Validators.maxLength(120)]],
+      email: [null, [Validators.required, Validators.email, Validators.maxLength(150)]],
+      senha: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(70)]]
     });
   }
 
   onSubmitToLogin() {
-    this.criarUsuario(this.user = new User(undefined, this.userCadastreFormGroup.get('nickname').value, this.userCadastreFormGroup.get('nome').value, this.userCadastreFormGroup.get('email').value, this.userCadastreFormGroup.get('senha').value, undefined,
+    this.criarUsuario(this.user = new User(undefined, this.userCadastreFormGroup.get('nickname').value,
+      this.userCadastreFormGroup.get('nome').value, this.userCadastreFormGroup.get('email').value, this.userCadastreFormGroup.get('senha').value, undefined,
       DateService.getDataAgora(), true));
   }
 
-
   criarUsuario(usuario: User) {
     this.userService.criar(usuario).subscribe((res: string) => {
-      console.log(res);
+      const credentials = new LoginForm(undefined, usuario.nickname, usuario.senha);
+      this.authentication.onLogin(credentials).subscribe((user: User) => {
+        this.authentication.entrar(user);
+      });
     });
   }
 
