@@ -1,13 +1,15 @@
-import { Paths } from './../../assets/paths/Paths';
-import { environment } from './../../environments/environment';
-import { User } from 'src/app/models/user';
-import { LocalStorageService } from './local-storage.service';
 import { Injectable } from '@angular/core';
-
-// Models
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+// Models
+import { User } from './../models/user';
+import { Paths } from './../../assets/paths/Paths';
+import { environment } from './../../environments/environment';
+
+// Services
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +27,14 @@ export class AuthenticationService {
     this.localStorageService.setId(user);
     const id = this.localStorageService.getId();
     this.router.navigate(['/loja/biblioteca'], { queryParams: { id } });
+  }
+
+  isLogado(): boolean {
+    if (this.localStorageService.getId()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

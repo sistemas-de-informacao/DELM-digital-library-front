@@ -7,9 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 // Components
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './ui/components/navbar/navbar.component';
-import { LoginComponent } from './ui/pages/login/login.component';
+import { LoginComponent } from './ui/pages/web/login/login.component';
 import { WebComponent } from './ui/pages/web/web.component';
-import { UserCadastreComponent } from './ui/pages/user-cadastre/user-cadastre.component';
+import { UserCadastreComponent } from './ui/pages/web/user-cadastre/user-cadastre.component';
 import { UserEditComponent } from './ui/components/user-edit/user-edit.component';
 import { WebDashboardComponent } from './ui/pages/web-dashboard/web-dashboard.component';
 import { AdminCadastreComponent } from './ui/pages/web-dashboard/admin-cadastre/admin-cadastre.component';
@@ -36,6 +36,7 @@ import { UserListComponent } from './ui/components/user-list/user-list.component
 import { TableHoverDirective } from './directives/table-hover.directive';
 import { UserDetailsComponent } from './ui/components/user-details/user-details.component';
 import { ErrorCardComponent } from './ui/components/error-card/error-card.component';
+import { GameEditComponent } from './ui/pages/web-dashboard/game-edit/game-edit.component';
 registerLocaleData(localept, (settingsService) => settingsService.getLocale());
 
 @NgModule({
@@ -57,7 +58,8 @@ registerLocaleData(localept, (settingsService) => settingsService.getLocale());
     UserListComponent,
     TableHoverDirective,
     UserDetailsComponent,
-    ErrorCardComponent
+    ErrorCardComponent,
+    GameEditComponent
   ],
   imports: [
     BrowserModule,

@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item dropdown" routerLinkActive="active">
+            <li *ngIf="authenticationService.isLogado()" class="nav-item dropdown" routerLinkActive="active">
                 <div
                     class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-dark text-light">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -41,18 +41,21 @@
                 </div>
             </li>
         </ul>
-        <div *ngIf="id" class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-dark text-light"
+        <div *ngIf="id"
+            class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-dark text-light"
             routerLinkActive="active">
             <a [routerLink]="['/perfil/id/', id]"><i class="fas fa-user i-left"></i> {{ id }}</a>
         </div>
         <div class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-dark text-light"
             routerLinkActive="active">
-            <a [routerLink]="['/login']" *ngIf="true">LOGIN <i class="fas fa-sign-in-alt i-right"></i></a>
-            <a [routerLink]="['/login']" *ngIf="false">SAIR <i class="fas fa-sign-in-alt i-right"></i></a>
+            <a [routerLink]="['/login']" *ngIf="!authenticationService.isLogado()">LOGIN <i
+                    class="fas fa-sign-in-alt i-right"></i></a>
+            <a [routerLink]="['/login']" *ngIf="authenticationService.isLogado()">SAIR <i
+                    class="fas fa-sign-in-alt i-right"></i></a>
         </div>
         <div class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-primary text-light"
             routerLinkActive="active-dark">
-            <a [routerLink]="['/cadastro']">CADASTRO</a>
+            <a [routerLink]="['/cadastro']" *ngIf="!authenticationService.isLogado()">CADASTRO</a>
         </div>
     </div>
 </nav>

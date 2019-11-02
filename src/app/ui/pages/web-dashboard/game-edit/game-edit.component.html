@@ -1,0 +1,83 @@
+<div class="container margin-top" *ngIf="user">
+    <div class="d-flex flex-column">
+        <h1 class="config">CONFIGURAÇÕES GERAIS</h1>
+        <span>Gerencie os detalhes do jogo, incluindo nome, informações de
+            desenvolvedor e mais...</span>
+    </div>
+    <br><br>
+
+    <!-- Informações da conta -->
+    <form class="d-flex flex-column" [formGroup]="gameFormGroup" (ngSubmit)="onSubmitToEdit()">
+        <h3>INFORMAÇÕES DO JOGO</h3>
+        <div class="form-group">
+            <input formControlName='nome' type="text" class="form-control" id="exampleNome"
+                aria-describedby="nicknameHelp" placeholder="Nome">
+            <app-error-card *ngIf="gameFormGroup.get('nome').hasError('required') && gameFormGroup.get('nome').touched"
+                [mensagem]="'O campo nome é obrigatório'"></app-error-card>
+            <app-error-card *ngIf="gameFormGroup.get('nome').hasError('maxlength') && gameFormGroup.get('nome').touched"
+                [mensagem]="'O campo nome só pode ter no máximo 50 caracteres'"></app-error-card>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">R$</span>
+            </div>
+            <input formControlName='preco' type="number" class="form-control" placeholder="Preço">
+            <div class="input-group-append">
+                <span class="input-group-text">,00</span>
+            </div>
+        </div>
+        <app-error-card *ngIf="gameFormGroup.get('preco').hasError('required') && gameFormGroup.get('preco').touched"
+            [mensagem]="'O campo preço é obrigatório'"></app-error-card>
+        <div class="form-group">
+            <input formControlName='dataLancamento' type="date" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp" placeholder="Data de lançamento">
+            <app-error-card
+                *ngIf="gameFormGroup.get('dataLancamento').hasError('required') && gameFormGroup.get('dataLancamento').touched"
+                [mensagem]="'O campo data de lançamento é obrigatório'"></app-error-card>
+        </div>
+        <div class="form-group">
+            <input formControlName='desenvolvedor' type="text" class="form-control" id="exampleInputDesenvolvedor"
+                placeholder="Desenvolvedor">
+            <app-error-card
+                *ngIf="gameFormGroup.get('desenvolvedor').hasError('required') && gameFormGroup.get('desenvolvedor').touched"
+                [mensagem]="'O campo desenvolvedor é obrigatório'"></app-error-card>
+            <app-error-card
+                *ngIf="gameFormGroup.get('desenvolvedor').hasError('maxlength') && gameFormGroup.get('desenvolvedor').touched"
+                [mensagem]="'O campo desenvolvedor só pode ter no máximo 45 caracteres'"></app-error-card>
+        </div>
+        <div class="form-group">
+            <textarea formControlName='descricao' type="text" class="form-control" id="exampleInputDescricao"
+                placeholder="Descrição"></textarea>
+            <app-error-card
+                *ngIf="gameFormGroup.get('descricao').hasError('required') && gameFormGroup.get('descricao').touched"
+                [mensagem]="'O campo descrição é obrigatório'"></app-error-card>
+            <app-error-card
+                *ngIf="gameFormGroup.get('descricao').hasError('minlength') && gameFormGroup.get('descricao').touched"
+                [mensagem]="'O campo descricao precisar ter no mínimo 6 caracteres'"></app-error-card>
+            <app-error-card
+                *ngIf="gameFormGroup.get('descricao').hasError('maxlength') && gameFormGroup.get('descricao').touched"
+                [mensagem]="'O campo descricao só pode ter no máximo 500 caracteres'"></app-error-card>
+        </div>
+        <div>
+            <div class="input-group">
+                <select formControlName='categoria' class="custom-select" id="inputGroupSelectCategoria">
+                    <option value="1">FPS</option>
+                </select>
+                <div class="input-group-append">
+                    <label class="input-group-text" for="inputGroupSelectCategoria">Categoria</label>
+                </div>
+            </div>
+            <app-error-card
+                *ngIf="gameFormGroup.get('categoria').hasError('required') && gameFormGroup.get('categoria').touched"
+                [mensagem]="'O campo categoria é obrigatório'"></app-error-card>
+        </div>
+        <div class="form-check">
+            <input formControlName='enable' class="form-check-input" type="checkbox" [value]="user.enable"
+                id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+                Desativar contar
+            </label>
+        </div>
+        <button type="submit" [disabled]='!gameFormGroup.valid' class="btn btn-primary float-right">EDITAR</button>
+    </form>
+</div>

@@ -1,12 +1,12 @@
-import { LocalStorageService } from './../../../services/local-storage.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 // Models
 import { User } from './../../../models/user';
 
 // Services
 import { UserService } from './../../../services/user.service';
+import { LocalStorageService } from './../../../services/local-storage.service';
+import { AuthenticationService } from './../../../services/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -17,8 +17,10 @@ import { UserService } from './../../../services/user.service';
 export class NavbarComponent implements OnInit {
 
   id: string;
+  isLogado: boolean;
 
-  constructor(private userService: UserService, private localStorageService: LocalStorageService) { }
+  constructor(private userService: UserService, private localStorageService: LocalStorageService,
+    private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.getUsuario();

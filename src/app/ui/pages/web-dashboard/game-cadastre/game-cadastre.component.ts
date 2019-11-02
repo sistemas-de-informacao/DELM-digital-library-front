@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, ValidationErrors } from '@angular/forms';
 
 // Models
 import { GameCadastreForm } from '../../../../models/forms/game-form';
@@ -19,9 +19,9 @@ export class GameCadastreComponent implements OnInit {
 
   gameFormGroup = this.fb.group({
     nome: [null, [Validators.required, Validators.maxLength(120)]],
-    preco: [null, [Validators.required, Validators.pattern('[0-9]+$')]],
+    preco: [null, [Validators.required]],
     dataLancamento: [null, [Validators.required]],
-    desenvolvedor: [null, [Validators.required, Validators.minLength(45)]],
+    desenvolvedor: [null, [Validators.required, Validators.maxLength(45)]],
     descricao: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(500)]],
     categoria: [null, [Validators.required]]
   });

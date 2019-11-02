@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 // Models
-import { UserCadastreForm } from '../../../models/forms/user-cadastre-form';
+import { UserCadastreForm } from '../../../../models/forms/user-cadastre-form';
 import { LoginForm } from 'src/app/models/forms/login-form';
-import { User } from './../../../models/user';
+import { User } from '../../../../models/user';
 
 // Services
-import { AuthenticationService } from './../../../services/authentication.service';
-import { UserService } from './../../../services/user.service';
-import { DateService } from './../../../services/date.service';
+import { AuthenticationService } from '../../../../services/authentication.service';
+import { UserService } from '../../../../services/user.service';
+import { DateService } from '../../../../services/date.service';
 
 @Component({
   selector: 'app-user-cadastre',
