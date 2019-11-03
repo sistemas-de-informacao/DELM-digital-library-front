@@ -39,7 +39,7 @@ export class UserEditComponent implements OnInit {
       nickname: [this.user.nickname, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
       nome: [this.user.nome, [Validators.required, Validators.maxLength(120)]],
       email: [this.user.email, [Validators.required, Validators.email, Validators.maxLength(150)]],
-      enable: [this.user.enable, []]
+      enable: [this.user.enable === true ? false : true, []]
     });
 
     this.changePasswordFormGroup = this.fb.group({
@@ -57,9 +57,18 @@ export class UserEditComponent implements OnInit {
     console.log(this.changePasswordFormGroup.value);
   }
 
+  mudarDesativarConta(): boolean {
+    let enable: boolean;
+    if (this.userFormGroup.get('enable').value === true) {
+      return enable = false;
+    } else {
+      return enable = true;
+    }
+  }
+
   editar() {
     this.userService.editar(new User(this.user.id, this.userFormGroup.get('nickname').value, this.userFormGroup.get('nome').value, this.userFormGroup.get('email').value, this.user.senha,
-      this.user.saldo, this.user.dataCriacao, this.userFormGroup.get('enable').value)).subscribe((res: any) => {
+      this.user.saldo, this.user.dataCriacao, this.mudarDesativarConta())).subscribe((res: any) => {
         if (res.includes('sucesso')) {
           this.alertService.success('Informações pessoais atualizadas com sucesso.');
         } else {

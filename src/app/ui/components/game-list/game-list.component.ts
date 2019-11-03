@@ -52,14 +52,17 @@ export class GameListComponent implements OnInit {
       confirmButtonText: 'Sim, excluir!'
     }).then((result) => {
       if (result.value) {
-        this.gameService.deletar(id).subscribe(() => {
-          this.listar();
-          Swal.fire(
-            'Excluido!',
-            `O ${nome} foi excluido com sucesso da DELM Library.`,
-            'success'
-          );
+        this.gameService.deletar(id).subscribe((res: any) => {
+          if (res.includes('sucesso')) {
+            this.listar();
+            Swal.fire(
+              'Excluido!',
+              `O ${nome} foi excluido com sucesso da DELM Library.`,
+              'success'
+            );
+          }
         }, () => {
+          console.log('Error');
           Swal.fire(
             'Erro!',
             `Não foi possível excluir o ${nome} da DELM Library, tente mais tarde.`,
