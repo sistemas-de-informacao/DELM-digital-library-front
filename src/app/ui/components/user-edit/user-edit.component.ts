@@ -3,8 +3,11 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 // Models
 import { User } from '../../../models/user';
-import { UserService } from 'src/app/services/user.service';
 import { Validacoes } from './../../../validations/validations';
+
+// Services
+import { UserService } from 'src/app/services/user.service';
+import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-user-edit',
@@ -18,7 +21,7 @@ export class UserEditComponent implements OnInit {
   userFormGroup: FormGroup;
   changePasswordFormGroup: FormGroup;
 
-  constructor(private fb: FormBuilder, private userService: UserService) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private alertService: AlertService) { }
 
   ngOnInit() {
     this.getUsuario();
@@ -57,7 +60,11 @@ export class UserEditComponent implements OnInit {
   editar() {
     this.userService.editar(new User(this.user.id, this.userFormGroup.get('nickname').value, this.userFormGroup.get('nome').value, this.userFormGroup.get('email').value, this.user.senha,
       this.user.saldo, this.user.dataCriacao, this.userFormGroup.get('enable').value)).subscribe((res: any) => {
-        console.log(res);
+        if (res.includes('sucesso')) {
+          this.alertService.success('Informações pessoais atualizadas com sucesso.');
+        } else {
+          this.alertService.danger('Ocorreu algum problema, tente novamente.');
+        }
       });
   }
 

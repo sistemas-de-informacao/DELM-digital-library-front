@@ -17,4 +17,11 @@ export class DateService {
     return dataConvertida.toString();
   }
 
+  static converterDataComIfen(data: string) {
+    const dia = data.substring(0, 2)
+    const mes = data.substring(3, 5);
+    const ano = data.substring(6, data.length);
+    return ano.concat('-').concat(mes).concat('-').concat(dia);
+  }
+
 }

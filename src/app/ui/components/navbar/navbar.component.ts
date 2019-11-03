@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 // Models
 import { User } from './../../../models/user';
@@ -14,13 +15,16 @@ import { AuthenticationService } from './../../../services/authentication.servic
   styleUrls: ['./navbar.component.scss']
 })
 
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
 
-  id: string;
+  nickname: string;
   isLogado: boolean;
 
+  subscription: Subscription;
+
   constructor(private userService: UserService, private localStorageService: LocalStorageService,
-    private authenticationService: AuthenticationService) { }
+    private authenticationService: AuthenticationService) {
+  }
 
   ngOnInit() {
     this.getUsuario();
@@ -28,11 +32,19 @@ export class NavbarComponent implements OnInit {
 
   getUsuario() {
     if (this.localStorageService.getId()) {
-      this.userService.get().subscribe((user: User) => {
-        this.id = user.nickname;
-        this.id = this.id.substring(0, 5);
+      this.subscription = this.userService.get().subscribe((user: User) => {
+        this.nickname = user.nickname;
       });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  sair() {
+    this.authenticationService.sair();
+    this.subscription.unsubscribe();
   }
 
 }

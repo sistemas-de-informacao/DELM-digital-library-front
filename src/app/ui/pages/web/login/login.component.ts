@@ -7,6 +7,7 @@ import { User } from 'src/app/models/user';
 
 // Services
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-login',
@@ -22,13 +23,17 @@ export class LoginComponent implements OnInit {
     senha: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(70)]]
   });
 
-  constructor(private fb: FormBuilder, private authentication: AuthenticationService) { }
+  constructor(private fb: FormBuilder, private authentication: AuthenticationService, private alertService: AlertService) { }
 
   ngOnInit() { }
 
   onSubmitToLogin() {
     this.authentication.onLogin(this.criarFormLogin()).subscribe((user: User) => {
-      this.authentication.entrar(user);
+      if (user) {
+        this.authentication.entrar(user);
+      } else {
+        this.alertService.danger('Usuário não existe e/ou senha incorreta.');
+      }
     });
   }
 

@@ -69,6 +69,7 @@
                             *ngIf="gameFormGroup.get('categoria').hasError('required') && gameFormGroup.get('categoria').touched"
                             [mensagem]="'O campo categoria é obrigatório'"></app-error-card>
                     </div>
+                    <ngx-alerts></ngx-alerts>
                     <button type="submit" [disabled]='!gameFormGroup.valid'
                         class="btn btn-primary float-right">Cadastrar</button>
                 </form>

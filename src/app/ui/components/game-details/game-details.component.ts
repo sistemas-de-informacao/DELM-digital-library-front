@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 // Models
@@ -19,20 +19,25 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
 
   id: number;
   jogo: Game;
+  tipoConta = 0;
 
-  constructor(private route: ActivatedRoute, private gameServices: GameService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private gameService: GameService) { }
 
   ngOnInit() {
     this.inscricao = this.route.queryParams.subscribe((queryParams: any) => {
       this.id = queryParams.id;
-      this.gameServices.getPorId(this.id).subscribe((game: Game) => {
+      this.gameService.getPorId(this.id).subscribe((game: Game) => {
         this.jogo = game;
-      })
+      });
     });
   }
 
   ngOnDestroy(): void {
     this.inscricao.unsubscribe();
+  }
+
+  irParaEditarJogo(id: number) {
+    this.router.navigate(['dashboard/editar-jogo/jogo'], { queryParams: { id } });
   }
 
 }

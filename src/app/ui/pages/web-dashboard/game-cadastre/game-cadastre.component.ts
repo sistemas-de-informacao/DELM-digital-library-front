@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, ValidationErrors } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 // Models
 import { GameCadastreForm } from '../../../../models/forms/game-form';
 import { Game } from 'src/app/models/game';
+
+// Services
 import { GameService } from 'src/app/services/game.service';
 import { DateService } from 'src/app/services/date.service';
+import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-game-cadastre',
@@ -26,7 +29,7 @@ export class GameCadastreComponent implements OnInit {
     categoria: [null, [Validators.required]]
   });
 
-  constructor(private fb: FormBuilder, private gameService: GameService) { }
+  constructor(private fb: FormBuilder, private gameService: GameService, private alertService: AlertService) { }
 
   ngOnInit() {
   }
@@ -39,7 +42,13 @@ export class GameCadastreComponent implements OnInit {
   criarJogo() {
     this.game = new Game(this.gameForm.nome, this.gameForm.preco, DateService.converterData(this.gameForm.dataLancamento), this.gameForm.desenvolvedor, this.gameForm.descricao, 1);
     this.gameService.criar(this.game).subscribe((res: any) => {
-      console.log(res);
+      if (res.includes('sucesso')) {
+        this.gameForm = null;
+        this.gameFormGroup.reset();
+        this.alertService.success('Jogo cadastrado com sucesso.');
+      } else {
+        this.alertService.danger('Ocorreu algum problema, tente novamente.');
+      }
     })
   }
 

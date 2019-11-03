@@ -19,4 +19,8 @@ export class LocalStorageService {
     return localStorage.getItem('id-user');
   }
 
+  removeId(): void {
+    localStorage.removeItem('id-user');
+  }
+
 }

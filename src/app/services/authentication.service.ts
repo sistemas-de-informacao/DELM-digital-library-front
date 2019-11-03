@@ -10,6 +10,7 @@ import { environment } from './../../environments/environment';
 
 // Services
 import { LocalStorageService } from './local-storage.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,9 @@ import { LocalStorageService } from './local-storage.service';
 
 export class AuthenticationService {
 
-  constructor(private router: Router, private http: HttpClient, private localStorageService: LocalStorageService) { }
+  constructor(private router: Router, private http: HttpClient, private localStorageService: LocalStorageService, private userService: UserService) { }
+
+  static nickname: string;
 
   onLogin(credentials: any): Observable<any> {
     return this.http.post<any>(`${environment.base_path}${Paths.USERS}${Paths.LOGIN}`, credentials);
@@ -35,6 +38,10 @@ export class AuthenticationService {
     } else {
       return false;
     }
+  }
+
+  sair() {
+    this.localStorageService.removeId();
   }
 
 }

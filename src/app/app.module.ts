@@ -3,6 +3,8 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AlertModule } from 'ngx-alerts';
 
 // Components
 import { AppComponent } from './app.component';
@@ -62,10 +64,12 @@ registerLocaleData(localept, (settingsService) => settingsService.getLocale());
     GameEditComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AlertModule.forRoot({ maxMessages: 5, timeout: 2500, position: 'right' })
   ],
   providers: [
     SettingsService,

@@ -17,6 +17,7 @@ import { AdminCadastreComponent } from './ui/pages/web-dashboard/admin-cadastre/
 import { GameCadastreComponent } from './ui/pages/web-dashboard/game-cadastre/game-cadastre.component';
 import { UserListComponent } from './ui/components/user-list/user-list.component';
 import { UserDetailsComponent } from './ui/components/user-details/user-details.component';
+import { GameEditComponent } from './ui/pages/web-dashboard/game-edit/game-edit.component';
 
 
 const routes: Routes = [{ path: 'login', component: LoginComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [{ path: 'login', component: LoginComponent },
 {
   path: 'dashboard', component: WebDashboardComponent, canActivate: [LowLevelGuard], children: [
     { path: 'cadastro-jogo', component: GameCadastreComponent },
-    { path: 'cadastro-admin', component: AdminCadastreComponent }
+    { path: 'cadastro-admin', component: AdminCadastreComponent },
+    { path: 'editar-jogo/:id', component: GameEditComponent }
   ]
 },
 {

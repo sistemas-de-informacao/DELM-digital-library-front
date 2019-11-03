@@ -2,7 +2,11 @@
     <div class="my-display-flex">
         <div class="my-flex-item">
             <img src="{{ jogo.img | hasImage }}" alt="">
-            <button class="btn bg-primary">OBTER POR <b>{{ jogo.preco | currency:'BRL':true }}</b></button>
+            <button class="btn bg-primary">OBTER POR
+                <b>{{ jogo.preco | currency:'BRL':true }}</b></button>
+            <button *ngIf="tipoConta === 0" class="btn bg-primary d-flex justify-content-between"
+                (click)="irParaEditarJogo(jogo.id)"> <span>EDITAR</span>
+                <i class="fas fa-pencil-alt"></i></button>
         </div>
         <div class="my-flex-item descricao-item">
             <div class="descricao">
