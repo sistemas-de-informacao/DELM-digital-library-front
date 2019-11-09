@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
 
   onSubmitToLogin() {
     this.authentication.onLogin(this.criarFormLogin()).subscribe((res: ResponseDefault<User>) => {
-      console.log(res);
       if (res.body) {
         this.authentication.entrar(res.body);
       } else {
