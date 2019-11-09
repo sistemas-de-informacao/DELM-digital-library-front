@@ -20,7 +20,7 @@ export class GameService {
   }
 
   criar(jogo: Game): Observable<any> {
-    return this.http.post(`${environment.base_path}${Paths.GAMES}`, jogo, { responseType: 'text' as 'json' });
+    return this.http.post(`${environment.base_path}${Paths.GAMES}`, jogo);
   }
 
   listar(): Observable<Game[]> {
@@ -32,7 +32,7 @@ export class GameService {
   }
 
   editar(jogo: Game): Observable<any> {
-    return this.http.put<Game>(`${environment.base_path}${Paths.GAMES}`, jogo, { responseType: 'text' as 'json' });
+    return this.http.put<Game>(`${environment.base_path}${Paths.GAMES}`, jogo);
   }
 
   deletar(id: number): Observable<any> {

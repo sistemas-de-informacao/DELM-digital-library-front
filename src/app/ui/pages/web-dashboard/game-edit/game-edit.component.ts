@@ -1,3 +1,4 @@
+import { ResponseDefault } from './../../../../models/response-default';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -60,12 +61,12 @@ export class GameEditComponent implements OnInit {
 
   editar() {
     this.game = new Game(this.gameForm.nome, this.gameForm.preco, DateService.converterData(this.gameForm.dataLancamento), this.gameForm.desenvolvedor, this.gameForm.descricao, 1, undefined, this.id);
-    this.gameService.editar(this.game).subscribe((res: any) => {
-      if (res.includes('sucesso')) {
-        this.alertService.success('Jogo atualizado com sucesso');
+    this.gameService.editar(this.game).subscribe((res: ResponseDefault<Game>) => {
+      if (res.body) {
+        this.alertService.success(res.mensagem);
       } else {
-        this.alertService.danger('Ocorreu algum problema, tente novamente.');
+        this.alertService.danger(res.mensagem);
       }
-    }, () => this.alertService.danger('Ocorreu algum problema, tente novamente.'));
+    }, (res: ResponseDefault<Game>) => this.alertService.danger(res.mensagem));
   }
 }

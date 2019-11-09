@@ -1,3 +1,4 @@
+import { ResponseDefault } from './../../../../models/response-default';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -41,13 +42,13 @@ export class GameCadastreComponent implements OnInit {
 
   criarJogo() {
     this.game = new Game(this.gameForm.nome, this.gameForm.preco, DateService.converterData(this.gameForm.dataLancamento), this.gameForm.desenvolvedor, this.gameForm.descricao, 1);
-    this.gameService.criar(this.game).subscribe((res: any) => {
-      if (res.includes('sucesso')) {
+    this.gameService.criar(this.game).subscribe((res: ResponseDefault<Game>) => {
+      if (res.body) {
         this.gameForm = null;
         this.gameFormGroup.reset();
-        this.alertService.success('Jogo cadastrado com sucesso.');
+        this.alertService.success(res.mensagem);
       } else {
-        this.alertService.danger('Ocorreu algum problema, tente novamente.');
+        this.alertService.danger(res.mensagem);
       }
     })
   }
