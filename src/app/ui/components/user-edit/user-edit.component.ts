@@ -1,3 +1,4 @@
+import { ResponseDefault } from './../../../models/response-default';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
@@ -68,11 +69,11 @@ export class UserEditComponent implements OnInit {
 
   editar() {
     this.userService.editar(new User(this.user.id, this.userFormGroup.get('nickname').value, this.userFormGroup.get('nome').value, this.userFormGroup.get('email').value, this.user.senha,
-      this.user.saldo, this.user.dataCriacao, this.mudarDesativarConta())).subscribe((res: any) => {
-        if (res.includes('sucesso')) {
-          this.alertService.success('Informações pessoais atualizadas com sucesso.');
+      this.user.saldo, this.user.dataCriacao, this.mudarDesativarConta())).subscribe((res: ResponseDefault<User>) => {
+        if (res.body) {
+          this.alertService.success(res.mensagem);
         } else {
-          this.alertService.danger('Ocorreu algum problema, tente novamente.');
+          this.alertService.danger(res.mensagem);
         }
       });
   }

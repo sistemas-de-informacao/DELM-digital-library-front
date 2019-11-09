@@ -3,7 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 // Models
 import { LoginForm } from 'src/app/models/forms/login-form';
-import { User } from 'src/app/models/user';
+import { ResponseDefault } from './../../../../models/response-default';
+import { User } from './../../../../models/user';
 
 // Services
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -28,11 +29,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   onSubmitToLogin() {
-    this.authentication.onLogin(this.criarFormLogin()).subscribe((user: User) => {
-      if (user) {
-        this.authentication.entrar(user);
+    this.authentication.onLogin(this.criarFormLogin()).subscribe((res: ResponseDefault<User>) => {
+      console.log(res);
+      if (res.body) {
+        this.authentication.entrar(res.body);
       } else {
-        this.alertService.danger('Usuário não existe e/ou senha incorreta.');
+        this.alertService.danger(res.mensagem);
       }
     });
   }

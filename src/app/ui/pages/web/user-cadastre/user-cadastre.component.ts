@@ -1,3 +1,4 @@
+import { ResponseDefault } from './../../../../models/response-default';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
@@ -10,6 +11,7 @@ import { User } from '../../../../models/user';
 import { AuthenticationService } from '../../../../services/authentication.service';
 import { UserService } from '../../../../services/user.service';
 import { DateService } from '../../../../services/date.service';
+import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-user-cadastre',
@@ -25,7 +27,7 @@ export class UserCadastreComponent implements OnInit {
 
   userCadastreFormGroup: FormGroup;
 
-  constructor(private fb: FormBuilder, private authentication: AuthenticationService, private userService: UserService) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private alertService: AlertService) { }
 
   ngOnInit() {
     this.criarForms();
@@ -47,11 +49,14 @@ export class UserCadastreComponent implements OnInit {
   }
 
   criarUsuario(usuario: User) {
-    this.userService.criar(usuario).subscribe((res: string) => {
-      const credentials = new LoginForm(undefined, usuario.nickname, usuario.senha);
-      this.authentication.onLogin(credentials).subscribe((user: User) => {
-        this.authentication.entrar(user);
-      });
+    this.userService.criar(usuario).subscribe((res: ResponseDefault<User>) => {
+      if (res.body) {
+        this.userCadastreForm = null;
+        this.userCadastreFormGroup.reset();
+        this.alertService.success(res.mensagem);
+      } else {
+        this.alertService.danger(res.mensagem);
+      }
     });
   }
 

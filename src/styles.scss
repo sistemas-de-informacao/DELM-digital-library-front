@@ -79,3 +79,9 @@ input[type=number]:focus,
     outline: none;
     box-shadow: none;
 }
+
+input[type=radio],
+input[type=checkbox] {
+    width: 15px;
+    height: 17px;
+}

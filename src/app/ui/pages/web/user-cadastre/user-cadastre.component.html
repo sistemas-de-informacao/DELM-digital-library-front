@@ -54,6 +54,7 @@
                             *ngIf="userCadastreFormGroup.get('senha').hasError('maxlength') && userCadastreFormGroup.get('senha').touched"
                             [mensagem]="'O campo senha só pode ter no máximo 70 caracteres'"></app-error-card>
                     </div>
+                    <ngx-alerts></ngx-alerts>
                     <button type="submit" [disabled]='!userCadastreFormGroup.valid'
                         class="btn btn-primary float-right">Cadastrar</button>
                 </form>

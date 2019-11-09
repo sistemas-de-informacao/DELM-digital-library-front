@@ -17,7 +17,7 @@ export class UserService {
   constructor(private http: HttpClient, private localStorageService: LocalStorageService) { }
 
   criar(user: User): Observable<any> {
-    return this.http.post<any>(`${environment.base_path}${Paths.USERS}`, user, { responseType: 'text' as 'json' });
+    return this.http.post<any>(`${environment.base_path}${Paths.USERS}`, user);
   }
 
   listar(): Observable<User[]> {
@@ -25,7 +25,7 @@ export class UserService {
   }
 
   editar(user: User): Observable<any> {
-    return this.http.put<any>(`${environment.base_path}${Paths.USERS}`, user, { responseType: 'text' as 'json' });
+    return this.http.put<any>(`${environment.base_path}${Paths.USERS}`, user);
   }
 
   get(): Observable<any> {
