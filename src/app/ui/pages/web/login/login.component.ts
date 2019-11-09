@@ -1,3 +1,4 @@
+import { UserService } from './../../../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
     senha: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(70)]]
   });
 
-  constructor(private fb: FormBuilder, private authentication: AuthenticationService, private alertService: AlertService) { }
+  constructor(private fb: FormBuilder, private authentication: AuthenticationService, private alertService: AlertService, private userService: UserService) { }
 
   ngOnInit() { }
 
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
     this.authentication.onLogin(this.criarFormLogin()).subscribe((res: ResponseDefault<User>) => {
       if (res.body) {
         this.authentication.entrar(res.body);
+        this.userService.toggle();
       } else {
         this.alertService.danger(res.mensagem);
       }

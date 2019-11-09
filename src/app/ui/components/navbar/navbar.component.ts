@@ -31,11 +31,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   getUsuario() {
-    if (this.localStorageService.getId()) {
-      this.subscription = this.userService.get().subscribe((user: User) => {
-        this.nickname = user.nickname;
-      });
-    }
+    this.userService.toggle();
+    this.userService.getNickname.subscribe((nome) => {
+      this.nickname = nome;
+    });
   }
 
   ngOnDestroy(): void {

@@ -1,7 +1,7 @@
 import { LocalStorageService } from './local-storage.service';
 import { Paths } from './../../assets/paths/Paths';
 import { environment } from './../../environments/environment';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -13,6 +13,8 @@ import { User } from '../models/user';
 })
 
 export class UserService {
+
+  getNickname: EventEmitter<string> = new EventEmitter();
 
   constructor(private http: HttpClient, private localStorageService: LocalStorageService) { }
 
@@ -31,6 +33,14 @@ export class UserService {
   get(): Observable<any> {
     const id = this.localStorageService.getId();
     return this.http.get<any>(`${environment.base_path}${Paths.USERS}${id}`);
+  }
+
+  toggle() {
+    if (this.localStorageService.getId()) {
+      this.get().subscribe((user: User) => {
+        this.getNickname.emit(user.nickname);
+      });
+    }
   }
 
   getPorId(id: string): Observable<any> {
