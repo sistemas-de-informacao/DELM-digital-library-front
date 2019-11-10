@@ -1,0 +1,24 @@
+<div class="container margin-top">
+    <div class="card-bg d-flex flex-column justify-content-center align-items-center">
+        <div class="card bg-dark">
+            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                <form [formGroup]="categoriaForm" (ngSubmit)="onSubmitCriarCategoria()">
+                    <label for="exampleFormGroup">Cadastrar categoria</label>
+                    <div class="form-group">
+                        <input formControlName='nome' type="text" class="form-control" id="exampleNome"
+                            aria-describedby="nicknameHelp" placeholder="Nome">
+                        <app-error-card
+                            *ngIf="categoriaForm.get('nome').hasError('required') && categoriaForm.get('nome').touched"
+                            [mensagem]="'O campo nome é obrigatório'"></app-error-card>
+                        <app-error-card
+                            *ngIf="categoriaForm.get('nome').hasError('maxlength') && categoriaForm.get('nome').touched"
+                            [mensagem]="'O campo nome só pode ter no máximo 120 caracteres'"></app-error-card>
+                    </div>
+                    <ngx-alerts></ngx-alerts>
+                    <button type="submit" [disabled]='!categoriaForm.valid'
+                        class="btn btn-primary float-right">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

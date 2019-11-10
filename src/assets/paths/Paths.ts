@@ -1,8 +1,8 @@
 export class Paths {
 
-    static USERS = 'user/';
     static LOGIN = 'login';
-
+    static USERS = 'user/';
     static GAMES = 'game/';
+    static CATEGORIES = 'category/';
 
 }

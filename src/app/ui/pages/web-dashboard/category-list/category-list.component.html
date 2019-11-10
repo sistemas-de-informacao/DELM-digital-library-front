@@ -1,0 +1,26 @@
+<div class="container margin-top">
+    <div class="d-flex justify-content-end">
+        <form [formGroup]="pesquisarFormGroup">
+            <div class="form-group">
+                <input formControlName='pesquisar' type="text" class="form-control search-input" id="exampleInputName"
+                    aria-describedby="nomeHelp" placeholder="Pesquisar">
+            </div>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-dark bg-dark">
+            <caption>Lista de categorias - clique para editar.</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let categoria of categories" (click)="redirecionarParaCategoria(categoria.id)"
+                    appTableHover>
+                    <td>{{ categoria.nome }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

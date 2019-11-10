@@ -6,13 +6,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // Models
+import { ICrud } from './../models/interfaces/ICrud';
 import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class UserService {
+export class UserService implements ICrud<User> {
 
   getNickname: EventEmitter<string> = new EventEmitter();
 
@@ -30,6 +31,15 @@ export class UserService {
     return this.http.put<any>(`${environment.base_path}${Paths.USERS}`, user);
   }
 
+  deletar(id: number): Observable<any> {
+    return null;
+  }
+
+  getPorId(id: number): Observable<any> {
+    return this.http.get<any>(`${environment.base_path}${Paths.USERS}${id}`);
+  }
+
+
   get(): Observable<any> {
     const id = this.localStorageService.getId();
     return this.http.get<any>(`${environment.base_path}${Paths.USERS}${id}`);
@@ -43,8 +53,5 @@ export class UserService {
     }
   }
 
-  getPorId(id: string): Observable<any> {
-    return this.http.get<any>(`${environment.base_path}${Paths.USERS}${id}`);
-  }
 
 }

@@ -39,6 +39,9 @@ import { TableHoverDirective } from './directives/table-hover.directive';
 import { UserDetailsComponent } from './ui/components/user-details/user-details.component';
 import { ErrorCardComponent } from './ui/components/error-card/error-card.component';
 import { GameEditComponent } from './ui/pages/web-dashboard/game-edit/game-edit.component';
+import { CategoryCadastreComponent } from './ui/pages/web-dashboard/category-cadastre/category-cadastre.component';
+import { CategoryEditComponent } from './ui/pages/web-dashboard/category-edit/category-edit.component';
+import { CategoryListComponent } from './ui/pages/web-dashboard/category-list/category-list.component';
 registerLocaleData(localept, (settingsService) => settingsService.getLocale());
 
 @NgModule({
@@ -61,7 +64,10 @@ registerLocaleData(localept, (settingsService) => settingsService.getLocale());
     TableHoverDirective,
     UserDetailsComponent,
     ErrorCardComponent,
-    GameEditComponent
+    GameEditComponent,
+    CategoryCadastreComponent,
+    CategoryEditComponent,
+    CategoryListComponent
   ],
   imports: [
     BrowserAnimationsModule,

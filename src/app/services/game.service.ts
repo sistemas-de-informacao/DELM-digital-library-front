@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 // Models
+import { ICrud } from './../models/interfaces/ICrud';
 import { Game } from '../models/game';
 import { Paths } from './../../assets/paths/Paths';
 import { environment } from './../../environments/environment';
@@ -11,7 +12,7 @@ import { environment } from './../../environments/environment';
   providedIn: 'root'
 })
 
-export class GameService {
+export class GameService implements ICrud<Game> {
 
   constructor(private http: HttpClient) { }
 
@@ -27,16 +28,16 @@ export class GameService {
     return this.http.get<Game[]>(`${environment.base_path}${Paths.GAMES}`);
   }
 
-  getPorId(id: number): Observable<Game> {
-    return this.http.get<Game>(`${environment.base_path}${Paths.GAMES}${id}`);
-  }
-
   editar(jogo: Game): Observable<any> {
     return this.http.put<Game>(`${environment.base_path}${Paths.GAMES}`, jogo);
   }
 
   deletar(id: number): Observable<any> {
     return this.http.delete<any>(`${environment.base_path}${Paths.GAMES}${id}`, { responseType: 'text' as 'json' });
+  }
+
+  getPorId(id: number): Observable<Game> {
+    return this.http.get<Game>(`${environment.base_path}${Paths.GAMES}${id}`);
   }
 
 }
