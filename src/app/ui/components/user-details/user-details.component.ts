@@ -23,7 +23,7 @@ export class UserDetailsComponent implements OnInit {
   getUsuario() {
     this.router.queryParams.subscribe((queryParams: any) => {
       this.id = queryParams.id;
-      this.userServices.getPorId(this.id).subscribe((user: User) => {
+      this.userServices.getPorId(+this.id).subscribe((user: User) => {
         this.user = user;
       });
     });

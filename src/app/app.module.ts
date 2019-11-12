@@ -42,6 +42,7 @@ import { GameEditComponent } from './ui/pages/web-dashboard/game-edit/game-edit.
 import { CategoryCadastreComponent } from './ui/pages/web-dashboard/category-cadastre/category-cadastre.component';
 import { CategoryEditComponent } from './ui/pages/web-dashboard/category-edit/category-edit.component';
 import { CategoryListComponent } from './ui/pages/web-dashboard/category-list/category-list.component';
+import { UserPurchaseHistoryComponent } from './ui/components/user-purchase-history/user-purchase-history.component';
 registerLocaleData(localept, (settingsService) => settingsService.getLocale());
 
 @NgModule({
@@ -67,7 +68,8 @@ registerLocaleData(localept, (settingsService) => settingsService.getLocale());
     GameEditComponent,
     CategoryCadastreComponent,
     CategoryEditComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    UserPurchaseHistoryComponent
   ],
   imports: [
     BrowserAnimationsModule,

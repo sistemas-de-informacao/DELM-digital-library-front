@@ -23,6 +23,7 @@ import { CategoryEditComponent } from './ui/pages/web-dashboard/category-edit/ca
 
 // Guards
 import { LowLevelGuard } from './guards/low-level.guard';
+import { UserPurchaseHistoryComponent } from './ui/components/user-purchase-history/user-purchase-history.component';
 
 const routes: Routes = [{ path: 'login', component: LoginComponent },
 { path: 'cadastro', component: UserCadastreComponent },
@@ -50,7 +51,11 @@ const routes: Routes = [{ path: 'login', component: LoginComponent },
     { path: 'perfil/display-name/:id', component: UserDetailsComponent }
   ]
 },
-{ path: 'perfil/id/:id', component: ProfileComponent }];
+{
+  path: 'perfil/id/:id', component: ProfileComponent, children: [
+    // { path: 'historico-de-compras', component: UserPurchaseHistoryComponent }
+  ]
+}, { path: 'historico-de-compras', component: UserPurchaseHistoryComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
