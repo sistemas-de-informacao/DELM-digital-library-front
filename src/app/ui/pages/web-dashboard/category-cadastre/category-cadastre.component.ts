@@ -20,6 +20,8 @@ export class CategoryCadastreComponent implements OnInit {
   categoriaForm: FormGroup;
   categoria: Category;
 
+  loading = false;
+
   constructor(private fb: FormBuilder, private categoriaService: CategoryService, private alertService: AlertService) { }
 
   ngOnInit() {
@@ -38,6 +40,7 @@ export class CategoryCadastreComponent implements OnInit {
   }
 
   criarCategoria(categoria: Category) {
+    this.loading = true;
     this.categoriaService.criar(categoria).subscribe((res: ResponseDefault<Category>) => {
       if (res.body) {
         this.categoriaForm.reset();
@@ -45,7 +48,12 @@ export class CategoryCadastreComponent implements OnInit {
       } else {
         this.alertService.danger(res.mensagem);
       }
-    }, (res: ResponseDefault<Category>) => this.alertService.danger(res.mensagem));
+
+      this.loading = false;
+    }, (res: ResponseDefault<Category>) => {
+      this.alertService.danger(res.mensagem);
+      this.loading = false;
+    });
   }
 
 }

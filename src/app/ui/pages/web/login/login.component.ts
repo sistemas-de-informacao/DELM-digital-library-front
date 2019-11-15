@@ -25,11 +25,14 @@ export class LoginComponent implements OnInit {
     senha: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(70)]]
   });
 
+  loading = false;
+
   constructor(private fb: FormBuilder, private authentication: AuthenticationService, private alertService: AlertService, private userService: UserService) { }
 
   ngOnInit() { }
 
   onSubmitToLogin() {
+    this.loading = true;
     this.authentication.onLogin(this.criarFormLogin()).subscribe((res: ResponseDefault<User>) => {
       if (res.body) {
         this.authentication.entrar(res.body);
@@ -37,6 +40,8 @@ export class LoginComponent implements OnInit {
       } else {
         this.alertService.danger(res.mensagem);
       }
+
+      this.loading = false;
     });
   }
 

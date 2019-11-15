@@ -22,6 +22,8 @@ export class UserEditComponent implements OnInit {
   userFormGroup: FormGroup;
   changePasswordFormGroup: FormGroup;
 
+  loading = false;
+
   constructor(private fb: FormBuilder, private userService: UserService, private alertService: AlertService) { }
 
   ngOnInit() {
@@ -68,6 +70,7 @@ export class UserEditComponent implements OnInit {
   }
 
   editar() {
+    this.loading = true;
     this.userService.editar(new User(this.user.id, this.userFormGroup.get('nickname').value, this.userFormGroup.get('nome').value, this.userFormGroup.get('email').value, this.user.senha,
       this.user.saldo, this.user.dataCriacao, this.mudarDesativarConta())).subscribe((res: ResponseDefault<User>) => {
         if (res.body) {
@@ -75,6 +78,8 @@ export class UserEditComponent implements OnInit {
         } else {
           this.alertService.danger(res.mensagem);
         }
+
+        this.loading = false;
       });
   }
 

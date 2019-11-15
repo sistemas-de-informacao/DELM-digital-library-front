@@ -29,7 +29,7 @@
             </div>
             <div class="about">
                 <h6>Categoria</h6>
-                <h6>{{ jogo.categoria }}</h6>
+                <h6 *ngIf="categoria">{{ categoria.nome }}</h6>
             </div>
             <div class="about">
                 <h6>Data de lançamento</h6>

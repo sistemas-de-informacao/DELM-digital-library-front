@@ -1,6 +1,6 @@
 nav {
     $nav-size: 75px;
-    $button-width: 125px;
+    $button-width: 150px;
     $padding: 0 20px;
 
     padding: 0;
@@ -13,7 +13,7 @@ nav {
     .active::after {
         content: '';
         background: var(--primary);
-        width: 125px;
+        width: $button-width;
         height: 4px;
         display: block;
         position: absolute;
@@ -23,7 +23,7 @@ nav {
     .active-dark::after {
         content: '';
         background: var(--dark);
-        width: 125px;
+        width: $button-width;
         height: 4px;
         position: absolute;
         bottom: 0px;

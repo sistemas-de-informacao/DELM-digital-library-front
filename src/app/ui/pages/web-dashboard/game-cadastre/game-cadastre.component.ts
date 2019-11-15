@@ -1,13 +1,15 @@
-import { ResponseDefault } from './../../../../models/response-default';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 // Models
 import { GameCadastreForm } from '../../../../models/forms/game-form';
 import { Game } from 'src/app/models/game';
+import { Category } from 'src/app/models/category';
+import { ResponseDefault } from './../../../../models/response-default';
 
 // Services
 import { GameService } from 'src/app/services/game.service';
+import { CategoryService } from './../../../../services/category.service';
 import { DateService } from 'src/app/services/date.service';
 import { AlertService } from 'ngx-alerts';
 
@@ -30,9 +32,15 @@ export class GameCadastreComponent implements OnInit {
     categoria: [null, [Validators.required]]
   });
 
-  constructor(private fb: FormBuilder, private gameService: GameService, private alertService: AlertService) { }
+  loading = false;
+
+  categorias: Category[] = [];
+  categoriasLoading = true;
+
+  constructor(private fb: FormBuilder, private gameService: GameService, private categoryService: CategoryService, private alertService: AlertService) { }
 
   ngOnInit() {
+    this.listarCategorias();
   }
 
   onSubmitCriarJogo() {
@@ -40,7 +48,17 @@ export class GameCadastreComponent implements OnInit {
     this.criarJogo();
   }
 
+  listarCategorias() {
+    this.categoryService.listar().subscribe((categorias: Category[]) => {
+      if (categorias.length !== 0) {
+        this.categorias = categorias;
+        this.categoriasLoading = false;
+      }
+    });
+  }
+
   criarJogo() {
+    this.loading = true;
     this.game = new Game(this.gameForm.nome, this.gameForm.preco, DateService.converterData(this.gameForm.dataLancamento), this.gameForm.desenvolvedor, this.gameForm.descricao, 1);
     this.gameService.criar(this.game).subscribe((res: ResponseDefault<Game>) => {
       if (res.body) {
@@ -50,7 +68,9 @@ export class GameCadastreComponent implements OnInit {
       } else {
         this.alertService.danger(res.mensagem);
       }
-    })
+
+      this.loading = false;
+    });
   }
 
 }

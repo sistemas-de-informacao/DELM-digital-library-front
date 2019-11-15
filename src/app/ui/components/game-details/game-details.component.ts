@@ -4,8 +4,11 @@ import { Subscription } from 'rxjs';
 
 // Models
 import { Game } from './../../../models/game';
+import { Category } from './../../../models/category';
+
+// Services
 import { GameService } from 'src/app/services/game.service';
-// import { GAMES } from './../../../mocks/games-mock';
+import { CategoryService } from './../../../services/category.service';
 
 @Component({
   selector: 'app-game-details',
@@ -21,13 +24,18 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
   jogo: Game;
   tipoConta = 0;
 
-  constructor(private route: ActivatedRoute, private router: Router, private gameService: GameService) { }
+  categoria: Category;
+
+  constructor(private route: ActivatedRoute, private router: Router, private gameService: GameService, private categoriaService: CategoryService) { }
 
   ngOnInit() {
     this.inscricao = this.route.queryParams.subscribe((queryParams: any) => {
       this.id = queryParams.id;
       this.gameService.getPorId(this.id).subscribe((game: Game) => {
         this.jogo = game;
+        this.categoriaService.getPorId(this.jogo.idCategoria).subscribe((categoria: Category) => {
+          this.categoria = categoria;
+        });
       });
     });
   }

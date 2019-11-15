@@ -17,6 +17,9 @@
             <div>
                 <span><i class="fas fa-calendar-alt i-left"></i> Data de criação: {{ user.dataCriacao }}</span>
             </div>
+            <div>
+                <span class="pointer"><i class="fas fa-search-dollar i-left"></i> Ver histórico de compras</span>
+            </div>
         </div>
         <div class="form-group">
             <input formControlName='nickname' type="text" class="form-control" id="exampleInputNickname"
@@ -59,7 +62,9 @@
             </label>
         </div>
         <ngx-alerts></ngx-alerts>
-        <button type="submit" [disabled]='!userFormGroup.valid' class="btn btn-primary float-right">EDITAR</button>
+        <button type="submit" [disabled]='!userFormGroup.valid || loading == true'
+            class="btn btn-primary float-right">EDITAR <i *ngIf="loading == true"
+                class="fas fa-spinner fa-pulse i-right"></i></button>
     </form>
     <br><br>
 

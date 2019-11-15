@@ -52,10 +52,8 @@ const routes: Routes = [{ path: 'login', component: LoginComponent },
   ]
 },
 {
-  path: 'perfil/id/:id', component: ProfileComponent, children: [
-    // { path: 'historico-de-compras', component: UserPurchaseHistoryComponent }
-  ]
-}, { path: 'historico-de-compras', component: UserPurchaseHistoryComponent }];
+  path: 'perfil/id/:id', component: ProfileComponent
+}, { path: 'perfil/id/:id/historico-de-compras', component: UserPurchaseHistoryComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

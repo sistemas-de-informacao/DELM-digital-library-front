@@ -59,7 +59,8 @@
                     <div>
                         <div class="input-group">
                             <select formControlName='categoria' class="custom-select" id="inputGroupSelectCategoria">
-                                <option value="1">FPS</option>
+                                <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nome }}
+                                </option>
                             </select>
                             <div class="input-group-append">
                                 <label class="input-group-text" for="inputGroupSelectCategoria">Categoria</label>
@@ -68,10 +69,14 @@
                         <app-error-card
                             *ngIf="gameFormGroup.get('categoria').hasError('required') && gameFormGroup.get('categoria').touched"
                             [mensagem]="'O campo categoria é obrigatório'"></app-error-card>
+                        <app-error-card *ngIf="categorias.length == 0 && categoriasLoading == false"
+                            [mensagem]="'Nenhuma categoria registrada'">
+                        </app-error-card>
                     </div>
                     <ngx-alerts></ngx-alerts>
-                    <button type="submit" [disabled]='!gameFormGroup.valid'
-                        class="btn btn-primary float-right">Cadastrar</button>
+                    <button type="submit" [disabled]='!gameFormGroup.valid || loading == true'
+                        class="btn btn-primary float-right">CADASTRAR <i *ngIf="loading == true"
+                            class="fas fa-spinner fa-pulse i-right"></i></button>
                 </form>
             </div>
         </div>
