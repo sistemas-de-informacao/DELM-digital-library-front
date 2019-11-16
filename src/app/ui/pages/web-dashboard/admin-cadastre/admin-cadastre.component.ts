@@ -28,6 +28,7 @@ export class AdminCadastreComponent implements OnInit {
 
   onSubmitToCreateAdmin() {
     this.adminForm = new AdminCadastreForm(this.adminFormGroup);
+    // TODO: Criar usuário com tipo de conta ADMIN
   }
 
 }

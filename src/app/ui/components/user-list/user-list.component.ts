@@ -33,20 +33,22 @@ export class UserListComponent implements OnInit {
     });
   }
 
-
-  listar() {
+  listar(search?: boolean) {
     this.userService.listar().subscribe((users) => {
       this.users = users;
+      if (search) {
+        this.pesquisarFormGroup.reset();
+      }
     });
   }
 
   search() {
     this.pesquisarFormGroup.get('nome').valueChanges.pipe(
       map(value => value ? value.trim() : value),
-      filter(value => value.length >= 3),
+      filter(value => value ? value.length >= 3 : value),
       debounceTime(350),
       distinctUntilChanged(),
-      tap(value => this.getPorNome(value))
+      tap(value => this.getPorNickname(value))
     ).subscribe();
 
     this.pesquisarFormGroup.get('nome').valueChanges.pipe(
@@ -56,7 +58,7 @@ export class UserListComponent implements OnInit {
     ).subscribe();
   }
 
-  getPorNome(nickname: string) {
+  getPorNickname(nickname: string) {
     this.userService.getAllPorNickname(nickname).subscribe((res: ResponseDefault<Array<User>>) => {
       if (res.body) {
         this.users = res.body;

@@ -51,7 +51,7 @@ export class GameListComponent implements OnInit {
   search() {
     this.pesquisarFormGroup.get('nome').valueChanges.pipe(
       map(value => value ? value.trim() : value),
-      filter(value => value.length >= 3),
+      filter(value => value ? value.length >= 3 : value),
       debounceTime(350),
       distinctUntilChanged(),
       tap(value => this.getPorNome(value))

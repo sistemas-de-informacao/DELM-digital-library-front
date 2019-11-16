@@ -36,4 +36,8 @@ export class CategoryService implements ICrud<Category> {
     return this.http.get(`${environment.base_path}${Paths.CATEGORIES}${id}`);
   }
 
+  getAllPorNome(nome: string): Observable<any> {
+    return this.http.get(`${environment.base_path}${Paths.CATEGORIES}${Paths.SEARCH}${nome}`);
+  }
+
 }
