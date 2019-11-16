@@ -1,5 +1,8 @@
-import { Router } from '@angular/router';
+import { AlertService } from 'ngx-alerts';
+import { ResponseDefault } from './../../../models/response-default';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { tap, map, filter, distinctUntilChanged, debounceTime, switchMap } from 'rxjs/operators';
 import { FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
 
@@ -25,19 +28,53 @@ export class GameListComponent implements OnInit {
     nome: [null]
   });
 
-  constructor(private fb: FormBuilder, private router: Router, private gameService: GameService) { }
+  constructor(private fb: FormBuilder, private router: Router, private gameService: GameService, private alertService: AlertService) { }
 
   ngOnInit() {
     this.listar();
+    this.search();
   }
 
   getJogo(id: number, nome: string) {
     this.router.navigate([`/loja/jogo/${this.gameService.converterNomeParaUrl(nome)}`], { queryParams: { id } });
   }
 
-  listar() {
+  listar(search?: boolean) {
     this.gameService.listar().subscribe((games: Game[]) => {
       this.games = games;
+      if (search === true) {
+        this.searchFormGroup.reset();
+      }
+    });
+  }
+
+  search() {
+    this.searchFormGroup.get('nome').valueChanges.pipe(
+      map(value => value ? value.trim() : value),
+      filter(value => value.length >= 3),
+      debounceTime(350),
+      distinctUntilChanged(),
+      tap(value => this.getPorNome(value))
+    ).subscribe();
+
+    this.searchFormGroup.get('nome').valueChanges.pipe(
+      map(value => value ? value.trim() : value),
+      filter(value => value.length === 0),
+      tap(() => this.listar())
+    ).subscribe();
+  }
+
+  getPorNome(nome: string) {
+    this.gameService.getPorNome(nome).subscribe((res: ResponseDefault<Array<Game>>) => {
+      if (res.body) {
+        this.games = res.body;
+      } else {
+        this.alertService.danger(res.mensagem);
+        this.listar();
+      }
+    }, (err: any) => {
+      this.alertService.danger(err.error.text);
+      this.listar();
     });
   }
 

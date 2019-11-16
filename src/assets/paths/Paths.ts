@@ -5,4 +5,6 @@ export class Paths {
     static GAMES = 'game/';
     static CATEGORIES = 'category/';
 
+    static SEARCH = 'pesquisar/';
+
 }

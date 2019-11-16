@@ -40,4 +40,8 @@ export class GameService implements ICrud<Game> {
     return this.http.get<Game>(`${environment.base_path}${Paths.GAMES}${id}`);
   }
 
+  getPorNome(nome: string): Observable<any> {
+    return this.http.get<any>(`${environment.base_path}${Paths.GAMES}${Paths.SEARCH}${nome}`);
+  }
+
 }

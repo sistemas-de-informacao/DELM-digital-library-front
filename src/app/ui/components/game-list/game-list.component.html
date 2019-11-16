@@ -1,10 +1,13 @@
 <div class="container margin-top">
     <div class="d-flex justify-content-end">
-        <form [formGroup]="searchFormGroup">
+        <form [formGroup]="searchFormGroup" class="d-flex">
+            <i *ngIf="this.searchFormGroup.get('nome').value" (click)="listar(true)"
+                class="fas fa-times-circle pointer primary-hover"></i>
             <div class="form-group">
                 <input formControlName='nome' type="text" class="form-control search-input" id="exampleInputName"
                     aria-describedby="nomeHelp" placeholder="Pesquisar">
             </div>
+            <ngx-alerts></ngx-alerts>
         </form>
     </div>
     <div class="background-row d-flex flex-row flex-wrap">
@@ -16,7 +19,7 @@
                         <span>{{ jogo.nome }}</span>
                     </div>
                     <div class="price align-self-end">
-                        <span>{{ jogo.preco | currency:'BRL':true }}</span>
+                        <span>{{ jogo.preco | currency:'BRL' }}</span>
                     </div>
                 </div>
             </div>
