@@ -27,9 +27,15 @@ export class LoginComponent implements OnInit {
 
   loading = false;
 
+  ativa = false;
+
   constructor(private fb: FormBuilder, private authentication: AuthenticationService, private alertService: AlertService, private userService: UserService) { }
 
   ngOnInit() { }
+
+  criarFormLogin(): LoginForm {
+    return this.loginForm = new LoginForm(this.loginFormGroup);
+  }
 
   onSubmitToLogin() {
     this.loading = true;
@@ -38,15 +44,28 @@ export class LoginComponent implements OnInit {
         this.authentication.entrar(res.body);
         this.userService.toggle();
       } else {
-        this.alertService.danger(res.mensagem);
+        if (!res.mensagem.includes('Conta desativada')) {
+          this.alertService.danger(res.mensagem);
+        }
+        if (res.mensagem.includes('Conta desativada')) {
+          this.alertService.warning(res.mensagem.concat('. Ative sua conta no botão abaixo do formulário!'));
+          this.ativa = true;
+        }
       }
 
       this.loading = false;
-    });
+    }, (err: ResponseDefault<User>) => { this.alertService.danger(err.mensagem); this.loading = false; });
   }
 
-  criarFormLogin(): LoginForm {
-    return this.loginForm = new LoginForm(this.loginFormGroup);
+  ativar() {
+    this.userService.ativar(this.loginForm.user).subscribe((res: ResponseDefault<any>) => {
+      if (res.body) {
+        this.alertService.success(res.mensagem);
+        this.ativa = false;
+      } else {
+        this.alertService.danger(res.mensagem);
+      }
+    });
   }
 
 }

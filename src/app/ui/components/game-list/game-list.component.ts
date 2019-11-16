@@ -24,7 +24,7 @@ export class GameListComponent implements OnInit {
 
   tipoConta = 0;
 
-  searchFormGroup = this.fb.group({
+  pesquisarFormGroup = this.fb.group({
     nome: [null]
   });
 
@@ -43,13 +43,13 @@ export class GameListComponent implements OnInit {
     this.gameService.listar().subscribe((games: Game[]) => {
       this.games = games;
       if (search === true) {
-        this.searchFormGroup.reset();
+        this.pesquisarFormGroup.reset();
       }
     });
   }
 
   search() {
-    this.searchFormGroup.get('nome').valueChanges.pipe(
+    this.pesquisarFormGroup.get('nome').valueChanges.pipe(
       map(value => value ? value.trim() : value),
       filter(value => value.length >= 3),
       debounceTime(350),
@@ -57,7 +57,7 @@ export class GameListComponent implements OnInit {
       tap(value => this.getPorNome(value))
     ).subscribe();
 
-    this.searchFormGroup.get('nome').valueChanges.pipe(
+    this.pesquisarFormGroup.get('nome').valueChanges.pipe(
       map(value => value ? value.trim() : value),
       filter(value => value.length === 0),
       tap(() => this.listar())

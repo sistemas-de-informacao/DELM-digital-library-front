@@ -1,10 +1,13 @@
 <div class="container margin-top">
     <div class="d-flex justify-content-end">
-        <form [formGroup]="pesquisarFormGroup">
+        <form [formGroup]="pesquisarFormGroup" class="d-flex">
+            <i *ngIf="this.pesquisarFormGroup.get('nome').value" (click)="listar(true)"
+                class="fas fa-times-circle pointer primary-hover"></i>
             <div class="form-group">
-                <input formControlName='pesquisar' type="text" class="form-control search-input" id="exampleInputName"
+                <input formControlName='nome' type="text" class="form-control search-input" id="exampleInputName"
                     aria-describedby="nomeHelp" placeholder="Pesquisar">
             </div>
+            <ngx-alerts></ngx-alerts>
         </form>
     </div>
     <div class="table-responsive">

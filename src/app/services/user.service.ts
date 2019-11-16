@@ -39,6 +39,13 @@ export class UserService implements ICrud<User> {
     return this.http.get<any>(`${environment.base_path}${Paths.USERS}${id}`);
   }
 
+  getAllPorNickname(nickname: string): Observable<any> {
+    return this.http.get<any>(`${environment.base_path}${Paths.USERS}${Paths.SEARCH}${nickname}`);
+  }
+
+  ativar(nickname: string): Observable<any> {
+    return this.http.get<any>(`${environment.base_path}${Paths.USERS}${Paths.ENABLE}${nickname}`);
+  }
 
   get(): Observable<any> {
     const id = this.localStorageService.getId();

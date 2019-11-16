@@ -6,5 +6,6 @@ export class Paths {
     static CATEGORIES = 'category/';
 
     static SEARCH = 'pesquisar/';
+    static ENABLE = 'ativar/';
 
 }
