@@ -1,0 +1,13 @@
+.container {
+    table {
+        th.primary {
+            border-top: 2px solid var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+
+        td.primary {
+            border-top: 1px solid var(--darkness);
+            border-bottom: 1px solid var(--darkness);
+        }
+    }
+}

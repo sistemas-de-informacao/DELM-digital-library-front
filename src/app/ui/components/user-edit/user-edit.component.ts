@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ResponseDefault } from './../../../models/response-default';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
@@ -24,7 +25,7 @@ export class UserEditComponent implements OnInit {
 
   loading = false;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private alertService: AlertService) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private alertService: AlertService, private router: Router) { }
 
   ngOnInit() {
     this.getUsuario();
@@ -52,11 +53,16 @@ export class UserEditComponent implements OnInit {
     });
   }
 
+  irParaHistorico(id: number) {
+    this.router.navigate([`perfil/id/${this.user.nickname}/historico-de-compras`], { queryParams: { id } });
+  }
+
   onSubmitToEdit() {
     this.editar();
   }
 
   onSubmitToChangePassword() {
+    // TODO
     console.log(this.changePasswordFormGroup.value);
   }
 

@@ -47,8 +47,8 @@ export class GameListComponent implements OnInit {
       text: 'Você excluirá esse jogo logicamente.',
       type: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#007BFF',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#007BFF',
       confirmButtonText: 'Sim, excluir!'
     }).then((result) => {
       if (result.value) {
@@ -62,7 +62,6 @@ export class GameListComponent implements OnInit {
             );
           }
         }, () => {
-          console.log('Error');
           Swal.fire(
             'Erro!',
             `Não foi possível excluir o ${nome} da DELM Library, tente mais tarde.`,
