@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </li>
-            <li *ngIf="authenticationService.isLogado()" class="nav-item dropdown" routerLinkActive="active">
+            <li *ngIf="authenticationService.isAdministrador()" class="nav-item dropdown" routerLinkActive="active">
                 <div
                     class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-dark text-light">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -45,7 +45,7 @@
                 </div>
             </li>
         </ul>
-        <div *ngIf="localStorageService.getId()"
+        <div *ngIf="authenticationService.isLogado()"
             class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-dark text-light"
             routerLinkActive="active">
             <a [routerLink]="['/perfil/id/', this.nickname]"><i class="fas fa-user i-left"></i> {{ this.nickname }}</a>

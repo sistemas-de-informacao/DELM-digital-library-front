@@ -28,6 +28,7 @@ export class AuthenticationService {
 
   entrar(user: User) {
     this.localStorageService.setId(user);
+    this.localStorageService.setPermissao(user);
     const id = this.localStorageService.getId();
     this.router.navigate(['/loja/biblioteca'], { queryParams: { id } });
   }
@@ -40,8 +41,13 @@ export class AuthenticationService {
     }
   }
 
+  isAdministrador(): boolean {
+    return this.localStorageService.getPermissao() === 'ADMINISTRADOR';
+  }
+
   sair() {
     this.localStorageService.removeId();
+    this.localStorageService.removePermissao();
   }
 
 }

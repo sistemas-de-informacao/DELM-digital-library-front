@@ -23,4 +23,16 @@ export class LocalStorageService {
     localStorage.removeItem('id-user');
   }
 
+  setPermissao(user: User): void {
+    localStorage.setItem('user-type', user.tipo);
+  }
+
+  getPermissao(): string {
+    return localStorage.getItem('user-type');
+  }
+
+  removePermissao(): void {
+    localStorage.removeItem('user-type');
+  }
+
 }

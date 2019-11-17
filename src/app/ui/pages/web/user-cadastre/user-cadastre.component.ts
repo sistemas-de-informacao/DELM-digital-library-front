@@ -1,14 +1,13 @@
-import { ResponseDefault } from './../../../../models/response-default';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 // Models
 import { UserCadastreForm } from '../../../../models/forms/user-cadastre-form';
-import { LoginForm } from 'src/app/models/forms/login-form';
 import { User } from '../../../../models/user';
+import { Permissoes } from './../../../../models/permissoes';
+import { ResponseDefault } from './../../../../models/response-default';
 
 // Services
-import { AuthenticationService } from '../../../../services/authentication.service';
 import { UserService } from '../../../../services/user.service';
 import { DateService } from '../../../../services/date.service';
 import { AlertService } from 'ngx-alerts';
@@ -27,6 +26,8 @@ export class UserCadastreComponent implements OnInit {
 
   userCadastreFormGroup: FormGroup;
 
+  loading = false;
+
   constructor(private fb: FormBuilder, private userService: UserService, private alertService: AlertService) { }
 
   ngOnInit() {
@@ -44,18 +45,21 @@ export class UserCadastreComponent implements OnInit {
 
   onSubmitToLogin() {
     this.criarUsuario(this.user = new User(undefined, this.userCadastreFormGroup.get('nickname').value,
-      this.userCadastreFormGroup.get('nome').value, this.userCadastreFormGroup.get('email').value, this.userCadastreFormGroup.get('senha').value, undefined,
-      DateService.getDataAgora(), true));
+      this.userCadastreFormGroup.get('nome').value, this.userCadastreFormGroup.get('email').value, this.userCadastreFormGroup.get('senha').value, Number.MAX_SAFE_INTEGER,
+      DateService.getDataAgora(), true, Permissoes.NORMAL));
   }
 
   criarUsuario(usuario: User) {
+    this.loading = true;
     this.userService.criar(usuario).subscribe((res: ResponseDefault<User>) => {
       if (res.body) {
         this.userCadastreForm = null;
         this.userCadastreFormGroup.reset();
         this.alertService.success(res.mensagem);
+        this.loading = false;
       } else {
         this.alertService.danger(res.mensagem);
+        this.loading = false;
       }
     });
   }

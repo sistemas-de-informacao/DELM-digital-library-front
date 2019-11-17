@@ -69,7 +69,7 @@
                         <app-error-card
                             *ngIf="gameFormGroup.get('categoria').hasError('required') && gameFormGroup.get('categoria').touched"
                             [mensagem]="'O campo categoria é obrigatório'"></app-error-card>
-                        <app-error-card *ngIf="categorias.length == 0 && categoriasLoading == false"
+                        <app-error-card *ngIf="categorias.length == 0 && this.categoriasLoading == false"
                             [mensagem]="'Nenhuma categoria registrada'">
                         </app-error-card>
                     </div>

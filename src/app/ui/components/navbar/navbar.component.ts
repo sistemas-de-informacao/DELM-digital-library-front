@@ -1,12 +1,8 @@
-import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-
-// Models
-import { User } from './../../../models/user';
+import { Subscription } from 'rxjs';
 
 // Services
 import { UserService } from './../../../services/user.service';
-import { LocalStorageService } from './../../../services/local-storage.service';
 import { AuthenticationService } from './../../../services/authentication.service';
 
 @Component({
@@ -22,9 +18,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  constructor(private userService: UserService, private localStorageService: LocalStorageService,
-    private authenticationService: AuthenticationService) {
-  }
+  constructor(private userService: UserService, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.getUsuario();
@@ -43,7 +37,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   sair() {
     this.authenticationService.sair();
-    this.subscription.unsubscribe();
   }
 
 }

@@ -50,10 +50,11 @@ export class GameCadastreComponent implements OnInit {
 
   listarCategorias() {
     this.categoryService.listar().subscribe((categorias: Category[]) => {
-      if (categorias.length !== 0) {
+      if (categorias) {
         this.categorias = categorias;
-        this.categoriasLoading = false;
       }
+
+      this.categoriasLoading = false;
     });
   }
 

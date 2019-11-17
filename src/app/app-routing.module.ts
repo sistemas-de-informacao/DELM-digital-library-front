@@ -1,3 +1,4 @@
+import { HighLevelGuard } from './guards/high-level.guard';
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -29,7 +30,7 @@ const routes: Routes = [{ path: 'login', component: LoginComponent },
 { path: 'cadastro', component: UserCadastreComponent },
 { path: '', redirectTo: 'loja', pathMatch: 'full' },
 {
-  path: 'dashboard', component: WebDashboardComponent, canActivate: [LowLevelGuard], children: [
+  path: 'dashboard', component: WebDashboardComponent, canActivate: [HighLevelGuard], children: [
     { path: 'cadastro-jogo', component: GameCadastreComponent },
     { path: 'cadastro-admin', component: AdminCadastreComponent },
     { path: 'cadastro-categoria', component: CategoryCadastreComponent },
@@ -51,8 +52,8 @@ const routes: Routes = [{ path: 'login', component: LoginComponent },
     { path: 'perfil/display-name/:id', component: UserDetailsComponent }
   ]
 },
-{ path: 'perfil/id/:id', component: ProfileComponent },
-{ path: 'perfil/id/:user/historico-de-compras', component: UserPurchaseHistoryComponent }];
+{ path: 'perfil/id/:id', component: ProfileComponent, canActivate: [LowLevelGuard] },
+{ path: 'perfil/id/:user/historico-de-compras', component: UserPurchaseHistoryComponent, canActivate: [LowLevelGuard] }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

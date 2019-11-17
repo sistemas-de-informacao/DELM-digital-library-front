@@ -1,4 +1,5 @@
 import { FormGroup } from '@angular/forms';
+import { Permissoes } from './permissoes';
 
 export class User {
 
@@ -10,8 +11,9 @@ export class User {
     saldo: number;
     dataCriacao: string;
     enable: boolean;
+    tipo: Permissoes;
 
-    constructor(id: number = null, nickname: string = null, nome: string = null, email: string = null, senha: string = null, saldo: number = 1000.0, dataCriacao: string = null, enable: boolean = null) {
+    constructor(id: number = null, nickname: string = null, nome: string = null, email: string = null, senha: string = null, saldo: number = 1000.0, dataCriacao: string = null, enable: boolean = null, tipo: Permissoes = null) {
         this.id = id;
         this.nickname = nickname;
         this.nome = nome;
@@ -20,6 +22,7 @@ export class User {
         this.saldo = saldo;
         this.dataCriacao = dataCriacao;
         this.enable = enable;
+        this.tipo = tipo;
     }
 
     deserialize(userFormGroup: FormGroup) {
