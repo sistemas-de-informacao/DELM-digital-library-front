@@ -22,17 +22,18 @@ export class GameListComponent implements OnInit {
 
   games: Game[] = [];
 
-  tipoConta = 0;
-
   pesquisarFormGroup = this.fb.group({
     nome: [null]
   });
+
+  currentUrl: string;
 
   constructor(private fb: FormBuilder, private router: Router, private gameService: GameService, private alertService: AlertService) { }
 
   ngOnInit() {
     this.listar();
     this.search();
+    this.currentUrl = this.router.url;
   }
 
   getJogo(id: number, nome: string) {
@@ -86,7 +87,8 @@ export class GameListComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#d33',
       cancelButtonColor: '#007BFF',
-      confirmButtonText: 'Sim, excluir!'
+      confirmButtonText: 'Sim, excluir!',
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.value) {
         this.gameService.deletar(id).subscribe((res: any) => {

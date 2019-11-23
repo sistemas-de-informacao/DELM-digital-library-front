@@ -66,21 +66,44 @@
                                 </option>
                             </select>
                             <div class="input-group-append">
-                                <label class="input-group-text" for="inputGroupSelectCategoria">Categoria</label>
+                                <label class="input-group-text" for="inputGroupSelectCategoria">Categoria </label>
+                                <label class="input-group-text" for="inputGroupSelectCategoria">Adicionar <i
+                                        class="fas fa-plus i-right pointer text-primary" *ngIf="categorias.length != 0"
+                                        data-toggle="modal" data-target="#criarCategoria"></i></label>
                             </div>
                         </div>
                         <app-error-card
                             *ngIf="gameFormGroup.get('categoria').hasError('required') && gameFormGroup.get('categoria').touched"
                             [mensagem]="'O campo categoria é obrigatório'"></app-error-card>
                         <app-error-card *ngIf="categorias.length == 0 && this.categoriasLoading == false"
-                            [mensagem]="'Nenhuma categoria registrada'">
+                            data-toggle="modal" data-target="#criarCategoria"
+                            [mensagem]="'Nenhuma categoria registrada - clique para criar'" class="pointer">
                         </app-error-card>
                     </div>
+                    <br>
                     <ngx-alerts></ngx-alerts>
                     <button type="submit" [disabled]='!gameFormGroup.valid || loading == true'
                         class="btn btn-primary float-right">CADASTRAR <i *ngIf="loading == true"
                             class="fas fa-spinner fa-pulse i-right"></i></button>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="criarCategoria" tabindex="-1" role="dialog" aria-labelledby="CriarCategoria"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="TituloModalCentralizado">Criar categoria</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span class="close-modal" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <app-category-cadastre (atualizarLista)="atualizarList($event)"></app-category-cadastre>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 // Models
@@ -22,6 +22,8 @@ export class CategoryCadastreComponent implements OnInit {
 
   loading = false;
 
+  @Output() atualizarLista = new EventEmitter();
+
   constructor(private fb: FormBuilder, private categoriaService: CategoryService, private alertService: AlertService) { }
 
   ngOnInit() {
@@ -39,19 +41,28 @@ export class CategoryCadastreComponent implements OnInit {
     this.criarCategoria(this.categoria);
   }
 
-  criarCategoria(categoria: Category) {
+  async criarCategoria(categoria: Category) {
     this.loading = true;
     this.categoriaService.criar(categoria).subscribe((res: ResponseDefault<Category>) => {
+      this.listarCategorias(res);
+
+
+    }, (res: ResponseDefault<Category>) => {
+      this.alertService.danger(res.mensagem);
+      this.loading = false;
+    });
+  }
+
+  listarCategorias(res: ResponseDefault<Category>) {
+    return this.categoriaService.listar().subscribe((categorias: Category[]) => {
       if (res.body) {
         this.categoriaForm.reset();
         this.alertService.success(res.mensagem);
+        this.atualizarLista.emit(categorias);
       } else {
         this.alertService.danger(res.mensagem);
       }
 
-      this.loading = false;
-    }, (res: ResponseDefault<Category>) => {
-      this.alertService.danger(res.mensagem);
       this.loading = false;
     });
   }

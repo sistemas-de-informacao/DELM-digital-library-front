@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <button *ngIf="tipoConta === 0" type="button" class="btn btn-danger"
+            <button *ngIf="currentUrl == '/loja/biblioteca'" appHighPermissions type="button" class="btn btn-danger"
                 (click)="onClickExcluir(jogo.id, jogo.nome)">EXCLUIR</button>
         </div>
     </div>

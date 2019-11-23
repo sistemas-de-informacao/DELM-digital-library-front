@@ -43,6 +43,7 @@ import { CategoryCadastreComponent } from './ui/pages/web-dashboard/category-cad
 import { CategoryEditComponent } from './ui/pages/web-dashboard/category-edit/category-edit.component';
 import { CategoryListComponent } from './ui/pages/web-dashboard/category-list/category-list.component';
 import { UserPurchaseHistoryComponent } from './ui/components/user-purchase-history/user-purchase-history.component';
+import { HighPermissionsDirective } from './directives/high-permissions.directive';
 registerLocaleData(localept, (settingsService) => settingsService.getLocale());
 
 @NgModule({
@@ -69,7 +70,8 @@ registerLocaleData(localept, (settingsService) => settingsService.getLocale());
     CategoryCadastreComponent,
     CategoryEditComponent,
     CategoryListComponent,
-    UserPurchaseHistoryComponent
+    UserPurchaseHistoryComponent,
+    HighPermissionsDirective
   ],
   imports: [
     BrowserAnimationsModule,

@@ -29,7 +29,6 @@ export class CategoryListComponent implements OnInit {
     this.search();
   }
 
-
   criarForms() {
     this.pesquisarFormGroup = this.fb.group({
       nome: [null, [Validators.required]],
