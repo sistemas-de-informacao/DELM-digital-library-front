@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertModule } from 'ngx-alerts';
+import { ChartsModule } from 'ng2-charts';
 
 // Components
 import { AppComponent } from './app.component';
@@ -79,7 +80,8 @@ registerLocaleData(localept, (settingsService) => settingsService.getLocale());
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AlertModule.forRoot({ maxMessages: 5, timeout: 2500, position: 'right' })
+    AlertModule.forRoot({ maxMessages: 5, timeout: 2500, position: 'right' }),
+    ChartsModule
   ],
   providers: [
     SettingsService,
