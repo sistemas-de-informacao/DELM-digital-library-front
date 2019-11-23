@@ -1,3 +1,4 @@
+import { ShoppingCartComponent } from './ui/components/shopping-card/shopping-cart.component';
 import { HighLevelGuard } from './guards/high-level.guard';
 
 import { NgModule } from '@angular/core';
@@ -53,7 +54,8 @@ const routes: Routes = [{ path: 'login', component: LoginComponent },
   ]
 },
 { path: 'perfil/id/:id', component: ProfileComponent, canActivate: [LowLevelGuard] },
-{ path: 'perfil/id/:user/historico-de-compras', component: UserPurchaseHistoryComponent, canActivate: [LowLevelGuard] }];
+{ path: 'perfil/id/:user/historico-de-compras', component: UserPurchaseHistoryComponent, canActivate: [LowLevelGuard] },
+{ path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [LowLevelGuard] }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

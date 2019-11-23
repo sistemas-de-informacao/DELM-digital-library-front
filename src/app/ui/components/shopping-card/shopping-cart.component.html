@@ -1,0 +1,5 @@
+<div class="container margin-top">
+    <h1>SACOLA</h1>
+</div>
+<app-shopping-cart-empty *ngIf="!isExistemJogosSelecionados()"></app-shopping-cart-empty>
+<app-shopping-cart-list *ngIf="isExistemJogosSelecionados()"></app-shopping-cart-list>

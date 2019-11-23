@@ -1,3 +1,4 @@
+import { Game } from 'src/app/models/game';
 import { Injectable } from '@angular/core';
 
 // Models
@@ -33,6 +34,18 @@ export class LocalStorageService {
 
   removePermissao(): void {
     localStorage.removeItem('user-type');
+  }
+
+  setItensSelecionados(jogos: Game[]): void {
+    localStorage.setItem('selected-products', JSON.stringify(jogos));
+  }
+
+  getItensSelecionados(): Game[] {
+    return JSON.parse(localStorage.getItem('selected-products'));
+  }
+
+  removeItensSelecionados() {
+    localStorage.removeItem('selected-products');
   }
 
 }

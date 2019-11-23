@@ -48,7 +48,14 @@
         <div *ngIf="authenticationService.isLogado()"
             class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-dark text-light"
             routerLinkActive="active">
-            <a [routerLink]="['/perfil/id/', this.nickname]"><i class="fas fa-user i-left"></i> {{ this.nickname }}</a>
+            <a [routerLink]="['/shopping-cart']"><i class="fas fa-shopping-bag"></i> <span
+                    class="qtd">{{ qtdJogos }}</span></a>
+        </div>
+        <div *ngIf="authenticationService.isLogado()"
+            class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-dark text-light"
+            routerLinkActive="active">
+            <a *ngIf="this.nickname" [routerLink]="['/perfil/id/', this.nickname]"><i class="fas fa-user i-left"></i>
+                {{ this.nickname.substring(0, 8) }}</a>
         </div>
         <div class="d-flex flex-column justify-content-center align-items-center navbar-text nav-default-button nav-button bg-dark text-light"
             routerLinkActive="active">

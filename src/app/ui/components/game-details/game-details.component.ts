@@ -1,3 +1,4 @@
+import { ShoppingCartService } from './../../../services/shopping-cart.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -26,7 +27,7 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
 
   categoria: Category;
 
-  constructor(private route: ActivatedRoute, private router: Router, private gameService: GameService, private categoriaService: CategoryService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private gameService: GameService, private categoriaService: CategoryService, private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit() {
     this.inscricao = this.route.queryParams.subscribe((queryParams: any) => {
@@ -46,6 +47,11 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
 
   irParaEditarJogo(id: number) {
     this.router.navigate(['dashboard/editar-jogo/jogo'], { queryParams: { id } });
+  }
+
+  adicionarNaSacola(jogo: Game) {
+    this.shoppingCartService.adicionarJogoLocalStorage(jogo);
+    this.shoppingCartService.atualizarSacola();
   }
 
 }

@@ -35,6 +35,10 @@ export class UserService implements ICrud<User> {
     return null;
   }
 
+  getUserLogado() {
+    return this.http.get<any>(`${environment.base_path}${Paths.USERS}${this.localStorageService.getId()}`);
+  }
+
   getPorId(id: number): Observable<any> {
     return this.http.get<any>(`${environment.base_path}${Paths.USERS}${id}`);
   }

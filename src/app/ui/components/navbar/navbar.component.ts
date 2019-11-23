@@ -1,3 +1,4 @@
+import { ShoppingCartService } from './../../../services/shopping-cart.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -18,10 +19,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  constructor(private userService: UserService, private authenticationService: AuthenticationService) { }
+  qtdJogos = 0;
+
+  constructor(private userService: UserService, private authenticationService: AuthenticationService, private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit() {
     this.getUsuario();
+    this.getQtdJogosSelecionados();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   getUsuario() {
@@ -31,8 +39,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  getQtdJogosSelecionados() {
+    this.shoppingCartService.atualizarSacola();
+    this.shoppingCartService.qtdSelecionados.subscribe((qtd: number) => {
+      this.qtdJogos = qtd;
+    });
   }
 
   sair() {

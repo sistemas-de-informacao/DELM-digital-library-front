@@ -1,3 +1,7 @@
+import { ErrorCardComponent } from './ui/components/error-card/error-card.component';
+import { ShoppingCartListComponent } from './ui/components/shopping-card/shopping-cart-list/shopping-cart-list.component';
+import { ShoppingCartEmptyComponent } from './ui/components/shopping-card/shopping-cart-empty/shopping-cart-empty.component';
+import { ShoppingCartComponent } from './ui/components/shopping-card/shopping-cart.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -38,13 +42,13 @@ import { registerLocaleData } from '@angular/common';
 import { UserListComponent } from './ui/components/user-list/user-list.component';
 import { TableHoverDirective } from './directives/table-hover.directive';
 import { UserDetailsComponent } from './ui/components/user-details/user-details.component';
-import { ErrorCardComponent } from './ui/components/error-card/error-card.component';
 import { GameEditComponent } from './ui/pages/web-dashboard/game-edit/game-edit.component';
 import { CategoryCadastreComponent } from './ui/pages/web-dashboard/category-cadastre/category-cadastre.component';
 import { CategoryEditComponent } from './ui/pages/web-dashboard/category-edit/category-edit.component';
 import { CategoryListComponent } from './ui/pages/web-dashboard/category-list/category-list.component';
 import { UserPurchaseHistoryComponent } from './ui/components/user-purchase-history/user-purchase-history.component';
 import { HighPermissionsDirective } from './directives/high-permissions.directive';
+
 registerLocaleData(localept, (settingsService) => settingsService.getLocale());
 
 @NgModule({
@@ -72,7 +76,10 @@ registerLocaleData(localept, (settingsService) => settingsService.getLocale());
     CategoryEditComponent,
     CategoryListComponent,
     UserPurchaseHistoryComponent,
-    HighPermissionsDirective
+    HighPermissionsDirective,
+    ShoppingCartComponent,
+    ShoppingCartEmptyComponent,
+    ShoppingCartListComponent
   ],
   imports: [
     BrowserAnimationsModule,
