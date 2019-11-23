@@ -61,6 +61,9 @@ export class UserCadastreComponent implements OnInit {
         this.alertService.danger(res.mensagem);
         this.loading = false;
       }
+    }, (err) => {
+      this.alertService.danger(err);
+      this.loading = false;
     });
   }
 

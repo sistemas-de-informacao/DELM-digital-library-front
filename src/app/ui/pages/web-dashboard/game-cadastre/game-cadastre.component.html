@@ -32,6 +32,9 @@
                         <app-error-card
                             *ngIf="gameFormGroup.get('dataLancamento').hasError('required') && gameFormGroup.get('dataLancamento').touched"
                             [mensagem]="'O campo data de lançamento é obrigatório'"></app-error-card>
+                        <app-error-card
+                            *ngIf="gameFormGroup.get('dataLancamento').hasError('pattern') && gameFormGroup.get('dataLancamento').touched"
+                            [mensagem]="'O campo data está com formato errado - dd/MM/YYYY'"></app-error-card>
                     </div>
                     <div class="form-group">
                         <input formControlName='desenvolvedor' type="text" class="form-control"

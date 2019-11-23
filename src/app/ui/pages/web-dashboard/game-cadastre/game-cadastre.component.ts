@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, PatternValidator } from '@angular/forms';
 
 // Models
 import { GameCadastreForm } from '../../../../models/forms/game-form';
@@ -23,10 +23,12 @@ export class GameCadastreComponent implements OnInit {
   gameForm: GameCadastreForm;
   game: Game;
 
+  pattern = '(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d';
+
   gameFormGroup = this.fb.group({
     nome: [null, [Validators.required, Validators.maxLength(120)]],
     preco: [null, [Validators.required]],
-    dataLancamento: [null, [Validators.required]],
+    dataLancamento: [null, [Validators.required, Validators.pattern(this.pattern)]],
     desenvolvedor: [null, [Validators.required, Validators.maxLength(45)]],
     descricao: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(500)]],
     categoria: [null, [Validators.required]]
