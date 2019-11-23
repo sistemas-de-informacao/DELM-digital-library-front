@@ -64,9 +64,9 @@ export class ShoppingCartListComponent implements OnInit {
       text: `Você comprará os jogos no valor de ${this.total} reais.`,
       type: 'info',
       showCancelButton: true,
-      confirmButtonColor: '#F2AF29',
-      cancelButtonColor: '#007BFF',
-      confirmButtonText: 'Sim, comprar',
+      confirmButtonColor: '#007BFF',
+      cancelButtonColor: '#c6c6c6',
+      confirmButtonText: 'Sim, comprar!',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.value) {
