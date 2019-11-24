@@ -10,8 +10,11 @@
     <form class="d-flex flex-column" [formGroup]="gameFormGroup" (ngSubmit)="onSubmitToEdit()">
         <h3>INFORMAÇÕES DO JOGO</h3>
         <div class="form-group">
-            <input formControlName='nome' type="text" class="form-control" id="exampleNome"
-                aria-describedby="nicknameHelp" placeholder="Nome">
+            <div class="d-flex">
+                <label class="placeholder">Nome</label>
+                <input formControlName='nome' type="text" class="form-control" id="exampleNome"
+                    aria-describedby="nicknameHelp" placeholder="Nome">
+            </div>
             <app-error-card *ngIf="gameFormGroup.get('nome').hasError('required') && gameFormGroup.get('nome').touched"
                 [mensagem]="'O campo nome é obrigatório'"></app-error-card>
             <app-error-card *ngIf="gameFormGroup.get('nome').hasError('maxlength') && gameFormGroup.get('nome').touched"
@@ -29,15 +32,21 @@
         <app-error-card *ngIf="gameFormGroup.get('preco').hasError('required') && gameFormGroup.get('preco').touched"
             [mensagem]="'O campo preço é obrigatório'"></app-error-card>
         <div class="form-group">
-            <input formControlName='dataLancamento' type="date" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Data de lançamento">
+            <div class="d-flex">
+                <label class="placeholder">Data de lançamento</label>
+                <input formControlName='dataLancamento' type="date" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="Data de lançamento">
+            </div>
             <app-error-card
                 *ngIf="gameFormGroup.get('dataLancamento').hasError('required') && gameFormGroup.get('dataLancamento').touched"
                 [mensagem]="'O campo data de lançamento é obrigatório'"></app-error-card>
         </div>
         <div class="form-group">
-            <input formControlName='desenvolvedor' type="text" class="form-control" id="exampleInputDesenvolvedor"
-                placeholder="Desenvolvedor">
+            <div class="d-flex">
+                <label class="placeholder">Desenvolvedor</label>
+                <input formControlName='desenvolvedor' type="text" class="form-control" id="exampleInputDesenvolvedor"
+                    placeholder="Desenvolvedor">
+            </div>
             <app-error-card
                 *ngIf="gameFormGroup.get('desenvolvedor').hasError('required') && gameFormGroup.get('desenvolvedor').touched"
                 [mensagem]="'O campo desenvolvedor é obrigatório'"></app-error-card>
@@ -46,6 +55,7 @@
                 [mensagem]="'O campo desenvolvedor só pode ter no máximo 45 caracteres'"></app-error-card>
         </div>
         <div class="form-group">
+            <label>Descrição</label>
             <textarea formControlName='descricao' type="text" class="form-control" id="exampleInputDescricao"
                 placeholder="Descrição"></textarea>
             <app-error-card

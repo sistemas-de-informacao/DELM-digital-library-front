@@ -1,3 +1,4 @@
+import { UpdatePasswordForm } from './../../../models/forms/update-password-form';
 import { Router } from '@angular/router';
 import { ResponseDefault } from './../../../models/response-default';
 import { Component, OnInit } from '@angular/core';
@@ -24,6 +25,9 @@ export class UserEditComponent implements OnInit {
   changePasswordFormGroup: FormGroup;
 
   loading = false;
+  alterarSenhaLoading = false;
+
+  senhas: UpdatePasswordForm;
 
   constructor(private fb: FormBuilder, private userService: UserService, private alertService: AlertService, private router: Router) { }
 
@@ -48,8 +52,8 @@ export class UserEditComponent implements OnInit {
 
     this.changePasswordFormGroup = this.fb.group({
       senhaAntiga: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(70)]],
-      senhaNova: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(70), Validacoes.senhasCombinam]],
-      senhaNovaConfirmar: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(70), Validacoes.senhasCombinam]]
+      senhaNova: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(70)]],
+      senhaNovaConfirmar: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(70)]]
     });
   }
 
@@ -62,8 +66,7 @@ export class UserEditComponent implements OnInit {
   }
 
   onSubmitToChangePassword() {
-    // TODO
-    console.log(this.changePasswordFormGroup.value);
+    this.atualizarSenha();
   }
 
   mudarDesativarConta(): boolean {
@@ -86,6 +89,23 @@ export class UserEditComponent implements OnInit {
         }
 
         this.loading = false;
+      });
+  }
+
+  atualizarSenha() {
+    this.alterarSenhaLoading = true;
+    this.userService.atualizarSenha(this.senhas = new UpdatePasswordForm(this.changePasswordFormGroup.get('senhaAntiga').value,
+      this.changePasswordFormGroup.get('senhaNova').value, this.changePasswordFormGroup.get('senhaNovaConfirmar').value)).subscribe((res: ResponseDefault<any>) => {
+        if (res.mensagem.includes('sucesso')) {
+          this.alertService.success(res.mensagem);
+        } else {
+          this.alertService.warning(res.mensagem);
+        }
+
+        this.alterarSenhaLoading = false;
+      }, (err) => {
+        this.alertService.danger(err);
+        this.alterarSenhaLoading = false;
       });
   }
 

@@ -1,3 +1,4 @@
+import { ShoppingCartService } from './shopping-cart.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -18,7 +19,7 @@ import { UserService } from 'src/app/services/user.service';
 
 export class AuthenticationService {
 
-  constructor(private router: Router, private http: HttpClient, private localStorageService: LocalStorageService, private userService: UserService) { }
+  constructor(private router: Router, private http: HttpClient, private localStorageService: LocalStorageService, private shoppingCartService: ShoppingCartService) { }
 
   static nickname: string;
 
@@ -48,6 +49,8 @@ export class AuthenticationService {
   sair() {
     this.localStorageService.removeId();
     this.localStorageService.removePermissao();
+    this.localStorageService.removeItensSelecionados();
+    this.shoppingCartService.atualizarSacola();
   }
 
 }

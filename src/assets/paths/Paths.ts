@@ -7,5 +7,6 @@ export class Paths {
 
     static SEARCH = 'pesquisar/';
     static ENABLE = 'ativar/';
+    static UPDATE_PASSWORD = 'trocar-senha/';
 
 }

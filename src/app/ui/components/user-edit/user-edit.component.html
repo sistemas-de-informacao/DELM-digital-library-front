@@ -24,8 +24,11 @@
             </div>
         </div>
         <div class="form-group">
-            <input formControlName='nickname' type="text" class="form-control" id="exampleInputNickname"
-                aria-describedby="nickNameHelp" placeholder="Nome para exibição">
+            <div class="d-flex">
+                <label class="placeholder">Nickname</label>
+                <input formControlName='nickname' type="text" class="form-control" id="exampleInputNickname"
+                    aria-describedby="nickNameHelp" placeholder="Nome para exibição">
+            </div>
             <app-error-card
                 *ngIf="userFormGroup.get('nickname').hasError('required') && userFormGroup.get('nickname').touched"
                 [mensagem]="'O campo nickname é obrigatório'"></app-error-card>
@@ -37,16 +40,22 @@
                 [mensagem]="'O campo nickname só pode ter no máximo 50 caracteres'"></app-error-card>
         </div>
         <div class="form-group">
-            <input formControlName='nome' type="text" class="form-control" id="exampleInputName1"
-                aria-describedby="nameHelp" placeholder="Nome real">
+            <div class="d-flex">
+                <label class="placeholder">Nome</label>
+                <input formControlName='nome' type="text" class="form-control" id="exampleInputName1"
+                    aria-describedby="nameHelp" placeholder="Nome real">
+            </div>
             <app-error-card *ngIf="userFormGroup.get('nome').hasError('required') && userFormGroup.get('nome').touched"
                 [mensagem]="'O campo nome é obrigatório'"></app-error-card>
             <app-error-card *ngIf="userFormGroup.get('nome').hasError('maxlength') && userFormGroup.get('nome').touched"
                 [mensagem]="'O campo nome só pode ter no máximo 120 caracteres'"></app-error-card>
         </div>
         <div class="form-group">
-            <input formControlName='email' type="email" class="form-control" id="exampleInputEmail"
-                aria-describedby="emailHelp" placeholder="Endereço de e-mail">
+            <div class="d-flex">
+                <label class="placeholder">E-mail</label>
+                <input formControlName='email' type="email" class="form-control" id="exampleInputEmail"
+                    aria-describedby="emailHelp" placeholder="Endereço de e-mail">
+            </div>
             <app-error-card
                 *ngIf="userFormGroup.get('email').hasError('required') && userFormGroup.get('email').touched"
                 [mensagem]="'O campo e-mail é obrigatório'"></app-error-card>
@@ -60,7 +69,7 @@
             <input formControlName='enable' class="form-check-input" type="checkbox" [value]="user.enable"
                 id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
-                Desativar contar
+                Excluir conta (você poderá ativar novamente, quando tentar entrar)
             </label>
         </div>
         <ngx-alerts></ngx-alerts>
@@ -74,8 +83,11 @@
     <form class="d-flex flex-column" [formGroup]="changePasswordFormGroup" (ngSubmit)="onSubmitToChangePassword()">
         <h3>TROCAR SENHA</h3>
         <div class="form-group">
-            <input formControlName='senhaAntiga' type="password" class="form-control" id="exampleInputPassword1"
-                placeholder="Senha antiga">
+            <div class="d-flex">
+                <label class="placeholder">Senha antiga</label>
+                <input formControlName='senhaAntiga' type="password" class="form-control" id="exampleInputPassword1"
+                    placeholder="Senha antiga">
+            </div>
             <app-error-card
                 *ngIf="changePasswordFormGroup.get('senhaAntiga').hasError('required') && changePasswordFormGroup.get('senhaAntiga').touched"
                 [mensagem]="'O campo senha antiga é obrigatório'"></app-error-card>
@@ -87,8 +99,11 @@
                 [mensagem]="'O campo senha antiga só pode ter no máximo 70 caracteres'"></app-error-card>
         </div>
         <div class="form-group">
-            <input formControlName='senhaNova' type="password" class="form-control" id="exampleInputPassword2"
-                placeholder="Senha nova">
+            <div class="d-flex">
+                <label class="placeholder">Senha nova</label>
+                <input formControlName='senhaNova' type="password" class="form-control" id="exampleInputPassword2"
+                    placeholder="Senha nova">
+            </div>
             <app-error-card
                 *ngIf="changePasswordFormGroup.get('senhaNova').hasError('required') && changePasswordFormGroup.get('senhaNova').touched"
                 [mensagem]="'O campo senha nova é obrigatório'"></app-error-card>
@@ -100,8 +115,11 @@
                 [mensagem]="'O campo senha nova só pode ter no máximo 70 caracteres'"></app-error-card>
         </div>
         <div class="form-group">
-            <input formControlName='senhaNovaConfirmar' type="password" class="form-control"
-                id="exampleInputPasswordConfirm" placeholder="Confirmar senha nova">
+            <div class="d-flex">
+                <label class="placeholder">Confirmar senha nova</label>
+                <input formControlName='senhaNovaConfirmar' type="password" class="form-control"
+                    id="exampleInputPasswordConfirm" placeholder="Confirmar senha nova">
+            </div>
             <app-error-card
                 *ngIf="changePasswordFormGroup.get('senhaNovaConfirmar').hasError('required') && changePasswordFormGroup.get('senhaNovaConfirmar').touched"
                 [mensagem]="'O campo confirmar senha nova é obrigatório'"></app-error-card>
@@ -112,7 +130,8 @@
                 *ngIf="changePasswordFormGroup.get('senhaNovaConfirmar').hasError('maxlength') && changePasswordFormGroup.get('senhaNovaConfirmar').touched"
                 [mensagem]="'O campo confirmar senha nova só pode ter no máximo 70 caracteres'"></app-error-card>
         </div>
-        <button type="submit" [disabled]='!changePasswordFormGroup.valid'
-            class="btn btn-primary float-right">TROCAR</button>
+        <button type="submit" [disabled]='!changePasswordFormGroup.valid || alterarSenhaLoading == true'
+            class="btn btn-primary float-right">TROCAR <i *ngIf="alterarSenhaLoading == true"
+                class="fas fa-spinner fa-pulse i-right"></i></button>
     </form>
 </div>

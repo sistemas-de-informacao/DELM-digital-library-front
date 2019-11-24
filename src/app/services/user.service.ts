@@ -1,3 +1,4 @@
+import { UpdatePasswordForm } from './../models/forms/update-password-form';
 import { LocalStorageService } from './local-storage.service';
 import { Paths } from './../../assets/paths/Paths';
 import { environment } from './../../environments/environment';
@@ -64,5 +65,8 @@ export class UserService implements ICrud<User> {
     }
   }
 
+  atualizarSenha(senhas: UpdatePasswordForm): Observable<any> {
+    return this.http.put<any>(`${environment.base_path}${Paths.USERS}${Paths.UPDATE_PASSWORD}${this.localStorageService.getId()}`, senhas);
+  }
 
 }
