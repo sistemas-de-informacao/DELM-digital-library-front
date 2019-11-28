@@ -86,12 +86,14 @@ nav {
     .qtd {
         width: 100%;
         border-radius: 100%;
-        padding-right: 7px;
-        padding-left: 7px;
+        padding-right: 6px;
+        padding-left: 6px;
         margin-left: 5px;
-        padding-bottom: 2px;
+        margin-top: 30px;
+        padding-bottom: 0px;
         background: var(--secondary);
     }
+    
 
     .fa-shopping-bag {
         font-size: 1.3em;
