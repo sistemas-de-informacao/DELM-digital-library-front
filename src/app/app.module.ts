@@ -48,8 +48,12 @@ import { CategoryEditComponent } from './ui/pages/web-dashboard/category-edit/ca
 import { CategoryListComponent } from './ui/pages/web-dashboard/category-list/category-list.component';
 import { UserPurchaseHistoryComponent } from './ui/components/user-purchase-history/user-purchase-history.component';
 import { HighPermissionsDirective } from './directives/high-permissions.directive';
+import { AppFirebaseConfigs } from './app-firebase-config';
 
 registerLocaleData(localept, (settingsService) => settingsService.getLocale());
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -88,7 +92,9 @@ registerLocaleData(localept, (settingsService) => settingsService.getLocale());
     ReactiveFormsModule,
     HttpClientModule,
     AlertModule.forRoot({ maxMessages: 5, timeout: 2500, position: 'right' }),
-    ChartsModule
+    ChartsModule,
+    AngularFireModule.initializeApp(AppFirebaseConfigs.configs),
+    AngularFireStorageModule
   ],
   providers: [
     SettingsService,

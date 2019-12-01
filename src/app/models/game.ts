@@ -7,10 +7,9 @@ export class Game {
     desenvolvedor: string;
     descricao: string;
     idCategoria: any;
-    img: string;
+    fullPath: string;
 
-    constructor(nome: string, preco: number, dataLacamento: string, desenvolvedor: string, descricao: string,
-        idCategoria: any, img?: string, id?: number) {
+    constructor(nome: string, preco: number, dataLacamento: string, desenvolvedor: string, descricao: string, idCategoria: any, fullPath?: string, id?: number) {
         this.nome = nome;
         this.preco = preco;
         this.dataLancamento = dataLacamento;
@@ -18,7 +17,7 @@ export class Game {
         this.descricao = descricao;
         this.idCategoria = idCategoria;
         this.id = id;
-        this.img = img;
+        this.fullPath = fullPath;
     }
 
 }

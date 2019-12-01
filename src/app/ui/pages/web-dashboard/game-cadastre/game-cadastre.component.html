@@ -91,6 +91,9 @@
                             [mensagem]="'Nenhuma categoria registrada - clique para criar'" class="pointer">
                         </app-error-card>
                     </div>
+                    <div class="form-group">
+                        <input (change)="onUploadCapa($event)" type="file" class="form-control" placeholder="Capa">
+                    </div>
                     <br>
                     <ngx-alerts></ngx-alerts>
                     <button type="submit" [disabled]='!gameFormGroup.valid || loading == true'

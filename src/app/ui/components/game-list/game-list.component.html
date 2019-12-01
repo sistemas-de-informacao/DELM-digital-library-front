@@ -13,7 +13,7 @@
     <div class="background-row d-flex flex-row flex-wrap">
         <div *ngFor="let jogo of games" class="background-column d-flex flex-column flex-fill">
             <div class="card bg-dark text-white pointer" (click)="getJogo(jogo.id, jogo.nome)">
-                <img class="card-img-top" src="{{ jogo.img | hasImage }}" alt="Imagem de capa do card">
+                <img class="card-img-top" src="{{ jogo.fullPath | hasImage }}" alt="Imagem de capa do card">
                 <div class="card-body d-flex flex-column justify-content-between">
                     <div class="name">
                         <span>{{ jogo.nome }}</span>

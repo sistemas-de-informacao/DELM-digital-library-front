@@ -12,12 +12,14 @@ import { GameService } from 'src/app/services/game.service';
 import { CategoryService } from './../../../../services/category.service';
 import { DateService } from 'src/app/services/date.service';
 import { AlertService } from 'ngx-alerts';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-game-cadastre',
   templateUrl: './game-cadastre.component.html',
   styleUrls: ['./game-cadastre.component.scss']
 })
+
 export class GameCadastreComponent implements OnInit {
 
   gameForm: GameCadastreForm;
@@ -37,10 +39,18 @@ export class GameCadastreComponent implements OnInit {
   categorias: Category[] = [];
   categoriasLoading = true;
 
-  constructor(private fb: FormBuilder, private gameService: GameService, private categoryService: CategoryService, private alertService: AlertService) { }
+  file: File;
+  ref: AngularFireStorageReference;
+
+  constructor(private fb: FormBuilder, private gameService: GameService,
+    private categoryService: CategoryService, private alertService: AlertService,
+    private storage: AngularFireStorage) { }
 
   ngOnInit() {
     this.listarCategorias();
+    this.storage.ref('asdsa').getDownloadURL().subscribe((res) => {
+      console.log(res);
+    });
   }
 
   onSubmitCriarJogo() {
@@ -63,20 +73,45 @@ export class GameCadastreComponent implements OnInit {
     this.game = new Game(this.gameForm.nome, this.gameForm.preco, DateService.converterData(this.gameForm.dataLancamento), this.gameForm.desenvolvedor, this.gameForm.descricao, 1);
     this.gameService.criar(this.game).subscribe((res: ResponseDefault<Game>) => {
       if (res.body) {
-        this.gameForm = null;
-        this.gameFormGroup.reset();
-        this.alertService.success(res.mensagem);
+        this.uploadCapaParaStorage(res.body.nome, ((callback: any) => {
+          this.gameForm = null;
+          this.gameFormGroup.reset();
+          if (callback !== false) {
+            const fullPath = callback.metadata.fullPath;
+            this.game.fullPath = fullPath;
+            this.gameService.editarPorNome(this.game).subscribe(() => {
+              if (res.body) {
+                this.alertService.success(res.mensagem);
+                this.loading = false;
+              } else {
+                this.alertService.warning(res.mensagem);
+                this.loading = false;
+              }
+            })
+          } else {
+            this.alertService.warning(res.mensagem.concat(', mas a imagem não foi armazenada.'));
+            this.loading = false;
+          }
+        }));
       } else {
         this.alertService.danger(res.mensagem);
+        this.loading = false;
       }
-
-      this.loading = false;
     });
   }
 
   atualizarList(categorias: Category[]) {
     this.categorias = categorias;
     this.gameFormGroup.get('categoria').setValue(categorias[0].id);
+  }
+
+  onUploadCapa(event: any) {
+    this.file = event.target.files[0];
+  }
+
+  async uploadCapaParaStorage(id: string, resolve) {
+    this.ref = this.storage.ref(id);
+    await this.ref.put(this.file).then((res) => resolve(res)).catch((res) => resolve(false));
   }
 
 }

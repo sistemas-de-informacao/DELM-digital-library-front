@@ -32,6 +32,10 @@ export class GameService implements ICrud<Game> {
     return this.http.put<Game>(`${environment.base_path}${Paths.GAMES}`, jogo);
   }
 
+  editarPorNome(jogo: Game): Observable<any> {
+    return this.http.put<Game>(`${environment.base_path}${Paths.GAMES}${Paths.IMAGE}`, jogo);
+  }
+
   deletar(id: number): Observable<any> {
     return this.http.delete<any>(`${environment.base_path}${Paths.GAMES}${id}`, { responseType: 'text' as 'json' });
   }

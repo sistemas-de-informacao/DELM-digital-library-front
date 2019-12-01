@@ -11,6 +11,7 @@ import { Game } from './../../../models/game';
 
 // Services
 import { GameService } from './../../../services/game.service';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-game-list',
@@ -28,7 +29,9 @@ export class GameListComponent implements OnInit {
 
   currentUrl: string;
 
-  constructor(private fb: FormBuilder, private router: Router, private gameService: GameService, private alertService: AlertService) { }
+  constructor(private fb: FormBuilder, private router: Router,
+    private gameService: GameService, private alertService: AlertService,
+    private storage: AngularFireStorage) { }
 
   ngOnInit() {
     this.listar();
@@ -41,11 +44,20 @@ export class GameListComponent implements OnInit {
   }
 
   listar(search?: boolean) {
+    this.games = [];
     this.gameService.listar().subscribe((games: Game[]) => {
-      this.games = games;
-      if (search === true) {
-        this.pesquisarFormGroup.reset();
-      }
+      games.forEach(game => {
+        this.storage.ref(game.nome).getDownloadURL().subscribe((res) => {
+          game.fullPath = res;
+          this.games.push(game);
+        });
+
+        if (games.lastIndexOf) {
+          if (search === true) {
+            this.pesquisarFormGroup.reset();
+          }
+        }
+      });
     });
   }
 
@@ -68,7 +80,13 @@ export class GameListComponent implements OnInit {
   getPorNome(nome: string) {
     this.gameService.getPorNome(nome).subscribe((res: ResponseDefault<Array<Game>>) => {
       if (res.body) {
-        this.games = res.body;
+        this.games = [];
+        res.body.forEach(game => {
+          this.storage.ref(game.nome).getDownloadURL().subscribe((full) => {
+            game.fullPath = full;
+            this.games.push(game);
+          });
+        });
       } else {
         this.alertService.danger(res.mensagem);
         this.listar();
