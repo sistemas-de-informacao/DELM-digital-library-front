@@ -4,6 +4,7 @@ export class Paths {
     static USERS = 'user/';
     static GAMES = 'game/';
     static CATEGORIES = 'category/';
+    static BUY = 'buy/';
 
     static SEARCH = 'pesquisar/';
     static ENABLE = 'ativar/';

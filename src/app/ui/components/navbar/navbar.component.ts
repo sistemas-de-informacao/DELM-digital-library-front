@@ -40,10 +40,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   getQtdJogosSelecionados() {
-    this.shoppingCartService.atualizarSacola();
     this.shoppingCartService.qtdSelecionados.subscribe((qtd: number) => {
       this.qtdJogos = qtd;
     });
+    this.shoppingCartService.atualizarSacola();
   }
 
   sair() {

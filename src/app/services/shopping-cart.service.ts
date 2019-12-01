@@ -2,6 +2,10 @@ import { Cart } from './../models/cart';
 import { Game } from 'src/app/models/game';
 import { LocalStorageService } from './local-storage.service';
 import { Injectable, EventEmitter } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Paths } from 'src/assets/paths/Paths';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 declare const _: any;
 
@@ -16,7 +20,7 @@ export class ShoppingCartService {
   qtdSelecionados: EventEmitter<number> = new EventEmitter();
   qtd: number;
 
-  constructor(private localStorageService: LocalStorageService) { }
+  constructor(private localStorageService: LocalStorageService, private http: HttpClient) { }
 
   adicionarJogoLocalStorage(jogo: Game) {
     if (this.localStorageService.getItensSelecionados() !== null) {
@@ -46,7 +50,7 @@ export class ShoppingCartService {
   removerDaSacola(jogo: Game) {
     const index = _.findIndex(this.localStorageService.getItensSelecionados(), jogo);
     this.selecionados = this.localStorageService.getItensSelecionados();
-    this.selecionados.splice(index, 1)
+    this.selecionados.splice(index, 1);
     this.localStorageService.setItensSelecionados(this.selecionados);
   }
 
@@ -55,11 +59,11 @@ export class ShoppingCartService {
   }
 
   atualizarSacola() {
-    setTimeout(() => {
-      this.qtdSelecionados.emit(this.qtd = this.localStorageService.getItensSelecionados() != null
-        ? this.localStorageService.getItensSelecionados().length
-        : 0);
-    });
+    // setTimeout(() => {
+    this.qtdSelecionados.emit(this.qtd = this.localStorageService.getItensSelecionados() != null
+      ? this.localStorageService.getItensSelecionados().length
+      : 0);
+    // });
   }
 
   isExistemJogosSelecionados(): boolean {
@@ -78,10 +82,10 @@ export class ShoppingCartService {
     return this.localStorageService.getItensSelecionados();
   }
 
-  finalizarCompra(cart: Cart) {
-    console.log(cart);
+  finalizarCompra(cart: Cart): Observable<any> {
     this.esvaziarLixeira();
     this.atualizarSacola();
+    return this.http.post<any>(`${environment.base_path}${Paths.BUY}`, cart);
   }
 
   esvaziarLixeira() {

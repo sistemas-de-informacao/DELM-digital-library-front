@@ -70,13 +70,14 @@ export class ShoppingCartListComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.value) {
-        this.shoppingCartService.finalizarCompra(this.cart = new Cart(this.games, this.total, this.usuario));
-        this.esvaziarSacola();
-        Swal.fire(
-          'Comprado!',
-          `Compra realizada com sucesso.`,
-          'success'
-        );
+        this.shoppingCartService.finalizarCompra(this.cart = new Cart(this.games, this.total, this.usuario)).subscribe(() => {
+          this.esvaziarSacola();
+          Swal.fire(
+            'Comprado!',
+            `Compra realizada com sucesso.`,
+            'success'
+          );
+        });
       }
     });
   }
