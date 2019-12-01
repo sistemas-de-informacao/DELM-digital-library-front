@@ -59,11 +59,9 @@ export class ShoppingCartService {
   }
 
   atualizarSacola() {
-    // setTimeout(() => {
     this.qtdSelecionados.emit(this.qtd = this.localStorageService.getItensSelecionados() != null
       ? this.localStorageService.getItensSelecionados().length
       : 0);
-    // });
   }
 
   isExistemJogosSelecionados(): boolean {
