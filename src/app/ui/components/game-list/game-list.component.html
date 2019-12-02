@@ -23,8 +23,9 @@
                     </div>
                 </div>
             </div>
-            <button *ngIf="currentUrl == '/loja/biblioteca'" appHighPermissions type="button" class="btn btn-danger"
-                (click)="onClickExcluir(jogo.id, jogo.nome)">EXCLUIR</button>
+            <button *ngIf="currentUrl == '/loja/biblioteca'" appHighPermissions [disabled]="loading == true"
+                type="button" class="btn btn-danger" (click)="onClickExcluir(jogo.id, jogo.nome)">EXCLUIR <i
+                    *ngIf="loading == true" class="fas fa-spinner fa-pulse i-right"></i></button>
         </div>
     </div>
 </div>

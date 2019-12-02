@@ -54,6 +54,7 @@ registerLocaleData(localept, (settingsService) => settingsService.getLocale());
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { FileNamePipe } from './pipes/file-name.pipe';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     HighPermissionsDirective,
     ShoppingCartComponent,
     ShoppingCartEmptyComponent,
-    ShoppingCartListComponent
+    ShoppingCartListComponent,
+    FileNamePipe
   ],
   imports: [
     BrowserAnimationsModule,

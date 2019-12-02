@@ -29,6 +29,8 @@ export class GameListComponent implements OnInit {
 
   currentUrl: string;
 
+  loading = false;
+
   constructor(private fb: FormBuilder, private router: Router,
     private gameService: GameService, private alertService: AlertService,
     private storage: AngularFireStorage) { }
@@ -109,24 +111,35 @@ export class GameListComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.value) {
-        this.gameService.deletar(id).subscribe((res: any) => {
-          if (res.includes('sucesso')) {
-            this.listar();
-            Swal.fire(
-              'Excluido!',
-              `O ${nome} foi excluido com sucesso da DELM Library.`,
-              'success'
-            );
-          }
+        this.loading = true;
+        this.storage.ref(nome).delete().subscribe(() => {
+          this.gameService.deletar(id).subscribe((res: any) => {
+            if (res.includes('sucesso')) {
+              this.loading = false;
+              this.listar();
+              Swal.fire(
+                'Excluido!',
+                `O ${nome} foi excluido com sucesso da DELM Library.`,
+                'success'
+              );
+            }
+          }, () => {
+            this.error(nome);
+          });
         }, () => {
-          Swal.fire(
-            'Erro!',
-            `Não foi possível excluir o ${nome} da DELM Library, tente mais tarde.`,
-            'error'
-          );
+          this.error(nome);
         });
       }
     });
+  }
+
+  error(nome: string) {
+    this.loading = false;
+    Swal.fire(
+      'Erro!',
+      `Não foi possível excluir o ${nome} da DELM Library, tente mais tarde.`,
+      'error'
+    );
   }
 
 }

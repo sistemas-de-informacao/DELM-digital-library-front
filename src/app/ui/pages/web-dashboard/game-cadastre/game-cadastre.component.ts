@@ -48,9 +48,7 @@ export class GameCadastreComponent implements OnInit {
 
   ngOnInit() {
     this.listarCategorias();
-    this.storage.ref('asdsa').getDownloadURL().subscribe((res) => {
-      console.log(res);
-    });
+
   }
 
   onSubmitCriarJogo() {
@@ -76,6 +74,7 @@ export class GameCadastreComponent implements OnInit {
         this.uploadCapaParaStorage(res.body.nome, ((callback: any) => {
           this.gameForm = null;
           this.gameFormGroup.reset();
+          this.file = null;
           if (callback !== false) {
             const fullPath = callback.metadata.fullPath;
             this.game.fullPath = fullPath;
