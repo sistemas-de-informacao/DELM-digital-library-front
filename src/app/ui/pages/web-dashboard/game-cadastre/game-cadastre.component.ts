@@ -71,7 +71,7 @@ export class GameCadastreComponent implements OnInit {
     this.game = new Game(this.gameForm.nome, this.gameForm.preco, DateService.converterData(this.gameForm.dataLancamento), this.gameForm.desenvolvedor, this.gameForm.descricao, 1);
     this.gameService.criar(this.game).subscribe((res: ResponseDefault<Game>) => {
       if (res.body) {
-        this.uploadCapaParaStorage(res.body.nome, ((callback: any) => {
+        this.uploadCapaParaStorage(res.body.id.toString(), ((callback: any) => {
           this.gameForm = null;
           this.gameFormGroup.reset();
           this.file = null;

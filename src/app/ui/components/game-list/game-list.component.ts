@@ -30,6 +30,7 @@ export class GameListComponent implements OnInit {
   currentUrl: string;
 
   loading = false;
+  loadingGames = true;
 
   constructor(private fb: FormBuilder, private router: Router,
     private gameService: GameService, private alertService: AlertService,
@@ -49,12 +50,13 @@ export class GameListComponent implements OnInit {
     this.games = [];
     this.gameService.listar().subscribe((games: Game[]) => {
       games.forEach(game => {
-        this.storage.ref(game.nome).getDownloadURL().subscribe((res) => {
+        this.storage.ref(game.id.toString()).getDownloadURL().subscribe((res) => {
           game.fullPath = res;
           this.games.push(game);
         });
 
         if (games.lastIndexOf) {
+          this.loadingGames = false;
           if (search === true) {
             this.pesquisarFormGroup.reset();
           }
@@ -80,6 +82,7 @@ export class GameListComponent implements OnInit {
   }
 
   getPorNome(nome: string) {
+    this.loadingGames = true;
     this.gameService.getPorNome(nome).subscribe((res: ResponseDefault<Array<Game>>) => {
       if (res.body) {
         this.games = [];
@@ -88,14 +91,18 @@ export class GameListComponent implements OnInit {
             game.fullPath = full;
             this.games.push(game);
           });
+
+          if (res.body.lastIndexOf) { this.loadingGames = false; }
         });
       } else {
         this.alertService.danger(res.mensagem);
         this.listar();
+        this.loadingGames = false;
       }
     }, (err: any) => {
       this.alertService.danger(err.error.text);
       this.listar();
+      this.loadingGames = false;
     });
   }
 

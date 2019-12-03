@@ -55,6 +55,7 @@ registerLocaleData(localept, (settingsService) => settingsService.getLocale());
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { FileNamePipe } from './pipes/file-name.pipe';
+import { AbsolutLoadingComponent } from './ui/components/absolut-loading/absolut-loading.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { FileNamePipe } from './pipes/file-name.pipe';
     ShoppingCartComponent,
     ShoppingCartEmptyComponent,
     ShoppingCartListComponent,
-    FileNamePipe
+    FileNamePipe,
+    AbsolutLoadingComponent
   ],
   imports: [
     BrowserAnimationsModule,

@@ -2,10 +2,10 @@
     <div class="my-display-flex">
         <div class="my-flex-item">
             <img src="{{ jogo.fullPath | hasImage }}" alt="">
-            <button class="btn bg-primary" *ngIf="!this.shoppingCartService.existeNaSacola(jogo)"
+            <button class="btn bg-secondary" *ngIf="!this.shoppingCartService.existeNaSacola(jogo)"
                 (click)="adicionarNaSacola(jogo)">ADICIONAR NA SACOLA -
                 <b>{{ jogo.preco | currency:'BRL' }}</b></button>
-            <button class="btn bg-primary" *ngIf="this.shoppingCartService.existeNaSacola(jogo)" disabled>JÁ NA
+            <button class="btn bg-secondary" *ngIf="this.shoppingCartService.existeNaSacola(jogo)" disabled>JÁ NA
                 SACOLA</button>
             <button appHighPermissions class="btn bg-primary d-flex justify-content-between"
                 (click)="irParaEditarJogo(jogo.id)"> <span>EDITAR</span>

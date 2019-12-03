@@ -35,7 +35,7 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
     this.inscricao = this.route.queryParams.subscribe((queryParams: any) => {
       this.id = queryParams.id;
       this.gameService.getPorId(this.id).subscribe((game: Game) => {
-        this.storage.ref(game.nome).getDownloadURL().subscribe((res) => {
+        this.storage.ref(game.id.toString()).getDownloadURL().subscribe((res) => {
           game.fullPath = res;
           this.jogo = game;
           this.categoriaService.getPorId(this.jogo.idCategoria).subscribe((categoria: Category) => {
