@@ -55,7 +55,7 @@ export class GameEditComponent implements OnInit {
         this.game.dataLancamento = DateService.converterDataComIfen(this.game.dataLancamento);
         this.criarForms();
         this.getNomeAntigo();
-        this.getImagemAtual(this.game.id.toString());
+        this.getImagemAtual();
       });
     });
   }
@@ -131,16 +131,14 @@ export class GameEditComponent implements OnInit {
     this.loading = false;
   }
 
-  getImagemAtual(antigo: string) {
-    const nome = antigo;
-
-    this.storage.ref(nome).getDownloadURL().subscribe((res) => {
+  getImagemAtual() {
+    this.storage.ref(this.game.id.toString()).getDownloadURL().subscribe((res) => {
       this.fullPath = res;
-    }, () => this.alertService.warning('Não foi possível fazer download da imagem'))
+    }, (res) => { this.alertService.warning('Não foi possível fazer download da imagem'); console.log(res); })
 
-    this.storage.ref(nome).getMetadata().subscribe((imagem: any) => {
+    this.storage.ref(this.game.id.toString()).getMetadata().subscribe((imagem: any) => {
       this.file = imagem;
-    }, () => this.alertService.warning('O jogo não tem capa, faça upload de uma imagem'));
+    }, (res) => { this.alertService.warning('O jogo não tem capa, faça upload de uma imagem'); console.log(res); });
   }
 
   isNovaImagem() {
@@ -163,6 +161,13 @@ export class GameEditComponent implements OnInit {
 
       reader.readAsDataURL(file);
     }
+  }
+
+  excluirNovaImagem() {
+    this.file = null;
+    this.preview = null;
+    this.isNovaImagemBoolean = false;
+    this.getImagemAtual(this.antigo);
   }
 
   async uploadCapaParaStorage(id: string, resolve) {

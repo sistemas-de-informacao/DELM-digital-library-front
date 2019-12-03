@@ -75,14 +75,18 @@
                 *ngIf="gameFormGroup.get('categoria').hasError('required') && gameFormGroup.get('categoria').touched"
                 [mensagem]="'O campo categoria é obrigatório'"></app-error-card>
         </div>
-        <img *ngIf="preview === null" class="img" src="{{ fullPath | hasImage }}" alt="Imagem de capa do jogo">
-        <img *ngIf="preview !== null" class="img" src="{{ preview }}" alt="Imagem de capa do jogo nova">
+        <span *ngIf="isNovaImagem()" class="text-right pointer">Cancelar novo upload <i
+                class="fas fa-trash-alt pointer trash text-right mb-1" (click)="excluirNovaImagem()"></i></span>
+        <div class="images">
+            <img *ngIf="preview === null" class="img" src="{{ fullPath | hasImage }}" alt="Imagem de capa do jogo">
+            <img *ngIf="preview !== null" class="img" src="{{ preview }}" alt="Imagem de capa do jogo nova">
+        </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
             </div>
             <div class="custom-file">
-                <input (change)="onUploadCapa($event)" type="file" accept="image/*" class="custom-file-input"
+                <input (change)="onUploadCapa($event)" type="file" accept="image/*" class="custom-file-input pointer"
                     id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                 <label class="custom-file-label" for="inputGroupFile01">{{ file | fileName }}</label>
             </div>

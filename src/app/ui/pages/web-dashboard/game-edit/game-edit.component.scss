@@ -1,3 +1,13 @@
-img {
-    width: 100%;
+.container {
+    .config {
+        word-wrap: break-word;
+    }
+    
+    .trash {
+        color: red;
+    }
+
+    img {
+        width: 100%;
+    }
 }
