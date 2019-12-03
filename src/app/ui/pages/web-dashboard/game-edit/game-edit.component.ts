@@ -37,7 +37,7 @@ export class GameEditComponent implements OnInit {
   isNovaImagemBoolean: boolean;
 
   fullPath: string;
-  preview: ArrayBuffer = null;
+  preview: string | ArrayBuffer = null;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute,
     private gameService: GameService, private alertService: AlertService,
