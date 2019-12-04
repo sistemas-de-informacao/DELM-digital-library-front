@@ -167,7 +167,7 @@ export class GameEditComponent implements OnInit {
     this.file = null;
     this.preview = null;
     this.isNovaImagemBoolean = false;
-    this.getImagemAtual(this.antigo);
+    this.getImagemAtual();
   }
 
   async uploadCapaParaStorage(id: string, resolve) {

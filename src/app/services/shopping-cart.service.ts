@@ -81,8 +81,6 @@ export class ShoppingCartService {
   }
 
   finalizarCompra(cart: Cart): Observable<any> {
-    this.esvaziarLixeira();
-    this.atualizarSacola();
     return this.http.post<any>(`${environment.base_path}${Paths.BUY}`, cart);
   }
 

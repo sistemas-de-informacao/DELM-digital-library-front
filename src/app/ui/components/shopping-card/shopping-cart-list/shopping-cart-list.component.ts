@@ -1,3 +1,4 @@
+import { ResponseDefault } from 'src/app/models/response-default';
 import Swal from 'sweetalert2';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
@@ -70,13 +71,23 @@ export class ShoppingCartListComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.value) {
-        this.shoppingCartService.finalizarCompra(this.cart = new Cart(this.games, this.total, this.usuario)).subscribe(() => {
-          this.esvaziarSacola();
-          Swal.fire(
-            'Comprado!',
-            `Compra realizada com sucesso.`,
-            'success'
-          );
+        this.shoppingCartService.finalizarCompra(this.cart = new Cart(this.games, this.total, this.usuario)).subscribe((res: ResponseDefault<any>) => {
+          if (res.mensagem.includes('sucesso')) {
+            this.shoppingCartService.esvaziarLixeira();
+            this.shoppingCartService.atualizarSacola();
+            this.esvaziarSacola();
+            Swal.fire(
+              'Comprado!',
+              `${res.mensagem}`,
+              'success'
+            );
+          } else {
+            Swal.fire(
+              'Erro ao comprar!',
+              `${res.mensagem}`,
+              'warning'
+            );
+          }
         });
       }
     });
