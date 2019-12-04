@@ -18,5 +18,5 @@
     <div class="container margin-top">
         <h3>BIBLIOTECA DX <span class="text-primary">{{ user.nickname | uppercase }}</span></h3>
     </div>
-    <app-game-list></app-game-list>
+    <app-game-list *ngIf="id" [library]="id"></app-game-list>
 </div>
