@@ -124,20 +124,16 @@ export class GameListComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.loading = true;
-        this.storage.ref(nome).delete().subscribe(() => {
-          this.gameService.deletar(id).subscribe((res: any) => {
-            if (res.includes('sucesso')) {
-              this.loading = false;
-              this.listar();
-              Swal.fire(
-                'Excluido!',
-                `O ${nome} foi excluido com sucesso da DELM Library.`,
-                'success'
-              );
-            }
-          }, () => {
-            this.error(nome);
-          });
+        this.gameService.deletar(id).subscribe((res: any) => {
+          if (res.includes('sucesso')) {
+            this.loading = false;
+            this.listar();
+            Swal.fire(
+              'Excluido!',
+              `O ${nome} foi excluido com sucesso da DELM Library.`,
+              'success'
+            );
+          }
         }, () => {
           this.error(nome);
         });
