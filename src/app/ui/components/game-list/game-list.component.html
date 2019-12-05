@@ -1,5 +1,5 @@
 <div class="container margin-top">
-    <div class="d-flex justify-content-end">
+    <div *ngIf="!library" class="d-flex justify-content-end">
         <form [formGroup]="pesquisarFormGroup" class="d-flex">
             <i *ngIf="this.pesquisarFormGroup.get('nome').value" (click)="listar(true)"
                 class="fas fa-times-circle pointer primary-hover"></i>
