@@ -10,5 +10,6 @@ export class Paths {
     static ENABLE = 'ativar/';
     static UPDATE_PASSWORD = 'trocar-senha/';
     static IMAGE = 'image/';
+    static HAS_GAME = 'has-jogo/';
 
 }

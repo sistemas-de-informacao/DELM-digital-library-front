@@ -24,8 +24,8 @@ export class GameService implements ICrud<Game> {
     return this.http.post(`${environment.base_path}${Paths.GAMES}`, jogo);
   }
 
-  listar(): Observable<Game[]> {
-    return this.http.get<Game[]>(`${environment.base_path}${Paths.GAMES}`);
+  listar(id = -1): Observable<Game[]> {
+    return this.http.get<Game[]>(`${environment.base_path}${Paths.GAMES}delm/${id}`);
   }
 
   editar(jogo: Game): Observable<any> {
@@ -46,6 +46,10 @@ export class GameService implements ICrud<Game> {
 
   getPorNome(nome: string): Observable<any> {
     return this.http.get<any>(`${environment.base_path}${Paths.GAMES}${Paths.SEARCH}${nome}`);
+  }
+
+  hasJogo(game: number, usuario: number): Observable<any> {
+    return this.http.get<any>(`${environment.base_path}${Paths.GAMES}${Paths.HAS_GAME}${game}/${usuario}`);
   }
 
 }

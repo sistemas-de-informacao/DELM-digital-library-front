@@ -4,7 +4,7 @@ export interface ICrud<T> {
 
     criar(object: T): Observable<any>;
 
-    listar(): Observable<T[]>;
+    listar(id?: any): Observable<T[]>;
 
     editar(object: T): Observable<any>;
 

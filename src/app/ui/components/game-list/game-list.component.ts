@@ -1,6 +1,6 @@
 import { AlertService } from 'ngx-alerts';
 import { ResponseDefault } from './../../../models/response-default';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { tap, map, filter, distinctUntilChanged, debounceTime, switchMap } from 'rxjs/operators';
 import { FormBuilder } from '@angular/forms';
@@ -12,6 +12,7 @@ import { Game } from './../../../models/game';
 // Services
 import { GameService } from './../../../services/game.service';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-game-list',
@@ -20,6 +21,8 @@ import { AngularFireStorage } from '@angular/fire/storage';
 })
 
 export class GameListComponent implements OnInit {
+
+  @Input() library: any;
 
   games: Game[] = [];
 
@@ -34,7 +37,7 @@ export class GameListComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private router: Router,
     private gameService: GameService, private alertService: AlertService,
-    private storage: AngularFireStorage) { }
+    private storage: AngularFireStorage, private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
     this.listar();
@@ -48,20 +51,22 @@ export class GameListComponent implements OnInit {
 
   listar(search?: boolean) {
     this.games = [];
-    this.gameService.listar().subscribe((games: Game[]) => {
-      games.forEach(game => {
-        this.storage.ref(game.id.toString()).getDownloadURL().subscribe((res) => {
-          game.fullPath = res;
-          this.games.push(game);
-        });
+    this.gameService.listar(this.library).subscribe((games: Game[]) => {
+      if (games) {
+        games.forEach(game => {
+          this.storage.ref(game.id.toString()).getDownloadURL().subscribe((res) => {
+            game.fullPath = res;
+            this.games.push(game);
+          });
 
-        if (games.lastIndexOf) {
-          this.loadingGames = false;
-          if (search === true) {
-            this.pesquisarFormGroup.reset();
+          if (games.lastIndexOf) {
+            this.loadingGames = false;
+            if (search === true) {
+              this.pesquisarFormGroup.reset();
+            }
           }
-        }
-      });
+        });
+      }
     });
   }
 
@@ -119,20 +124,16 @@ export class GameListComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.loading = true;
-        this.storage.ref(nome).delete().subscribe(() => {
-          this.gameService.deletar(id).subscribe((res: any) => {
-            if (res.includes('sucesso')) {
-              this.loading = false;
-              this.listar();
-              Swal.fire(
-                'Excluido!',
-                `O ${nome} foi excluido com sucesso da DELM Library.`,
-                'success'
-              );
-            }
-          }, () => {
-            this.error(nome);
-          });
+        this.gameService.deletar(id).subscribe((res: any) => {
+          if (res.includes('sucesso')) {
+            this.loading = false;
+            this.listar();
+            Swal.fire(
+              'Excluido!',
+              `O ${nome} foi excluido com sucesso da DELM Library.`,
+              'success'
+            );
+          }
         }, () => {
           this.error(nome);
         });

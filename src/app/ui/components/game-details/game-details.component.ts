@@ -11,6 +11,7 @@ import { Category } from './../../../models/category';
 import { GameService } from 'src/app/services/game.service';
 import { CategoryService } from './../../../services/category.service';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-game-details',
@@ -28,8 +29,10 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
 
   categoria: Category;
 
+  usuarioHasJogo: boolean;
+
   constructor(private route: ActivatedRoute, private router: Router, private gameService: GameService, private categoriaService: CategoryService, private shoppingCartService: ShoppingCartService,
-    private storage: AngularFireStorage) { }
+    private storage: AngularFireStorage, private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
     this.inscricao = this.route.queryParams.subscribe((queryParams: any) => {
@@ -38,6 +41,7 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
         this.storage.ref(game.id.toString()).getDownloadURL().subscribe((res) => {
           game.fullPath = res;
           this.jogo = game;
+          this.hasJogo();
           this.categoriaService.getPorId(this.jogo.idCategoria).subscribe((categoria: Category) => {
             this.categoria = categoria;
           });
@@ -57,6 +61,12 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
   adicionarNaSacola(jogo: Game) {
     this.shoppingCartService.adicionarJogoLocalStorage(jogo);
     this.shoppingCartService.atualizarSacola();
+  }
+
+  hasJogo(): void {
+    this.gameService.hasJogo(this.jogo.id, +this.localStorageService.getId()).subscribe((hasJogo: boolean) => {
+      hasJogo === true ? this.usuarioHasJogo = true : this.usuarioHasJogo = false;
+    });
   }
 
 }
