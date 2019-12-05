@@ -10,8 +10,8 @@
             <ngx-alerts></ngx-alerts>
         </form>
     </div>
-    <div class="background-row d-flex flex-row flex-wrap">
-        <app-absolut-loading class="justify-content-center" *ngIf="loadingGames == true"></app-absolut-loading>
+    <div class="background-row d-flex flex-row flex-wrap justify-content-center">
+        <app-absolut-loading *ngIf="loadingGames == true"></app-absolut-loading>
         <div *ngFor="let jogo of games" class="background-column d-flex flex-column flex-fill">
             <div class="card bg-dark text-white pointer" (click)="getJogo(jogo.id, jogo.nome)">
                 <img class="card-img-top" src="{{ jogo.fullPath | hasImage }}" alt="Imagem de capa do card">
