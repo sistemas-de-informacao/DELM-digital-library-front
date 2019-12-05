@@ -33,7 +33,8 @@ export class GameListComponent implements OnInit {
   currentUrl: string;
 
   loading = false;
-  loadingGames = true;
+  loadingGames = false;
+  isListEmpty = true;
 
   constructor(private fb: FormBuilder, private router: Router,
     private gameService: GameService, private alertService: AlertService,
@@ -50,6 +51,7 @@ export class GameListComponent implements OnInit {
   }
 
   listar(search?: boolean) {
+    this.loadingGames = true;
     this.games = [];
     this.gameService.listar(this.library).subscribe((games: Game[]) => {
       if (games) {
@@ -66,8 +68,13 @@ export class GameListComponent implements OnInit {
             }
           }
         });
+
+        this.isListEmpty = false;
+      } else {
+        this.loadingGames = false;
+        this.isListEmpty = true;
       }
-    });
+    }, () => this.loadingGames = false);
   }
 
   search() {
