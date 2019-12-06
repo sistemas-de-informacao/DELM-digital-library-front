@@ -8,6 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageService } from './../../../services/local-storage.service';
 import { AlertService } from 'ngx-alerts';
 import { ChartOptions, ChartType } from 'chart.js';
+import { CategoryService } from 'src/app/services/category.service';
+import { CategoryQtd } from 'src/app/models/forms/category-qtd';
 
 @Component({
   selector: 'app-user-purchase-history',
@@ -35,8 +37,8 @@ export class UserPurchaseHistoryComponent implements OnInit {
       },
     }
   };
-  public pieChartLabels = [['FPS'], ['RPG'], 'Soundbox'];
-  public pieChartData: number[] = [300, 500, 100];
+  public pieChartLabels = [];
+  public pieChartData: number[] = [];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartColors = [
@@ -46,7 +48,7 @@ export class UserPurchaseHistoryComponent implements OnInit {
   ];
 
   constructor(private activatedRoute: ActivatedRoute, private localStorageService: LocalStorageService, private router: Router, private alertService: AlertService,
-    private shoppingCartService: ShoppingCartService) { }
+    private shoppingCartService: ShoppingCartService, private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.getUser();
@@ -55,6 +57,7 @@ export class UserPurchaseHistoryComponent implements OnInit {
   getUser() {
     this.activatedRoute.queryParams.subscribe((params: any) => {
       this.id = params.id;
+      this.listaQuantidadeJogoMaisCompradosByCategoryAndUsuario();
       if (+this.localStorageService.getId() == this.id) {
         this.shoppingCartService.getHistoricoPorUsuario(this.id).subscribe((res: ResponseDefault<HistoricForm[]>) => {
           for (const cod in res.body) {
@@ -67,6 +70,15 @@ export class UserPurchaseHistoryComponent implements OnInit {
           this.router.navigate(['loja']);
         }, 3000);
       }
+    });
+  }
+
+  listaQuantidadeJogoMaisCompradosByCategoryAndUsuario() {
+    this.categoryService.getQuantidadeCategoriasJogoByUsuario(this.id).subscribe((res: ResponseDefault<CategoryQtd[]>) => {
+      res.body.forEach(catQtd => {
+        this.pieChartLabels.push(catQtd.category);
+        this.pieChartData.push(catQtd.qtd);
+      });
     });
   }
 

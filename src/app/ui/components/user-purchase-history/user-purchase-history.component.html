@@ -26,7 +26,7 @@
         <h1 class="config">DASHBOARD DE COMPRAS</h1>
     </div>
     <br><br>
-    <div class="chart">
+    <div *ngIf="pieChartData.length > 0" class="chart">
         <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
             [options]="pieChartOptions" [plugins]="pieChartPlugins" [colors]="pieChartColors" [legend]="pieChartLegend">
         </canvas>

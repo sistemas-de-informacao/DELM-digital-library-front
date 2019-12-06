@@ -68,7 +68,9 @@ export class GameCadastreComponent implements OnInit {
 
   criarJogo() {
     this.loading = true;
-    this.game = new Game(this.gameForm.nome, this.gameForm.preco, DateService.converterData(this.gameForm.dataLancamento), this.gameForm.desenvolvedor, this.gameForm.descricao, 1, undefined, undefined, true);
+    this.game = new Game(this.gameForm.nome, this.gameForm.preco,
+      DateService.converterData(this.gameForm.dataLancamento), this.gameForm.desenvolvedor,
+      this.gameForm.descricao, this.gameForm.categoria, undefined, undefined, true);
     this.gameService.criar(this.game).subscribe((res: ResponseDefault<Game>) => {
       if (res.body) {
         this.uploadCapaParaStorage(res.body.id.toString(), ((callback: any) => {
@@ -86,7 +88,7 @@ export class GameCadastreComponent implements OnInit {
                 this.alertService.warning(res.mensagem);
                 this.loading = false;
               }
-            })
+            });
           } else {
             this.alertService.warning(res.mensagem.concat(', mas a imagem não foi armazenada.'));
             this.loading = false;

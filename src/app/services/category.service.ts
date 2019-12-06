@@ -40,4 +40,8 @@ export class CategoryService implements ICrud<Category> {
     return this.http.get(`${environment.base_path}${Paths.CATEGORIES}${Paths.SEARCH}${nome}`);
   }
 
+  getQuantidadeCategoriasJogoByUsuario(id: number): Observable<any> {
+    return this.http.get(`${environment.base_path}${Paths.BUY}${Paths.CATEGORIES}${id}`);
+  }
+
 }
