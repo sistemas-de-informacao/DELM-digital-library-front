@@ -88,6 +88,10 @@ export class ShoppingCartService {
     this.localStorageService.removeItensSelecionados();
   }
 
+  getHistoricoPorUsuario(id: number): Observable<any> {
+    return this.http.get<any>(`${environment.base_path}${Paths.BUY}${id}`);
+  }
+
 }
 
 

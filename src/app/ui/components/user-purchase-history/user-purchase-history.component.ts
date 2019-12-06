@@ -1,3 +1,6 @@
+import { HistoricForm } from './../../../models/historic-form';
+import { ResponseDefault } from './../../../models/response-default';
+import { ShoppingCartService } from './../../../services/shopping-cart.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -14,6 +17,8 @@ import { ChartOptions, ChartType } from 'chart.js';
 export class UserPurchaseHistoryComponent implements OnInit {
 
   id: number;
+
+  historicsForm: Array<any> = [];
 
   // Pie
   public pieChartOptions: ChartOptions = {
@@ -40,7 +45,8 @@ export class UserPurchaseHistoryComponent implements OnInit {
     },
   ];
 
-  constructor(private activatedRoute: ActivatedRoute, private localStorageService: LocalStorageService, private router: Router, private alertService: AlertService) { }
+  constructor(private activatedRoute: ActivatedRoute, private localStorageService: LocalStorageService, private router: Router, private alertService: AlertService,
+    private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit() {
     this.getUser();
@@ -49,9 +55,12 @@ export class UserPurchaseHistoryComponent implements OnInit {
   getUser() {
     this.activatedRoute.queryParams.subscribe((params: any) => {
       this.id = params.id;
-      // tslint:disable-next-line: triple-equals
       if (+this.localStorageService.getId() == this.id) {
-        // TODO - listar histórico do usuário referente
+        this.shoppingCartService.getHistoricoPorUsuario(this.id).subscribe((res: ResponseDefault<HistoricForm[]>) => {
+          for (const cod in res.body) {
+            this.historicsForm.push(res.body[cod]);
+          }
+        });
       } else {
         this.alertService.danger('Você não tem permissão para acessar essa página');
         setTimeout(() => {

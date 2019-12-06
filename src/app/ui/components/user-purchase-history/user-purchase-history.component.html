@@ -3,26 +3,34 @@
         <table class="table table-dark bg-dark">
             <caption>Seu histórico de compras na DELM ®.</caption>
             <thead>
-                <tr>
-                    <th class="primary">Data</th>
-                    <th class="primary">Jogo</th>
-                    <th class="primary">Preço</th>
-                    <th class="primary">Saldo</th>
-                </tr>
+                <div>
+                    <tr>
+                        <th class="primary">Código</th>
+                        <th class="primary" [ngStyle]="{'color': 'blue'}">Data</th>
+                        <th class="primary" [ngStyle]="{'color': 'green'}">Jogo</th>
+                        <th class="primary" [ngStyle]="{'color': 'yellow'}">Preço</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th class="primary" [ngStyle]="{'color': 'red'}">Total</th>
+                    </tr>
+                </div>
             </thead>
             <tbody>
-                <tr appTableHover>
-                    <td class="primary">24/09/2019</td>
-                    <td class="primary">Call of Duty</td>
-                    <td class="primary">R$ 19,99</td>
-                    <td class="primary">R$ 39,50</td>
+                <tr appTableHover *ngFor="let historic of historicsForm">
+                    <div *ngFor="let h of historic; let i = index">
+                        <td class="primary">{{ h.codigoCompra }}</td>
+                        <td class="primary" [ngStyle]="{'color': 'blue'}">{{ h.dataCompra }}</td>
+                        <td class="primary" [ngStyle]="{'color': 'green'}">{{ h.jogoNome }}</td>
+                        <td></td>
+                        <td class="primary" [ngStyle]="{'color': 'yellow'}">{{ h.precoJogo | currency:'BRL' }}</td>
+                        <td></td>
+                        <td *ngIf="i >= historic.length - 1" class="primary" [ngStyle]="{'color': 'red'}">
+                            {{ h.totalCompra | currency:'BRL' }}</td>
+                        <td *ngIf="i < historic.length - 1"></td>
+                    </div>
+                    <br>
                 </tr>
-            </tbody>
-            <tbody>
-                <th>Total</th>
-                <td></td>
-                <td></td>
-                <td>R$ 19,99</td>
             </tbody>
         </table>
         <ngx-alerts></ngx-alerts>

@@ -1,7 +1,6 @@
 import { Game } from 'src/app/models/game';
 import { GameService } from 'src/app/services/game.service';
 import { Router } from '@angular/router';
-import { Swal } from 'sweetalert2';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
