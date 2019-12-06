@@ -99,7 +99,7 @@ export class GameListComponent implements OnInit {
       if (res.body) {
         this.games = [];
         res.body.forEach(game => {
-          this.storage.ref(game.nome).getDownloadURL().subscribe((full) => {
+          this.storage.ref(game.id.toString()).getDownloadURL().subscribe((full) => {
             game.fullPath = full;
             this.games.push(game);
           });

@@ -14,13 +14,18 @@ export class AppComponent {
 
   constructor(private userService: UserService, private authenticationService: AuthenticationService,
     private localStorageService: LocalStorageService) {
+  }
+
+  ngOnInit(): void {
     this.getUser();
   }
 
   getUser() {
-    this.userService.getPorId(+this.localStorageService.getId()).subscribe((res) => {
-      this.authenticationService.attUserLogado(res);
-    }, () => this.authenticationService.sair());
+    if (this.localStorageService.getId()) {
+      this.userService.getPorId(+this.localStorageService.getId()).subscribe((res) => {
+        this.authenticationService.attUserLogado(res);
+      }, () => this.authenticationService.sair());
+    }
   }
 
 }
