@@ -1,27 +1,11 @@
-.card-bg {
-    height: calc(100vh - 15vh);
-    margin: 20px;
+.card {
+    padding: 10px;
 
-    .card {
-        width: 65%;
-        min-width: 320px;
-        padding: 10px;
+    form {
+        width: 100%;
 
-        form {
+        .btn-primary {
             width: 100%;
-
-            .btn-primary {
-                width: 100%;
-            }
         }
-    }
-
-    .input-group-append {
-        margin-left: 0.50px;
-    }
-
-    .fa-plus {
-        font-size: 1.5em;
-
     }
 }

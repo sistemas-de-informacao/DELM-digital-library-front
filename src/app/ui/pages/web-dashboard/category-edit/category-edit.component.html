@@ -1,9 +1,9 @@
 <div class="container margin-top">
     <div *ngIf="categoria" class="card-bg d-flex flex-column justify-content-center align-items-center">
         <div class="card bg-dark">
+            <h3 for="exampleFormGroup">Editar categoria</h3>
             <div class="card-body d-flex flex-column justify-content-center align-items-center">
                 <form [formGroup]="categoriaForm" (ngSubmit)="onSubmitEditarCategoria()">
-                    <label for="exampleFormGroup">Editar categoria</label>
                     <div class="form-group">
                         <input formControlName='nome' type="text" class="form-control" id="exampleNome"
                             aria-describedby="nicknameHelp" placeholder="Nome">

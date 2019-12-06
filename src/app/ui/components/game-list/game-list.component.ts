@@ -34,7 +34,7 @@ export class GameListComponent implements OnInit {
 
   loading = false;
   loadingGames = false;
-  isListEmpty = true;
+  isListEmpty = false;
 
   constructor(private fb: FormBuilder, private router: Router,
     private gameService: GameService, private alertService: AlertService,
@@ -63,13 +63,13 @@ export class GameListComponent implements OnInit {
 
           if (games.lastIndexOf) {
             this.loadingGames = false;
+            this.isListEmpty = false;
             if (search === true) {
               this.pesquisarFormGroup.reset();
             }
           }
         });
 
-        this.isListEmpty = false;
       } else {
         this.loadingGames = false;
         this.isListEmpty = true;
