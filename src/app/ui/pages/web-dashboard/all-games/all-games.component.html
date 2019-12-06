@@ -1,0 +1,17 @@
+<div class="container margin-top">
+    <div class="table-responsive">
+        <table class="table table-dark bg-dark">
+            <caption>Lista de categorias - clique para editar.</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let game of games" (click)="irParaEditarJogo(game.id)" appTableHover>
+                    <td>{{ game.nome }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

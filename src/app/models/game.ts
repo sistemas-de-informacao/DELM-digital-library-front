@@ -8,8 +8,9 @@ export class Game {
     descricao: string;
     idCategoria: any;
     fullPath: string;
+    enabled: boolean;
 
-    constructor(nome: string, preco: number, dataLacamento: string, desenvolvedor: string, descricao: string, idCategoria: any, fullPath?: string, id?: number) {
+    constructor(nome: string, preco: number, dataLacamento: string, desenvolvedor: string, descricao: string, idCategoria: any, fullPath?: string, id?: number, enabled?: boolean) {
         this.nome = nome;
         this.preco = preco;
         this.dataLancamento = dataLacamento;
@@ -18,6 +19,7 @@ export class Game {
         this.idCategoria = idCategoria;
         this.id = id;
         this.fullPath = fullPath;
+        this.enabled = enabled;
     }
 
 }

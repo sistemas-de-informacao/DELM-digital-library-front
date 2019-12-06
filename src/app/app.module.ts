@@ -57,6 +57,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { FileNamePipe } from './pipes/file-name.pipe';
 import { AbsolutLoadingComponent } from './ui/components/absolut-loading/absolut-loading.component';
 import { GameListEmptyComponent } from './ui/components/game-list/game-list-empty/game-list-empty.component';
+import { AllGamesComponent } from './ui/pages/web-dashboard/all-games/all-games.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { GameListEmptyComponent } from './ui/components/game-list/game-list-empt
     ShoppingCartListComponent,
     FileNamePipe,
     AbsolutLoadingComponent,
-    GameListEmptyComponent
+    GameListEmptyComponent,
+    AllGamesComponent
   ],
   imports: [
     BrowserAnimationsModule,

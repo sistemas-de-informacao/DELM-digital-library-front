@@ -1,3 +1,4 @@
+import { AllGamesComponent } from './ui/pages/web-dashboard/all-games/all-games.component';
 import { ShoppingCartComponent } from './ui/components/shopping-card/shopping-cart.component';
 import { HighLevelGuard } from './guards/high-level.guard';
 
@@ -37,7 +38,8 @@ const routes: Routes = [{ path: 'login', component: LoginComponent },
     { path: 'cadastro-categoria', component: CategoryCadastreComponent },
     { path: 'categorias', component: CategoryListComponent },
     { path: 'editar-categoria/:id', component: CategoryEditComponent },
-    { path: 'editar-jogo/:id', component: GameEditComponent }
+    { path: 'editar-jogo/:id', component: GameEditComponent },
+    { path: 'jogos', component: AllGamesComponent }
   ]
 },
 {

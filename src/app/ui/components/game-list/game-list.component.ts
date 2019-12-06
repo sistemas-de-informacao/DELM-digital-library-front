@@ -74,7 +74,7 @@ export class GameListComponent implements OnInit {
         this.loadingGames = false;
         this.isListEmpty = true;
       }
-    }, () => this.loadingGames = false);
+    }, () => { this.loadingGames = false; this.isListEmpty = true; });
   }
 
   search() {
@@ -139,6 +139,13 @@ export class GameListComponent implements OnInit {
               'Excluido!',
               `O ${nome} foi excluido com sucesso da DELM Library.`,
               'success'
+            );
+          } else {
+            this.loading = false;
+            Swal.fire(
+              'Erro!',
+              `${res}`,
+              'error'
             );
           }
         }, () => {

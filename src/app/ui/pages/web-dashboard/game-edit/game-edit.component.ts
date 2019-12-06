@@ -51,6 +51,7 @@ export class GameEditComponent implements OnInit {
     this.route.queryParams.subscribe((queryParams: any) => {
       this.id = queryParams.id;
       this.gameService.getPorId(this.id).subscribe((game: Game) => {
+        console.log(game);
         this.game = game;
         this.game.dataLancamento = DateService.converterDataComIfen(this.game.dataLancamento);
         this.criarForms();
@@ -71,8 +72,10 @@ export class GameEditComponent implements OnInit {
       dataLancamento: [this.game.dataLancamento, [Validators.required]],
       desenvolvedor: [this.game.desenvolvedor, [Validators.required, Validators.maxLength(45)]],
       descricao: [this.game.descricao, [Validators.required, Validators.minLength(6), Validators.maxLength(500)]],
-      categoria: [this.game.idCategoria, [Validators.required]]
+      categoria: [this.game.idCategoria, [Validators.required]],
+      enabled: [this.game.enabled, []]
     });
+    console.log(this.gameFormGroup.get('enabled').value)
   }
 
   onSubmitToEdit() {
@@ -82,7 +85,7 @@ export class GameEditComponent implements OnInit {
 
   editar() {
     this.loading = true;
-    this.game = new Game(this.gameForm.nome, this.gameForm.preco, DateService.converterData(this.gameForm.dataLancamento), this.gameForm.desenvolvedor, this.gameForm.descricao, 1, undefined, this.id);
+    this.game = new Game(this.gameForm.nome, this.gameForm.preco, DateService.converterData(this.gameForm.dataLancamento), this.gameForm.desenvolvedor, this.gameForm.descricao, 1, undefined, this.id, this.gameFormGroup.get('enabled').value);
     this.gameService.editar(this.game).subscribe((res: ResponseDefault<Game>) => {
       if (res.body) {
         if (this.isNovaImagem()) {
