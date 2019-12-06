@@ -34,6 +34,11 @@ export class AuthenticationService {
     this.router.navigate(['/loja/biblioteca'], { queryParams: { id } });
   }
 
+  attUserLogado(user: User) {
+    this.localStorageService.setId(user);
+    this.localStorageService.setPermissao(user);
+  }
+
   isLogado(): boolean {
     if (this.localStorageService.getId()) {
       return true;

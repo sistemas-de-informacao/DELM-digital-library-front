@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { UserService } from './services/user.service';
+import { AuthenticationService } from './services/authentication.service';
+import { User } from './models/user';
+import { LocalStorageService } from './services/local-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +12,15 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
 
-  dataAgora = new Date();
-  developersTeam: string[] = ['Daniel Vieira', ' Edson Camargo', ' Lucas Pelinzon', ' Matheus Fracaroli'];
+  constructor(private userService: UserService, private authenticationService: AuthenticationService,
+    private localStorageService: LocalStorageService) {
+    this.getUser();
+  }
 
-  constructor() { }
+  getUser() {
+    this.userService.getPorId(+this.localStorageService.getId()).subscribe((res) => {
+      this.authenticationService.attUserLogado(res);
+    }, () => this.authenticationService.sair());
+  }
 
 }

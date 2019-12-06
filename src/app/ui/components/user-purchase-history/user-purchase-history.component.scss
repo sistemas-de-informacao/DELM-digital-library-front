@@ -1,15 +1,13 @@
 .container {
-    table {
-        th.primary {
-            border-top: 2px solid var(--primary);
-            border-bottom: 2px solid var(--primary);
-            width: 40%;
-        }
+    .card {
+        margin-bottom: 20px;
 
-        td.primary {
-            border-top: 1px solid var(--darkness);
-            border-bottom: 1px solid var(--darkness);
-            width: 40%;
+        span {
+            margin-right: 5px;
         }
-    }
+        
+        .game {
+            width: 50%;
+        }
+        }
 }
